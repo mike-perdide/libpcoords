@@ -1,0 +1,20 @@
+header {
+    title = "Integer Variable Test";
+}
+engine {
+        relative = "0";
+}
+axes {
+    integer axis1;
+    integer axis2;
+    integer axis3;
+    integer axis4;
+    integer axis5;
+}
+data {
+    axis1="32767",axis2="20000",axis3="8191",axis4="20000",axis5="32767";
+    axis1="32767",axis2="48000",axis3="61000",axis4="48000",axis5="32767";
+    axis1="32767",axis2="20000",axis3="20000",axis4="20000",axis5="32767";
+    axis1="32767",axis2="48000",axis3="48000",axis4="48000",axis5="32767";
+}
+

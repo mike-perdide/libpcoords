@@ -1,0 +1,9 @@
+axes {
+    char axis1 [label="first one"];
+    char axis2;
+    enum axis3;
+}
+data {
+    axis1="0", axis2="255", axis3="mickey";
+}
+

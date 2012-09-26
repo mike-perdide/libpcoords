@@ -1,0 +1,12 @@
+header {
+	title = "Showing a SSH scan";
+}
+axes {
+	timeline time   [label="Time"];
+	string   log    [label="fds"];
+}
+data {
+	time="05:08", log="ab";
+	time="05:40", log="ba";
+}
+

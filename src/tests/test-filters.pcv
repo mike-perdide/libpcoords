@@ -1,0 +1,18 @@
+header {
+	title = "Test my filters";
+}
+engine {
+	string_algo = "basic";
+}
+axes {
+	string axis1;
+	string axis2;
+	string axis3;
+}
+data {
+	axis1="Marge",axis2="Homer",axis3="Maggy";
+	axis1="Skinner",axis2="Apu",axis3="Bart";
+	axis1="Burns",axis2="Wiggum",axis3="Willie";
+	axis1="Duffman",axis2="0foobar",axis3="Marge";
+}
+

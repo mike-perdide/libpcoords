@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="200" height="500" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <desc>Picviz image</desc>
+
+/* Background */
+<rect id="square" style="fill:white;stroke:white;" width="200" height="500"></rect>
+
+/* Axes */
+<line x1="50" y1="0" x2="50" y2="500" stroke="black" stroke-width="0.1"/>
+<text style="fill:black;font-size:8px;font-family:Courier 10 Pitch" x="50" y="10"></text>
+<line x1="100" y1="0" x2="100" y2="0" stroke="black" stroke-width="0.1"/>
+<line x1="150" y1="0" x2="150" y2="500" stroke="black" stroke-width="0.1"/>
+<text style="fill:black;font-size:8px;font-family:Courier 10 Pitch" x="150" y="10"></text>
+<line x1="200" y1="0" x2="200" y2="0" stroke="black" stroke-width="0.1"/>
+<line x1="0" y1="0" x2="200" y2="0" stroke="black" stroke-width="0.1"/>
+
+/* Lines */
+<line x1="50" y1="500" x2="150" y2="0" stroke="#000000" stroke-width="0.1"/>
+</svg>

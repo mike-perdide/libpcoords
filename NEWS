@@ -1,0 +1,44 @@
+0.6:
+  * Can embed filters in the header
+  * New Python bindings
+  * The axes order can be changed on the fly
+  * Axes can be repeated
+  * Axes can be hidden on the fly
+  * Layers, possibility to hide anyone you don't want
+  * Logo can be embedded in the image
+  * Frequency filtering
+  * Limit the axis variable height using an unsigned long long integer
+  * Draw curves instead of lines as an option in pngcairo
+  * Fixed cmake warnings
+0.5:
+  * Enum type
+  * Ln type
+  * Frontend asks to open of file if none given
+  * Bgcolor for image and pngcairo plugin
+  * Real-time
+  * File output as parameter, instead of always stdout
+  * When printing labels over lines, you can now use print=false
+    not to print a given axis
+  * Colors can be set as (n,n,n) ( 0 <= n <= 1 )
+  * Port variable
+0.4:
+  * Heatlines
+  * Relative as axis property
+  * Learning mode
+  * Cairo plugin
+  * Height as image property
+  * Multiple conditions for filtering
+0.3:
+  * Filters
+  * Added penwidth property
+  * CSV plugin
+  * SDL plugin
+  * PCV tool rewritten
+  * Properties managed with hash
+  * Reworked on linked list
+  * PCRE filtering capabilities (pcv -Wpcre)
+0.2:
+  * UTC Type
+  * PLPlot plugin
+  * Multiple PCV files inclusion
+0.1: Initial release

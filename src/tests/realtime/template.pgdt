@@ -1,0 +1,9 @@
+#
+# Test template
+# for realtime
+#
+axes {
+	timeline time;
+	string   str;
+	integer  foo;
+}

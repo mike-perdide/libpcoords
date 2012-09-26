@@ -1,0 +1,8 @@
+axes {
+     integer axis1;
+     char    axis2;
+}
+data {
+     axis1="32000", axis2="122";
+     axis1="60000", axis2="1";
+}

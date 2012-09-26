@@ -1,0 +1,71 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="200" height="500" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <desc>Picviz image</desc>
+
+/* Background */
+<rect id="square" style="fill:white;stroke:white;" width="200" height="500"></rect>
+
+/* Axes */
+<line x1="50" y1="0" x2="50" y2="500" stroke="black" stroke-width="0.1"/>
+<text style="fill:black;font-size:8px;font-family:Courier 10 Pitch" x="50" y="10"></text>
+<line x1="100" y1="429496729600" x2="0" y2="0" stroke="black" stroke-width="0.1"/>
+<line x1="150" y1="0" x2="150" y2="500" stroke="black" stroke-width="0.1"/>
+<text style="fill:black;font-size:8px;font-family:Courier 10 Pitch" x="150" y="10"></text>
+<line x1="200" y1="858993459200" x2="0" y2="0" stroke="black" stroke-width="0.1"/>
+<line x1="0" y1="0" x2="200" y2="0" stroke="black" stroke-width="0.1"/>
+
+/* Lines */
+<line x1="50" y1="500" x2="150" y2="500" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="481" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="461" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="442" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="422" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="402" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="383" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="363" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="344" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="324" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="304" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="285" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="265" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="246" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="226" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="206" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="187" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="167" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="148" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="128" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="108" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="89" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="69" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="50" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="30" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="10" stroke="#000000" stroke-width="0.1"/>
+<line x1="50" y1="500" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="481" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="461" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="442" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="422" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="402" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="383" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="363" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="344" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="324" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="304" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="285" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="265" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="246" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="226" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="206" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="187" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="167" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="148" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="128" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="108" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="89" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="69" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="50" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="30" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+<line x1="50" y1="10" x2="150" y2="500" stroke="#FF0000" stroke-width="0.1"/>
+</svg>

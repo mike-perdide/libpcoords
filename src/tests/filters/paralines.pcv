@@ -1,0 +1,16 @@
+header {
+	title = "Test my filters";
+}
+axes {
+	char axis1;
+	char axis2;
+	char axis3;
+	char axis4;
+}
+data {
+	axis1="255",axis2="255",axis3="255",axis4="255" [penwidth="1.0"];
+	axis1="0",axis2="0",axis3="0",axis4="0" [penwidth="1.0"];
+	axis1="128",axis2="128",axis3="128",axis4="128" [penwidth="1.0"];
+	axis1="200",axis2="200",axis3="200",axis4="200" [penwidth="1.0"];
+	axis1="55",axis2="55",axis3="55",axis4="55" [penwidth="1.0"];
+}

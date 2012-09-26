@@ -1,0 +1,15 @@
+header {
+	title = "Showing a SSH scan";
+}
+engine {
+	relative = "1";
+	string_algo = "basic";
+}
+axes {
+	timeline time   [label="Time"];
+	string   log    [label="fds",relative="true"];
+}
+data {
+	time="05:08", log="ab";
+	time="05:40", log="ba";
+}

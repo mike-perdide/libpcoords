@@ -1,0 +1,18 @@
+header {
+    title = "Syslog picviz analysis";
+}
+axes {
+    timeline t;
+    string   m;
+    string   a;
+    string   l;
+}
+data {
+    t="08:22",m="quinificated",a="kernel:",l="NET: Registered protocol family 17" [color="red"];
+    t="08:22",m="quinificated",a="kernel:",l="Using IPI No-Shortcut mode" [color="red"];
+    t="08:22",m="quinificated",a="kernel:",l="registered taskstats version 1" [color="darkblue",label="foobar"];
+    t="08:22",m="quinificated",a="kernel:",l="Freeing unused kernel memory: 248k freed" [color="darkblue"];
+    t="08:22",m="quinificated",a="kernel:",l="input: AT Translated Set 2 keyboard as /class/input/input0" [color="blue"];
+    t="08:22",m="quinificated",a="kernel:",l="ACPI: CPU0 (power states: C1[C1] C2[C2] C3[C3] C4[C3])" [color="blue"];
+}
+

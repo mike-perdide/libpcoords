@@ -1,0 +1,72 @@
+cmake_minimum_required(VERSION 2.6)
+project(LIBPICVIZ)
+
+INCLUDE(CheckIncludeFile)
+INCLUDE(CheckFunctionExists)
+INCLUDE(CheckLibraryExists)
+
+SET(CMAKE_BUILD_TYPE "DEBUG")
+IF(CMAKE_BUILD_TYPE)
+   SET(CMAKE_VERBOSE_MAKEFILE ON)
+ENDIF(CMAKE_BUILD_TYPE)
+
+# with -fPIC
+IF(UNIX AND NOT WIN32)
+  FIND_PROGRAM(CMAKE_UNAME uname /bin /usr/bin /usr/local/bin )
+  IF(CMAKE_UNAME)
+    EXEC_PROGRAM(uname ARGS -m OUTPUT_VARIABLE CMAKE_SYSTEM_PROCESSOR)
+    SET(CMAKE_SYSTEM_PROCESSOR ${CMAKE_SYSTEM_PROCESSOR} CACHE INTERNAL
+"processor type (i386 and x86_64)")
+    IF(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
+      ADD_DEFINITIONS(-fPIC)
+    ENDIF(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
+  ENDIF(CMAKE_UNAME)
+ENDIF(UNIX AND NOT WIN32)
+
+
+IF(NOT LIB_INSTALL_DIR)
+   SET(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib)
+ENDIF(NOT LIB_INSTALL_DIR)
+
+IF(NOT MOD_INSTALL_DIR)
+   SET(MOD_INSTALL_DIR ${LIB_INSTALL_DIR}/${PROJECT_NAME})
+ENDIF(NOT MOD_INSTALL_DIR)
+
+add_definitions(-DPLUGIN_PATH="${MOD_INSTALL_DIR}")
+add_definitions(-DPICVIZ_DATADIR="${CMAKE_INSTALL_PREFIX}")
+
+configure_file(
+${CMAKE_CURRENT_SOURCE_DIR}/config.h.cmake
+${CMAKE_CURRENT_SOURCE_DIR}/config.h
+)
+
+configure_file(
+${CMAKE_CURRENT_SOURCE_DIR}/libpicviz.pc.cmake
+${CMAKE_CURRENT_BINARY_DIR}/libpicviz.pc
+)
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/libpicviz.pc
+	DESTINATION ${LIB_INSTALL_DIR}/pkgconfig/ )
+
+
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${LIBPICVIZ_SOURCE_DIR}/cmake)
+FIND_PACKAGE(FLEX REQUIRED)
+FIND_PACKAGE(BISON REQUIRED)
+#FIND_PACKAGE(PCRE REQUIRED)
+FIND_PACKAGE(PkgConfig)
+
+pkg_check_modules(Cairo cairo-png)
+
+# Versions of GCC may have warnings I haven't
+# it does not mean I don't care of warnings :)
+set(CMAKE_C_FLAGS "-Wall -Wextra -O0 -ggdb")
+#set(CMAKE_C_FLAGS_DEBUG "-Wall -Wextra -O0 -ggdb")
+
+add_subdirectory(gnulib)
+add_subdirectory(libev)
+add_subdirectory(src)
+
+#SET_TARGET_PROPERTIES(picviz PROPERTIES LINKER_LANGUAGE C)
+#SET_TARGET_PROPERTIES(picviz PROPERTIES COMPILE_FLAGS "-g")
+
+#summary()
+

@@ -1,0 +1,26 @@
+header {
+    title = "Worst case where everything is tested in a single PCV!";
+    logo = "./wallinfire-logo-64.png";
+    logo.x = "10";
+    logo.y = "10";
+    hide-layers = "coolcity";
+    bgcolor = "#dbdbdb";
+    bgalpha = "0.5";
+}
+axes {
+    timeline time [print="false"];
+    timeline time;
+    enum     city [label="City"];
+    ipv4     ipaddr [label="Source IP"];
+}
+data {
+
+    time="12:00", hiddenaxis="blah", ipaddr="192.168.1.23", city="Paris" [penwidth="2"];
+    time="12:00", hiddenaxis="blah", ipaddr="0.0.0.0", city="London" [penwidth="2",color="(1.0,0,0)"];
+    time="12:00", hiddenaxis="blah", ipaddr="192.168.1.23", city="Vancouver" [penwidth="10",color="#145700",inlayer="coolcity"];
+    time="8:00",  hiddenaxis="blah", ipaddr="255.255.255.255", city="Beijing";
+layer coldcity {
+    time="8:12",  hiddenaxis="blah", ipaddr="192.168.1.23", city="Whitehorse" [color="blue", penwidth="1"];
+}
+
+}

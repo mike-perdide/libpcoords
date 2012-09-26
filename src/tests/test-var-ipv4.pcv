@@ -1,0 +1,22 @@
+header {
+    title = "IPv4 Variable Test";
+}
+engine {
+        relative = "0";
+}
+axes {
+    ipv4 axis1;
+    ipv4 axis2;
+}
+data {
+        axis1="10.0.0.1", axis2="156.56.103.5";
+        axis1="127.0.0.1", axis2="156.56.103.5" [color="blue"];
+        axis1="172.16.32.24", axis2="156.56.103.5" [color="red"];
+        axis1="192.168.0.1", axis2="156.56.103.5" [color="green"];
+        axis1="192.168.0.2", axis2="156.56.103.5" [color="green"];
+        axis1="192.168.33.16", axis2="156.56.103.5" [color="green"];
+        axis1="192.168.33.223", axis2="156.56.103.5" [color="green"];
+        axis1="192.168.1.42", axis2="156.56.103.5" [color="green"];
+        axis1="192.168.2.42", axis2="156.56.103.5" [color="green"];
+}
+

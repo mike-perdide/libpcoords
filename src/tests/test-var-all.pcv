@@ -1,0 +1,17 @@
+header {
+    title = "All Variables Test";
+}
+axes {
+    char     axis1;
+    gold     axis2;
+    short    axis3;
+    integer  axis4;
+    float    axis5;
+    timeline axis6;
+    ipv4     axis7;
+    string   axis8;
+}
+data {
+    axis1="127",axis2="716",axis3="16368",axis4="32737",axis5="32737",axis6="12:00",axis7="127.127.127.127",axis8="This is what a medium string should be or maybe not because a longer string is better ?!!!!";
+}
+

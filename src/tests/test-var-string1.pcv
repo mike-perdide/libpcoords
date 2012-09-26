@@ -1,0 +1,14 @@
+header {
+    title = "String Variable Test";
+}
+engine {
+        relative = "0";
+}
+axes {
+    string axis1;
+    string axis2;
+}
+data {
+        axis1="", axis2="The competent programmer is fully aware of the limited size of his own skull. He therefore approaches his task with full humility, and avoids clever tricks like the plague.";
+}
+

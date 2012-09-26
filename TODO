@@ -1,0 +1,47 @@
+[Library]
+
+    [X] Show min/max values
+    [X] Change the axis order on the fly
+    [X] Hide unwanted axes
+    [X] Layers
+        header {
+            hide-layers = "layer1,layer2";
+        }
+        ...
+        data {
+            layer layer1 {
+                axis1="foo", axis2="bar";
+            }
+            ...
+        }
+    [X] Can embed filters in the header:
+        header {
+            filter = "show plot > 50% on axis 3";
+        }
+    [X] Embed a logo in the image
+    [X] Filter on frequency
+
+
+Later (milestone 0.7)
+=====================
+    [ ] Add divider type to have several axes with points not reaching them
+    [ ] Functions to specify variable behaviors:
+        alias sec  1000 <- usec
+        alias min  60 * sec
+        alias hour 60 * min
+        alias day  24 * hour
+        alias timeline day
+
+    [X] Fix number limit on the axis
+        axes {
+            4096 seqnum; # from 0 to 4096
+        }
+
+    [ ] Improve performances
+    [ ] Add sublayers
+    [ ] Animated GIF
+    [ ] Curves can be used instead of straight lines upon request
+    [ ] Mask layers to avoid drawing lines if they already belong to this mask: this will allow only new lines to be drawn and not the one we have seen already
+    [ ] Allow rectangle selection filter
+
+

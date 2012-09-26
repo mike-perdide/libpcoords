@@ -1,0 +1,65 @@
+header {
+    title = "Char Variable Test";
+}
+engine {
+        relative = "0";
+}
+axes {
+    char axis1;
+    char axis2;
+}
+data {
+        axis1="0", axis2="0";
+        axis1="0", axis2="10";
+        axis1="0", axis2="20";
+        axis1="0", axis2="30";
+        axis1="0", axis2="40";
+        axis1="0", axis2="50";
+        axis1="0", axis2="60";
+        axis1="0", axis2="70";
+        axis1="0", axis2="80";
+        axis1="0", axis2="90";
+        axis1="0", axis2="100";
+        axis1="0", axis2="110";
+        axis1="0", axis2="120";
+        axis1="0", axis2="130";
+        axis1="0", axis2="140";
+        axis1="0", axis2="150";
+        axis1="0", axis2="160";
+        axis1="0", axis2="170";
+        axis1="0", axis2="180";
+        axis1="0", axis2="190";
+        axis1="0", axis2="200";
+        axis1="0", axis2="210";
+        axis1="0", axis2="220";
+        axis1="0", axis2="230";
+        axis1="0", axis2="240";
+        axis1="0", axis2="250";
+        axis1="0", axis2="0" [color="red",penwidth="0.1"];
+        axis1="10", axis2="0" [color="red",penwidth="0.2"];
+        axis1="20", axis2="0" [color="red",penwidth="0.3"];
+        axis1="30", axis2="0" [color="red",penwidth="0.4"];
+        axis1="40", axis2="0" [color="red",penwidth="0.5"];
+        axis1="50", axis2="0" [color="red",penwidth="0.6"];
+        axis1="60", axis2="0" [color="red",penwidth="0.7"];
+        axis1="70", axis2="0" [color="red",penwidth="0.8"];
+        axis1="80", axis2="0" [color="red",penwidth="0.9"];
+        axis1="90", axis2="0" [color="red",penwidth="1.0"];
+        axis1="100", axis2="0" [color="red",penwidth="1.1"];
+        axis1="110", axis2="0" [color="red",penwidth="1.2"];
+        axis1="120", axis2="0" [color="red",penwidth="1.3"];
+        axis1="130", axis2="0" [color="red",penwidth="1.4"];
+        axis1="140", axis2="0" [color="red",penwidth="1.5"];
+        axis1="150", axis2="0" [color="red",penwidth="1.6"];
+        axis1="160", axis2="0" [color="red",penwidth="1.7"];
+        axis1="170", axis2="0" [color="red",penwidth="1.8"];
+        axis1="180", axis2="0" [color="red",penwidth="1.9"];
+        axis1="190", axis2="0" [color="red",penwidth="2.0"];
+        axis1="200", axis2="0" [color="red",penwidth="2.1"];
+        axis1="210", axis2="0" [color="red",penwidth="2.2"];
+        axis1="220", axis2="0" [color="red",penwidth="2.3"];
+        axis1="230", axis2="0" [color="red",penwidth="2.4"];
+        axis1="240", axis2="0" [color="red",penwidth="2.5"];
+        axis1="250", axis2="0" [color="red",penwidth="2.6"];
+}
+

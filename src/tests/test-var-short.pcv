@@ -1,0 +1,20 @@
+header {
+    title = "Short Variable Test";
+}
+engine {
+        relative = "0";
+}
+axes {
+    short axis1;
+    short axis2;
+    short axis3;
+    short axis4;
+    short axis5;
+}
+data {
+    axis1="16484",axis2="10000",axis3="4096",axis4="10000",axis5="16384";
+    axis1="16484",axis2="23000",axis3="30000",axis4="23000",axis5="16484";
+    axis1="16484",axis2="10000",axis3="10000",axis4="10000",axis5="16484";
+    axis1="16484",axis2="23000",axis3="23000",axis4="23000",axis5="16484";
+}
+

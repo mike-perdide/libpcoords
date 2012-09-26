@@ -1,0 +1,24 @@
+header {
+    title = "Syslog picviz analysis";
+}
+axes {
+    timeline t;
+    integer   i;
+    string   a;
+}
+data {
+   t="14:42", i="123", s="foobar" [color="red"];
+   t="43789423423", i="5435", s="abcdse" [color="black"];
+   t="437854329423", i="5435", s="abcdseqwe" [color="green"];
+   t="437gsdfgsdf89423", i="5435", s="abcdsetrteryrt" [color="blue"];
+   t="4378gsdfgsdfg9423", i="5435", s="abcdgsdfgDFSg sdfgsdfse" [color="yellow"];
+   t="43sdfgsdfgsdffg9423", i="5435", s="abcgsdfgh sdfgkljgdfsgdf dse" [color="grey"];
+   t="4378cvbnbjdgjhghfghdgh9423", i="5435", s="abcdcgsdfgh sdfg dflkr;t erhdghdhghdfse" [color="turquoise"];
+   t="4378hdfnvbmnghdfghfghfghfghfgh9423", i="5435", s="abccgsdfgh sdf cgsdfgh sdfg dflk erkljgdfsgdf dse" [color="pink"];
+   t="43789fhfghfghhdfghrtyrtyrtyeyfghhfghfghtyrtyy3", i="5435", s="abccgsdfgh sdfg dflkr;t erkerkljgdfsgdfljgdfsgdf hghdfgdse" [color="orange"];
+   t="437ngnvbnnvbnjfghhfgytryrtyrtyrtyeyrtytyrtyrtyrtyhfg89423", i="5435", s="abcabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdsedse" [color="darkblue"];
+   t="437894AAAAAAAAAAAAAAAAAdsfastgrydfhfgjtyuitkgjdhfghfghfghhghfghfgh23", i="5435", s="abcdabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdsese" [color="darkgreen"];
+   t="43789ytryrtjjjjjjjjghjhtyutykjghfjhdbhfgfjhghdf,.df/gmsdf,.mgdfhfghdfhghdfrt423", i="5435", s="abcdabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdsese" [color="darkred"];
+   t="4378gfjghfhd[oeryjldfkjgsdflkgjerter543534654ergbdfkthjsdfjkgsdf!!fsdgjhdfjkerwti34owtre@#$@#%$#$^%$9423", i="5435", s="abcabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdseabcdsedse" [color="brown"];
+}
+
