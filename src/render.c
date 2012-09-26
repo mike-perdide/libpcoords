@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: render.c 603 2009-05-24 19:55:36Z toady $
+ * $Id: render.c 682 2009-07-20 21:50:53Z toady $
  */
 
 #include <stdio.h>
@@ -26,6 +26,21 @@
 #include <picviz.h>
 #include <linuxlist.h>
 
+/**
+ * \ingroup PicvizMain
+ * @{
+ */
+/** \file render.c
+ * \brief Apply rendering to the lines, including position and color
+ */
+
+/**
+ * Finds wether we have lines that should be placed
+ * relatively from each other or not on the axis
+ *
+ * @param axis the axis
+ * @return TRUE if relative, FALSE otherwise
+ */
 PicvizBool picviz_axis_is_relative(PicvizAxis *axis)
 {
         char *relative;
@@ -60,7 +75,13 @@ void picviz_render_set_minmax(PicvizAxis *axis, PcvHeight value)
 }
 
 /**
- * Returns a rendered value 'value'
+ * Renders the value of a given string using the axis and image
+ * properties.
+ *
+ * @param image the image
+ * @param axis the axis
+ * @param strvalue the string to extract the value from
+ * @return the rendered value
  */
 PcvHeight picviz_render_value(PicvizImage *image, PicvizAxis *axis, PcvString strvalue)
 {
@@ -112,6 +133,12 @@ PcvHeight picviz_render_value(PicvizImage *image, PicvizAxis *axis, PcvString st
 	return retval;
 }
 
+/**
+ * Renders the image for each axis.
+ *
+ * @param image the image
+ * @return the rendered value
+ */
 void picviz_render_image(PicvizImage *image)
 {
         int ret;
@@ -261,3 +288,7 @@ void picviz_render_image(PicvizImage *image)
 		}
         }
 }
+
+/**
+ * @}
+ */

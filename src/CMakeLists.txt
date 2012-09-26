@@ -1,7 +1,7 @@
 add_subdirectory(plugins)
 #add_subdirectory(bindings)
 
-include_directories(${LIBPICVIZ_SOURCE_DIR}/src/include ${PCRE_INCLUDE_DIR} ${LIBPICVIZ_SOURCE_DIR}/gnulib/glthread ${LIBPICVIZ_SOURCE_DIR}/libev)
+include_directories(${LIBPICVIZ_SOURCE_DIR}/src/include ${PCRE_INCLUDE_DIR} ${LIBPICVIZ_SOURCE_DIR}/gnulib/glthread ${LIBPICVIZ_SOURCE_DIR}/libev ${LIBPICVIZ_BINARY_DIR}/src)
 
 
 link_directories(
@@ -24,7 +24,7 @@ FLEX_TARGET(picviz ${LIBPICVIZ_SOURCE_DIR}/src/pgdl-lexer.l ${LIBPICVIZ_BINARY_D
 BISON_TARGET(picviz ${LIBPICVIZ_SOURCE_DIR}/src/filter.yac.y ${LIBPICVIZ_BINARY_DIR}/src/filter-parser.c)
 FLEX_TARGET(picviz ${LIBPICVIZ_SOURCE_DIR}/src/filter.lex.l ${LIBPICVIZ_BINARY_DIR}/src/filter-lexer.c)
 
-add_library(picviz SHARED axis.c axisplot.c correlation.c debug.c real-time.c filter.c image.c learn.c line.c plugins.c engine.c picviz-hash.c picviz-init.c picviz-pcre.c properties.c render.c values-mapping.c variable.c utils.c filter-parser.c filter-lexer.c pgdl-parser.c pgdl-lexer.c prop-color.c)
+add_library(picviz SHARED axis.c axisplot.c correlation.c debug.c real-time.c filter.c image.c learn.c line.c pgdl.c plugins.c engine.c picviz-hash.c picviz-init.c picviz-pcre.c properties.c render.c values-mapping.c variable.c utils.c filter-parser.c filter-lexer.c pgdl-parser.c pgdl-lexer.c prop-color.c)
 
 set_target_properties(picviz PROPERTIES SOVERSION 2)
 

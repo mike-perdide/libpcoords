@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: line.c 651 2009-06-18 21:02:36Z toady $
+ * $Id: line.c 657 2009-06-26 18:45:52Z toady $
  */
 
 #include <stdio.h>
@@ -87,7 +87,7 @@ void picviz_line_axis_foreach_unique(PicvizImage *image, PicvizLine *line,
 			/*
 			 * The trick is to replace existing values with a '*' to know we have a duplicate
 			 */
-				free(axesstorage[s_counter]);
+/* 				free(axesstorage[s_counter]); */
 				axesstorage[s_counter] = strdup("*");
 			}
 			s_counter++;

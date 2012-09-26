@@ -207,6 +207,3 @@ dummy_function picvizparser_unused[] =
 {
   (dummy_function) input, (dummy_function) yyunput
 };
-
-
-

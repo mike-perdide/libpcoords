@@ -21,7 +21,6 @@
 
 #include <picviz.h>
 
-
 void output(pcimage_t *i, char *arg _U_)
 {
 	struct axis_t *a;

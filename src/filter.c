@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: filter.c 630 2009-06-05 18:45:21Z toady $
+ * $Id: filter.c 777 2009-10-01 20:30:07Z toady $
  */
 
 #include <stdio.h>
@@ -67,6 +67,7 @@ static int test_filter_criterion(PicvizImage *image, picviz_filter_criterion_t *
                 }
         }
         if (filter->type == PF_VALUE_FILTER) {
+	        ret = 1;
                 switch(filter->relation) {
                         case PF_RELATION_ERROR:
                                 fprintf(stderr, "ERROR: Filter relation!\n");
@@ -75,19 +76,19 @@ static int test_filter_criterion(PicvizImage *image, picviz_filter_criterion_t *
                         case PF_RELATION_EQUAL:
 				if (engine.use_pcre) {
 					if (picviz_regex_match(axisplot->strval, filter->value.data))
-						ret = 1;
+						ret = 0;
 				} else {
 					if ( !strcmp(filter->value.data, axisplot->strval) )
-						ret = 1;
+						ret = 0;
 				}
                                 break;
                         case PF_RELATION_NOTEQUAL:
 				if (engine.use_pcre) {
 					if (!picviz_regex_match(axisplot->strval, filter->value.data))
-						ret = 1;
+						ret = 0;
 				} else {
 					if ( strcmp(filter->value.data, axisplot->strval) )
-						ret = 1;
+						ret = 0;
 				}
                                 break;
 

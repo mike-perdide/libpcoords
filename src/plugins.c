@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: plugins.c 469 2009-04-02 17:45:12Z toady $
+ * $Id: plugins.c 657 2009-06-26 18:45:52Z toady $
  */
 
 #include <stdio.h>
@@ -74,6 +74,13 @@ void picviz_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizI
 			fprintf(stderr, "Cannot load unknown plugins!\n");
 			return;
 		case PICVIZ_PLUGIN_OUTPUT:
+/**
+ * @defgroup PicvizOutputPlugins Picviz Output Plugins
+ * Output Plugins provide an API to get read-only data from the
+ * rendering engine.
+ * @{
+ */
+
 			dlh = picviz_plugin_open(plugin_name);
 			*(void **)(&func) = dlsym(dlh, "output");
 			if ( ! func ) {
@@ -82,8 +89,17 @@ void picviz_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizI
 			}
 
 			(*func)(image, arg);
+/**
+ * @}
+ */
 			break;
 		case PICVIZ_PLUGIN_RENDER:
+/**
+ * @defgroup PicvizRenderingPlugins Picviz Rendering Plugins
+ * Rendering Plugins provide an API to get read and write
+ * access to the data to drive the rendering engine
+ * @{
+ */
 			dlh = picviz_plugin_open(plugin_name);
 			*(void **)(&func) = dlsym(dlh, "render");
 			if ( ! func ) {
@@ -92,6 +108,9 @@ void picviz_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizI
 			}
 
 			(*func)(image, arg);
+/**
+ * @}
+ */
 			break;
 		default:
 			/* Huh? Shouldn't be there*/

@@ -7,7 +7,7 @@ modulepcv = Extension('picviz',
                                      ('MINOR_VERSION', '6')],
                     include_dirs = ['../../include/'],
                     libraries = ['picviz','pcre'],
-                    library_dirs = ['../../../../build/src/libpicviz/'],
+                    library_dirs = ['../../../build/src/'],
                     sources = ['py-picviz.c', 'py-picviz_util.c', 'py-picviz_image.c', 'py-picviz_axes.c', 'py-picviz_lines.c', 'py-picviz_pgdl.c'])
 
 setup (name = 'Picviz',

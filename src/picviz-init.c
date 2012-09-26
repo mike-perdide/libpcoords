@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-init.c 610 2009-05-24 22:10:13Z toady $
+ * $Id: picviz-init.c 659 2009-06-26 21:42:59Z toady $
  */
 
 #include <stdio.h>
@@ -23,6 +23,47 @@
 #include <dirent.h>
 
 #include <picviz.h>
+
+
+/*! \mainpage Picviz library
+ *
+ * \section intro Introduction
+ *
+ * Picviz library provides API for programmers to use
+ * picviz features. The pcv program is the biggest user
+ * of the picviz library, you may have a look at it.
+ *
+ * From the very beginning, Picviz was designed to be embeded
+ * by third party software. This is why this library.
+ * 
+ * The Picviz library allows to access to the parser, the
+ * rendering and their plugins, but also to output plugins.
+ *
+ * Picviz has the following architecture:
+ \dot
+  digraph picvizarch {
+rankdir = LR;
+  node [shape=record];
+      pgdl [ label="PGDL"];
+      parser [ label="Parser"];
+      rendering [ label="Rendering"];
+      image [ label="Image"];
+      
+      pgdl -> parser;
+      parser -> rendering;
+      rendering -> image;
+
+  }
+ \enddot
+ *
+ * \ref PicvizParser
+ * 
+ * \ref PicvizOutputPlugins
+ *
+ * \ref PicvizRenderingPlugins
+ *
+ */
+
 
 /**
  * Initialize the Picviz library
@@ -34,4 +75,5 @@ void picviz_init(int *argc, char **argv)
 {
 	picviz_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_CORE, "Picviz - (c) 2008-2009 Sebastien Tricaud");
 }
+
 

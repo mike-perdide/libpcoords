@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: engine.c 610 2009-05-24 22:10:13Z toady $
+ * $Id: engine.c 675 2009-07-15 20:14:02Z toady $
  */
 
 #include <stdio.h>
@@ -30,7 +30,7 @@ void picviz_engine_init(void)
 	engine.initial_axis_x_cursor = engine.axis_default_space / 2;
 	/* engine.axis_x_cursor = 100; */
 	engine.__axis_label_exists = 0;
-	engine.zero_position = TOP;
+	engine.zero_position = BOTTOM;
 	engine.display_raw_data = 0;
 	/* Relative mode should be default latter, but too dangerous now */
 	engine.relative = 0;
@@ -49,4 +49,3 @@ void picviz_engine_init(void)
 	engine.display_minmax = 0;
 	engine.quiet = 0; /* default = verbose a little */
 }
-

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: axis.c 623 2009-05-27 21:13:21Z toady $
+ * $Id: axis.c 675 2009-07-15 20:14:02Z toady $
  */
 
 #include <stdio.h>
@@ -36,7 +36,11 @@
 
 static unsigned int id = 0;
 
-
+/**
+ * Creates a new axis
+ *
+ * @return the new axis or NULL on error
+ */
 PicvizAxis *picviz_axis_new(void)
 {
 	PicvizAxis *axis = NULL;
@@ -67,35 +71,48 @@ PicvizAxis *picviz_axis_new(void)
 	return axis;
 }
 
+/**
+ * Destroys an axis
+ *
+ * @param axis the axis to destroy
+ */
 void picviz_axis_destroy(PicvizAxis *axis)
 {
 	picviz_properties_destroy(axis->props);
 	free(axis);
 }
 
-/* PicvizAxis *picviz_axis_get(PicvizImage *i, unsigned int id) */
-/* { */
-/* 	PicvizAxis *a; */
-
-/* 	llist_for_each_entry(a, &i->axes, list) { */
-/* 		if (a->id == id) */
-/* 			return a; */
-/* 	} */
-
-/* 	return NULL; */
-/* } */
-
+/**
+ * Get the axis structure from the axis name
+ *
+ * @param image the Picviz image context
+ * @param name the axis name
+ *
+ * @return the axis structure
+ */
 PicvizAxis *picviz_axis_get_from_name(PicvizImage *image, PcvString name)
 {
 	return (PicvizAxis *)picviz_hash_get(image->axes, name);
 }
 
 
+/**
+ * Set the datatype of the axis
+ *
+ * @param axis the axis 
+ * @param type the datatype
+ */
 void picviz_axis_set_type(PicvizAxis *axis, PicvizDataType type)
 {
 	axis->type = type;
 }
 
+/**
+ * Set the datatype of the axis from a string
+ *
+ * @param axis the axis 
+ * @param string the datatype name
+ */
 void picviz_axis_set_type_from_string(PicvizAxis *axis, char *string)
 {
 	if (!strcmp(string, "timeline")) {
@@ -158,6 +175,13 @@ void picviz_axis_set_type_from_string(PicvizAxis *axis, char *string)
 	axis->type = DATATYPE_EMPTY;
 }
 
+/**
+ * Get the datatype string from the axis
+ *
+ * @param axis the axis 
+ *
+ * @return string the datatype name
+ */
 char *picviz_axis_get_string_from_type(PicvizAxis *axis)
 {
 	switch(axis->type) {
@@ -195,6 +219,13 @@ char *picviz_axis_get_string_from_type(PicvizAxis *axis)
 	}
 }
 
+/**
+ * Get the position of an axis
+ *
+ * @param counter the axis id
+ *
+ * @return X position of the axis
+ */
 PcvWidth picviz_axis_position_get(unsigned int counter)
 {
 	PcvWidth xpos;

@@ -24,6 +24,7 @@
 #include <picviz.h>
 #include <cairo.h>
 
+
 cairo_t *cr;
 
 /* To draw the text every N lines (pcv -LN) */
@@ -212,5 +213,3 @@ void output(PicvizImage *image, char *arg)
 
 	picviz_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PLUGIN, "Done");
 }
-
-

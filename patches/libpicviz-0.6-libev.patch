@@ -1,0 +1,45 @@
+diff -up libpicviz-0.6/CMakeLists.txt.orig libpicviz-0.6/CMakeLists.txt
+--- libpicviz-0.6/CMakeLists.txt.orig	2009-07-22 17:49:49.000000000 +0200
++++ libpicviz-0.6/CMakeLists.txt	2009-07-22 17:52:40.000000000 +0200
+@@ -54,6 +54,7 @@ FIND_PACKAGE(BISON REQUIRED)
+ #FIND_PACKAGE(PCRE REQUIRED)
+ FIND_PACKAGE(PkgConfig)
+ 
++pkg_check_modules(LIBEV REQUIRED libev)
+ pkg_check_modules(Cairo cairo-png)
+ 
+ # Versions of GCC may have warnings I haven't
+@@ -62,7 +63,6 @@ set(CMAKE_C_FLAGS "-Wall -Wextra -O0 -gg
+ #set(CMAKE_C_FLAGS_DEBUG "-Wall -Wextra -O0 -ggdb")
+ 
+ add_subdirectory(gnulib)
+-add_subdirectory(libev)
+ add_subdirectory(src)
+ 
+ #SET_TARGET_PROPERTIES(picviz PROPERTIES LINKER_LANGUAGE C)
+diff -up libpicviz-0.6/src/CMakeLists.txt.orig libpicviz-0.6/src/CMakeLists.txt
+--- libpicviz-0.6/src/CMakeLists.txt.orig	2009-07-22 17:50:18.000000000 +0200
++++ libpicviz-0.6/src/CMakeLists.txt	2009-07-22 17:55:34.000000000 +0200
+@@ -1,11 +1,11 @@
+ add_subdirectory(plugins)
+ #add_subdirectory(bindings)
+ 
+-include_directories(${PROJECT_SOURCE_DIR}/src/include ${PCRE_INCLUDE_DIR} ${PROJECT_SOURCE_DIR}/gnulib/glthread ${PROJECT_SOURCE_DIR}/libev)
++include_directories(${PROJECT_SOURCE_DIR}/src/include ${PCRE_INCLUDE_DIR} ${PROJECT_SOURCE_DIR}/gnulib/glthread ${LIBEV_INCLUDE_DIRS})
+ 
+ 
+ link_directories(
+-  ${PROJECT_BINARY_DIR}/libev
++  ${LIBEV_LIBRARY_DIRS}
+ )
+ #set(CMAKE_SHARED_LINKER_FLAGS "-lm -lfl -ly")
+ #link_directories(${PROJECT_BINARY_DIR}/ ${PROJECT_BINARY_DIR}/gnulib/glthread ${PROJECT_BINARY_DIR}/libev)
+@@ -29,7 +29,7 @@ add_library(picviz SHARED axis.c axisplo
+ set_target_properties(picviz PROPERTIES SOVERSION 2)
+ 
+ #target_link_libraries(picviz "-lm -ldl -L${PROJECT_BINARY_DIR}/libev -lev")
+-target_link_libraries(picviz "-lm -ldl -L${PROJECT_BINARY_DIR}/libev/ -lev")
++target_link_libraries(picviz "-lm -ldl" ${LIBEV_LIBRARIES})
+ 
+ install(TARGETS picviz LIBRARY DESTINATION ${LIB_INSTALL_DIR})
+ install(FILES

@@ -5,7 +5,9 @@
 #include <stdlib.h>    /* atoi() */
 #include <unistd.h> /* exit() */
 
-int axis_position;
+#include "pgdl.h"
+
+int axis_position = 0;
 
 extern int yylex(void);
 extern void yylex_init(void);
@@ -18,25 +20,12 @@ void _pgdl_init_lexer(void);
 
 static void picviz_key_value(char *key, char *value);
 
-typedef enum section_t {
-        EMPTY,
-        HEADER,
-        ENGINE,
-        AXES,
-        DATA
-} section_t;
-
-static section_t section_state = EMPTY;
 int close_section_check = 0;
 struct axis_t *axis;
 float lines_values[PICVIZ_MAX_AXES]; /* store positions */
 int max_axes = 0; /* to know if we should clean lines_values */
-struct pcimage_t *image;
-struct line_t *line;
 int i = 0;
 char *layer = NULL;
-char *line_color;
-char *line_penwidth;
 char *line_layer = NULL;
 char *axis_label = NULL;
 char *axis_relative = NULL;
@@ -49,15 +38,10 @@ char lock = 0;
 
 /* #define DEBUGSR 1 */
 
-/* I know this is ugly,
- * I'll get back to it later
- */
-#define FILE_MODE 0
-#define LINE_MODE 1
-char FILE_OR_LINE = FILE_MODE;
 
 #define YY_ABORT return -1;
 #define YYERROR_VERBOSE
+
 
 %}
 %token  TOK_SEMICOLON
@@ -458,69 +442,9 @@ void yyerror(char *str)
 	exit(1);
 }
 
-PicvizImage *pcv_parse(char *filename, char *filterbuf)
-{
-        extern FILE *yyin;
-	int ret;
 
-        axis_position = 0;
 
-	picviz_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PARSER, "Parsing");
 
-        image = picviz_image_new();
-	if (!image) return NULL;
-        if (filterbuf) {
-                image->filter = picviz_filter_build(filterbuf);
-        }
-        yyin = fopen(filename,"r");	
-        if ( ! yyin ) {
-                picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Cannot open file '%s'", filename);
-                return NULL;
-        }
-	/* _pgdl_reset_lexer(); */
-
-        line_color = strdup("#000000");
-        line_penwidth = strdup(DEFAULT_PENWIDTH);
-
-	/* fseek(yyin, 0, SEEK_SET);  */
-	yyrestart(yyin);
-	ret  = yyparse ();
-	switch (ret) {
-	case 1:
-		picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Invalid input!\n");
-		fclose(yyin);
-		return NULL;
-		break;
-	case 2:
-		picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Not enough memory!\n");
-		fclose(yyin);
-		return NULL;
-		break;		
-	}
-
-	fflush(yyin);
-	fclose(yyin);
-	yyin = NULL;
-
-        picviz_render_image(image);
-
-        return image;
-}
-
-PicvizLine *picviz_parse_line(char *string)
-{
-        void *state;
-        int ret;
-
-        FILE_OR_LINE = LINE_MODE;
-
-        section_state = DATA;
-        state = yy_scan_string(string);
-        ret = yyparse();
-        yy_delete_buffer(state);
-
-        return line;
-}
 
 void picviz_key_value(char *key, char *value)
 {

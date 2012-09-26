@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: image.c 630 2009-06-05 18:45:21Z toady $
+ * $Id: image.c 657 2009-06-26 18:45:52Z toady $
  */
 
 #include <stdio.h>
@@ -36,7 +36,7 @@ struct engine_t engine;
 /**
  * Creates a new parallel coordinates empty image
  *
- * \return the new picviz image or NULL on error
+ * @return the new picviz image or NULL on error
  */
 PicvizImage *picviz_image_new(void)
 {
@@ -80,7 +80,7 @@ PicvizImage *picviz_image_new(void)
 /**
  * Detroys the image
  *
- * \param image the image to destroy
+ * @param image the image to destroy
  */
 void picviz_image_destroy(PicvizImage *image)
 {
@@ -112,8 +112,8 @@ void picviz_image_destroy(PicvizImage *image)
 /**
  * Increases image width
  *
- * \param image the image to update
- * \param expand width value to increase
+ * @param image the image to update
+ * @param expand width value to increase
  */
 void picviz_image_width_increase(PicvizImage *image, unsigned int expand)
 {
@@ -124,15 +124,21 @@ void picviz_image_width_increase(PicvizImage *image, unsigned int expand)
 /**
  * Append an axis to the image
  *
- * \param image the image to update
- * \param axis The #PicvizAxis to append
+ * @param image the image to update
+ * @param axis The PicvizAxis to append
  */
 void picviz_image_axis_append(PicvizImage *image, PicvizAxis *axis)
 {
 	picviz_hash_set(image->axes, axis->name, axis, sizeof(*axis));
 }
 
-void picviz_image_line_append(PicvizImage *image, struct line_t *line)
+/**
+ * Append a line to the image
+ *
+ * @param image the image to update
+ * @param line The PicvizLine to append
+ */
+void picviz_image_line_append(PicvizImage *image, PicvizLine *line)
 {
 	if (line) {
 		llist_add_tail(&line->list, &image->lines);

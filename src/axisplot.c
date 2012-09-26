@@ -23,6 +23,11 @@
 
 #include <picviz.h>
 
+/**
+ * Create a new axisplot structure
+ *
+ * @return the axisplot structure or NULL on error
+ */
 PicvizAxisPlot *picviz_axisplot_new(void)
 {
 	PicvizAxisPlot *axisplot;
@@ -67,6 +72,11 @@ void picviz_axisplot_set_y(PicvizAxis *axis _U_, PicvizAxisPlot *axisplot, PcvHe
 
 }
 
+/**
+ * Destroy the axisplot
+ *
+ * @param axisplot the axis plot to destroy
+ */
 void picviz_axisplot_destroy(PicvizAxisPlot *axisplot)
 {
 	picviz_properties_destroy(axisplot->props);

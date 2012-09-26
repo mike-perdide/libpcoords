@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: pcimage.h 623 2009-05-27 21:13:21Z toady $
+ * $Id: pcimage.h 657 2009-06-26 18:45:52Z toady $
  */
 
 /* core datastructure */
@@ -41,6 +41,9 @@ enum is_rendered_t {
 } is_rendered_t;
 typedef enum is_rendered_t PicvizRender;
 
+/**
+ * Picviz variable type
+ */
 enum datatype_t {
 	DATATYPE_EMPTY,
 	DATATYPE_INTEGER,
@@ -61,6 +64,9 @@ enum datatype_t {
 } datatype_t;
 typedef enum datatype_t PicvizDataType;
 
+/**
+ * Picviz plot structure
+ */
 struct axisplot_t {
         PcvID axis_id; /* id of the axis we positionate the line to */
         PcvString strval; /* This is the string value of the ysource, to put (optionally) in the graph */
@@ -69,6 +75,9 @@ struct axisplot_t {
 } axisplot_t;
 typedef struct axisplot_t PicvizAxisPlot;
 
+/**
+ * Picviz line structure
+ */
 struct line_t {
         struct llist_head list;
 	picviz_hash_t *axesplots;
@@ -79,6 +88,9 @@ struct line_t {
 } line_t;
 typedef struct line_t PicvizLine;
 
+/**
+ * Picviz axis structure
+ */
 struct axis_t {
         struct llist_head list;
         PcvID id;
@@ -96,6 +108,9 @@ struct axis_t {
 } axis_t;
 typedef struct axis_t PicvizAxis;
 
+/**
+ * Picviz image structure
+ */
 struct pcimage_t {
 	PcvString axesorder[PICVIZ_MAX_AXES+1];  /* Stores which axis should come when. +1 to have the latest elem to NULL if we have 1024 axes!*/
 	PcvWidth  width;
