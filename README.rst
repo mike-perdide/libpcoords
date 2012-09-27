@@ -1,5 +1,5 @@
 Pcoords - Parallel Coordinates Graph Generator
-=============================================
+==============================================
 
 Pcoords starts where Picviz v0.6 stopped (see below for more information)
 
@@ -25,8 +25,8 @@ large sets of logs.
 Vocabulary
 ----------
 
-PGDL = Pcoords Graph Description Language
-PGDT = Pcoords Graph Description Template (used for real-time)
+* PGDL = Pcoords Graph Description Language
+* PGDT = Pcoords Graph Description Template (used for real-time)
 
 Dependencies
 ------------
@@ -49,23 +49,26 @@ Optional
 
 Install
 -------
-$ make
-# make install
+::
+
+  $ make
+  # make install
 
 To build bindings
 +++++++++++++++++
-$ cd src/libpicviz/bindings/python
-# python ./setup.py install
+
+::
+
+  $ cd src/libpicviz/bindings/python
+  # python ./setup.py install
 
 Use
 ---
-console binary:
-pcv -Tsvg file.pgdl > file.svg
+console binary::
+
+  pcv -Tsvg file.pgdl > file.svg
 
 Please read the man page pcv(1)
-
-graphical frontend:
-picviz-gui file.pgdl
 
 Pcoords and Picviz
 ------------------
