@@ -40,7 +40,7 @@ typedef unsigned long long PcvCounter;
 typedef char *        PcvString;
 
 #define PCVSTRING_TO_C(x) x;
-#define PICVIZ_MAX_AXES 1024
+#define PCOORDS_MAX_AXES 1024
 
 #ifdef __cplusplus
  }

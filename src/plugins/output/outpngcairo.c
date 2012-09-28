@@ -28,7 +28,7 @@
 cairo_t *cr;
 
 /* To draw the text every N lines (pcv -LN) */
-PcvCounter draw_rawtext[PICVIZ_MAX_AXES];
+PcvCounter draw_rawtext[PCOORDS_MAX_AXES];
 char *parameter = "";
 
 static void draw_text(double x, double y, char *color, double size, char *text)
@@ -106,7 +106,7 @@ void init(void)
 {
 	int i;
 
-	for (i = 0; i <= PICVIZ_MAX_AXES; i++) {
+	for (i = 0; i <= PCOORDS_MAX_AXES; i++) {
 		draw_rawtext[i] = 1; /* Defaults = draw text every line */
 	}
 }
@@ -121,9 +121,9 @@ void output(PcoordsImage *image, char *arg)
 	unsigned int counter;
 
 	if (engine.output_file) {
-	        pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PLUGIN, "Output pngcairo image to '%s'", engine.output_file);
+	        pcoords_debug(PCOORDS_DEBUG_NOTICE, PCOORDS_AREA_PLUGIN, "Output pngcairo image to '%s'", engine.output_file);
 	} else {
-	        pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PLUGIN, "Output pngcairo image to stdout");
+	        pcoords_debug(PCOORDS_DEBUG_NOTICE, PCOORDS_AREA_PLUGIN, "Output pngcairo image to stdout");
 	}
 
 	init();
@@ -211,5 +211,5 @@ void output(PcoordsImage *image, char *arg)
 	cairo_destroy (cr);
 	cairo_surface_destroy (surface);
 
-	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PLUGIN, "Done");
+	pcoords_debug(PCOORDS_DEBUG_NOTICE, PCOORDS_AREA_PLUGIN, "Done");
 }

@@ -17,8 +17,8 @@
  * $Id: pcoords-pcre.h 148 2008-09-15 19:20:53Z toady $
  */
 
-#ifndef _PICVIZ_PCRE_H_
-#define _PICVIZ_PCRE_H_
+#ifndef _PCOORDS_PCRE_H_
+#define _PCOORDS_PCRE_H_
 
 #ifdef __cplusplus
  extern "C" {
@@ -30,4 +30,4 @@ PcoordsBool pcoords_regex_match(char *string, char *regex);
  }
 #endif
 
-#endif /* _PICVIZ_PCRE_H_ */
+#endif /* _PCOORDS_PCRE_H_ */

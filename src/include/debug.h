@@ -27,17 +27,17 @@
 #endif
 
 /* level */
-#define PICVIZ_DEBUG_NOTICE   0
-#define PICVIZ_DEBUG_CRITICAL 1 /* defaults */
-#define PICVIZ_DEBUG_WARNING  2
-#define PICVIZ_DEBUG_DEBUG    3
+#define PCOORDS_DEBUG_NOTICE   0
+#define PCOORDS_DEBUG_CRITICAL 1 /* defaults */
+#define PCOORDS_DEBUG_WARNING  2
+#define PCOORDS_DEBUG_DEBUG    3
 
 /* area */
-#define PICVIZ_AREA_CORE   0x0001
-#define PICVIZ_AREA_PLUGIN 0x0002
-#define PICVIZ_AREA_RENDER 0x0004
-#define PICVIZ_AREA_PARSER 0x0008
-#define PICVIZ_AREA_FILTER 0x0016
+#define PCOORDS_AREA_CORE   0x0001
+#define PCOORDS_AREA_PLUGIN 0x0002
+#define PCOORDS_AREA_RENDER 0x0004
+#define PCOORDS_AREA_PARSER 0x0008
+#define PCOORDS_AREA_FILTER 0x0016
 
 void pcoords_debug(int level, int area, const char *format, ...);
 void pcoords_debug_print_axisplot(PcoordsAxisPlot *ap);

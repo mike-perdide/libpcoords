@@ -73,7 +73,7 @@ rankdir = LR;
  */
 void pcoords_init(int *argc, char **argv)
 {
-	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_CORE, "Pcoords - (c) 2008-2009 Sebastien Tricaud");
+	pcoords_debug(PCOORDS_DEBUG_NOTICE, PCOORDS_AREA_CORE, "Pcoords - (c) 2008-2009 Sebastien Tricaud");
 }
 
 

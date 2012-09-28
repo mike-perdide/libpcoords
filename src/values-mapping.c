@@ -46,8 +46,8 @@
 #include <pcoords.h>
 
 /* Holds the position for the enum type*/
-//static pcoords_properties_t *enumhashes[PICVIZ_MAX_AXES];
-//static int enumcount[PICVIZ_MAX_AXES];
+//static pcoords_properties_t *enumhashes[PCOORDS_MAX_AXES];
+//static int enumcount[PCOORDS_MAX_AXES];
 
 static int years_to_factor(char *buf, PcvHeight *out)
 {

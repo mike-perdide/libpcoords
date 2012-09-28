@@ -138,14 +138,14 @@ int pcoords_properties_new(pcoords_properties_t **props)
 
         *props = malloc(sizeof(**props));
         if ( ! *props ) {
-                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate properties!");
+                pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_CORE, "Cannot allocate properties!");
                 return -1;
         }
 
         (*props)->lists = malloc(DEFAULT_HASH_SIZE * sizeof(*(*props)->lists));
         if ( ! (*props)->lists ) {
                 free(*props);
-                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate properties hash!");
+                pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_CORE, "Cannot allocate properties hash!");
                 return -1;
         }
 

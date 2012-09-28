@@ -31,9 +31,9 @@
 #endif
 
 typedef enum correlation_type_t {
-	PICVIZ_COR_NONE,
-	PICVIZ_COR_LINE, /* Same line */
-	PICVIZ_COR_PLOT  /* Plot shared on a given axis */
+	PCOORDS_COR_NONE,
+	PCOORDS_COR_LINE, /* Same line */
+	PCOORDS_COR_PLOT  /* Plot shared on a given axis */
 } correlation_type_t;
 typedef enum correlation_type_t PcoordsCorType;
 

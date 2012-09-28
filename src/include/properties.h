@@ -17,8 +17,8 @@
  * $Id: properties.h 174 2008-09-20 07:57:08Z toady $
  */
 
-#ifndef PICVIZ_PROPERTIES_H
-#define PICVIZ_PROPERTIES_H
+#ifndef PCOORDS_PROPERTIES_H
+#define PCOORDS_PROPERTIES_H
 
 #include "types.h"
 

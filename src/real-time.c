@@ -32,7 +32,7 @@
 #include <ev.h>
 
 
-#define MAX_PICVIZ_MESSAGE_LEN 1024
+#define MAX_PCOORDS_MESSAGE_LEN 1024
 #ifndef SSIZE_MAX
 #define SSIZE_MAX 2147483647
 #endif
@@ -74,7 +74,7 @@ static int __pcoords_socket_create(char *fifo)
 static void pcoords_fifo_cb(EV_P_ struct ev_io *w, int revents)
 {
 	ssize_t msglen;
-	unsigned char buf[MAX_PICVIZ_MESSAGE_LEN];
+	unsigned char buf[MAX_PCOORDS_MESSAGE_LEN];
 	int bufptr = 0; /* What we do not need to get */
 	int i = 0;
 	unsigned int read_counter = 0;
@@ -85,7 +85,7 @@ read_more:
 	fprintf(stdout, ".");
 	fflush(stdout);
 
-	msglen = read( (struct ev_io *)w->fd, buf + bufptr, MAX_PICVIZ_MESSAGE_LEN - bufptr);
+	msglen = read( (struct ev_io *)w->fd, buf + bufptr, MAX_PCOORDS_MESSAGE_LEN - bufptr);
 	if ((msglen <= 0) || (msglen > SSIZE_MAX)) {
 		perror("read");
 		return;

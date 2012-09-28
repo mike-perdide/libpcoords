@@ -17,8 +17,8 @@
  * $Id: pcoords-init.h 600 2009-05-24 16:04:57Z toady $
  */
 
-#ifndef _PICVIZ_INIT_H_
-#define _PICVIZ_INIT_H_
+#ifndef _PCOORDS_INIT_H_
+#define _PCOORDS_INIT_H_
 
 #include <pcoords.h>
 
@@ -32,4 +32,4 @@ void pcoords_init(int *argc, char **argv);
  }
 #endif
 
-#endif /* _PICVIZ_INIT_H_ */
+#endif /* _PCOORDS_INIT_H_ */

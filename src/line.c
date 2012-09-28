@@ -76,7 +76,7 @@ void pcoords_line_axis_foreach_unique(PcoordsImage *image, PcoordsLine *line,
 {
 	unsigned int counter = 0;
 	unsigned int s_counter = 0; /* Counter for storage */
-	PcvString axesstorage[PICVIZ_MAX_AXES+1];
+	PcvString axesstorage[PCOORDS_MAX_AXES+1];
 
 	memcpy(axesstorage, image->axesorder, sizeof(image->axesorder));
 

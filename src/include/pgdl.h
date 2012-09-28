@@ -35,8 +35,8 @@ typedef enum section_t {
 } section_t;
 
 enum pcoords_parser_mode_t {
-        PICVIZ_PARSER_MODE_FILE,
-	PICVIZ_PARSER_MODE_LINE
+        PCOORDS_PARSER_MODE_FILE,
+	PCOORDS_PARSER_MODE_LINE
 } pcoords_parser_mode_t;
 typedef enum pcoords_parser_mode_t PcoordsParserMode;
 

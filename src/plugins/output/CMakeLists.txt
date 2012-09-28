@@ -1,5 +1,5 @@
-include_directories(${LIBPICVIZ_SOURCE_DIR}/src/include)
-link_directories(${LIBPICVIZ_BUILD_DIR}/)
+include_directories(${LIBPCOORDS_SOURCE_DIR}/src/include)
+link_directories(${LIBPCOORDS_BUILD_DIR}/)
 
 add_library(pcoordsoutsvg MODULE outsvg.c)
 add_library(pcoordsoutdebug MODULE outdebug.c)
@@ -15,7 +15,7 @@ install(TARGETS pcoordsoutsvg LIBRARY DESTINATION ${MOD_INSTALL_DIR})
 # target_link_libraries(pcoordsoutcsv pcoords)
 # install(TARGETS pcoordsoutcsv LIBRARY DESTINATION ${MOD_INSTALL_DIR})
 
-# # Picviz plugin
+# # Pcoords plugin
 # add_library(pcoordsoutpcv MODULE outpcv.c)
 # target_link_libraries(pcoordsoutpcv pcoords)
 # install(TARGETS pcoordsoutpcv LIBRARY DESTINATION ${MOD_INSTALL_DIR})

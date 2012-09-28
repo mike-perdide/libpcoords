@@ -17,11 +17,11 @@
  * $Id: pcoords.h 600 2009-05-24 16:04:57Z toady $
  */
 
-#ifndef _PICVIZ_H_
-#define _PICVIZ_H_
+#ifndef _PCOORDS_H_
+#define _PCOORDS_H_
 
-#define PICVIZ_MAJOR_VERSION 0
-#define PICVIZ_MINOR_VERSION 6
+#define PCOORDS_MAJOR_VERSION 0
+#define PCOORDS_MINOR_VERSION 6
 
 #include "axis.h"
 #include "axisplot.h"
@@ -49,4 +49,4 @@
 #include "values-mapping.h"
 #include "variable.h"
 
-#endif /* _PICVIZ_H_ */
+#endif /* _PCOORDS_H_ */

@@ -112,7 +112,7 @@ typedef struct axis_t PcoordsAxis;
  * Pcoords image structure
  */
 struct pcimage_t {
-	PcvString axesorder[PICVIZ_MAX_AXES+1];  /* Stores which axis should come when. +1 to have the latest elem to NULL if we have 1024 axes!*/
+	PcvString axesorder[PCOORDS_MAX_AXES+1];  /* Stores which axis should come when. +1 to have the latest elem to NULL if we have 1024 axes!*/
 	PcvWidth  width;
 	PcvHeight height;
 	PcvHeight header_height;

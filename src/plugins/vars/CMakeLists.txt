@@ -1,5 +1,5 @@
-	include_directories(${LIBPICVIZ_SOURCE_DIR}/src/include)
-link_directories(${LIBPICVIZ_BUILD_DIR})
+	include_directories(${LIBPCOORDS_SOURCE_DIR}/src/include)
+link_directories(${LIBPCOORDS_BUILD_DIR})
 
 # Debug plugin
 add_library(pcoordsvardebug MODULE vardebug.c)

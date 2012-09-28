@@ -39,7 +39,7 @@ static void *pcoords_plugin_open(char *plugin_name)
 	size_t pathlen = 0;
 	size_t namelen = 0;
 
-	plugin_path = getenv("PICVIZ_PLUGINS_PATH");
+	plugin_path = getenv("PCOORDS_PLUGINS_PATH");
 	pathlen = plugin_path ? strlen(plugin_path) : strlen(PLUGIN_PATH);
 	namelen = strlen(plugin_name);
 	if ( (pathlen + namelen + 1) > PATH_MAX ) {
@@ -70,10 +70,10 @@ void pcoords_plugin_load(PcoordsPluginType plugin_type, char *plugin_name, Pcoor
 
 
 	switch(plugin_type) {
-		case PICVIZ_PLUGIN_UNKNOWN:
+		case PCOORDS_PLUGIN_UNKNOWN:
 			fprintf(stderr, "Cannot load unknown plugins!\n");
 			return;
-		case PICVIZ_PLUGIN_OUTPUT:
+		case PCOORDS_PLUGIN_OUTPUT:
 /**
  * @defgroup PcoordsOutputPlugins Pcoords Output Plugins
  * Output Plugins provide an API to get read-only data from the
@@ -93,7 +93,7 @@ void pcoords_plugin_load(PcoordsPluginType plugin_type, char *plugin_name, Pcoor
  * @}
  */
 			break;
-		case PICVIZ_PLUGIN_RENDER:
+		case PCOORDS_PLUGIN_RENDER:
 /**
  * @defgroup PcoordsRenderingPlugins Pcoords Rendering Plugins
  * Rendering Plugins provide an API to get read and write
@@ -130,16 +130,16 @@ void pcoords_plugin_load(PcoordsPluginType plugin_type, char *plugin_name, Pcoor
 void pcoords_plugin_register(struct pcoords_plugin_t *pp)
 {
 
-        if (strcmp(pp->api_version, PICVIZ_OUTPUT_API_VERSION)) {
-                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PLUGIN,
+        if (strcmp(pp->api_version, PCOORDS_OUTPUT_API_VERSION)) {
+                pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_PLUGIN,
                              "Incompatible version '%s' for plugin. Needed '%s'",
-                             pp->api_version, PICVIZ_OUTPUT_API_VERSION);
+                             pp->api_version, PCOORDS_OUTPUT_API_VERSION);
         }
         if (pcoords_plugin_find(pp->name)) {
-                pcoords_debug(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_PLUGIN,
+                pcoords_debug(PCOORDS_DEBUG_WARNING, PCOORDS_AREA_PLUGIN,
                              "Plugin '%s' already registered", pp->name);
         } else {
-                pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PLUGIN,
+                pcoords_debug(PCOORDS_DEBUG_NOTICE, PCOORDS_AREA_PLUGIN,
                              "Registering plugin '%s'", pp->name);
                 //llist_add(&pp->list, &pcoords_plugins);
         }

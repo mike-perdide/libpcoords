@@ -56,7 +56,7 @@ char *pcoords_color_named_to_hexstr(char *color)
 
         /* color = ??
 	 * -> we can't find the color, we shout and return */
-	pcoords_debug(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_CORE,
+	pcoords_debug(PCOORDS_DEBUG_WARNING, PCOORDS_AREA_CORE,
 			"Unknown color: '%s'", color);
 
 	return strdup("#000000"); /* We return black as default */

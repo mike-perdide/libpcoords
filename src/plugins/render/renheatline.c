@@ -24,7 +24,7 @@
 #include <pcoords.h>
 #include <linuxlist.h>
 
-PcvCounter most_frequent[PICVIZ_MAX_AXES]; /* Number holding the maximum line frequency */
+PcvCounter most_frequent[PCOORDS_MAX_AXES]; /* Number holding the maximum line frequency */
 PcvCounter most_frequent_virus; /* Number holding the maximum line frequency for virus mode */
 PcoordsCorrelation *pcvcor;
 
@@ -37,7 +37,7 @@ void find_most_frequent(PcoordsImage *image _U_, PcvID axis_id, PcoordsLine *lin
 	PcvCounter i;
 
 	if ( axis_id == 0 ) {
-		for (i=0;i<=PICVIZ_MAX_AXES;i++) {
+		for (i=0;i<=PCOORDS_MAX_AXES;i++) {
 			most_frequent[i] = 0;
 		}
 	}

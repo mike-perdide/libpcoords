@@ -50,7 +50,7 @@ PcoordsImage *pcv_parse(char *filename, char *filterbuf)
 
 	_pgdl_context_init(context);
 
-	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PARSER, "Parsing");
+	pcoords_debug(PCOORDS_DEBUG_NOTICE, PCOORDS_AREA_PARSER, "Parsing");
         FILE_OR_LINE = FILE_MODE;
 
 	line_color = strdup("#000000");
@@ -63,19 +63,19 @@ PcoordsImage *pcv_parse(char *filename, char *filterbuf)
         }
         yyin = fopen(filename,"r");	
         if ( ! yyin ) {
-                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Cannot open file '%s'", filename);
+                pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_PARSER, "Cannot open file '%s'", filename);
                 return NULL;
         }
 	yyrestart(yyin);
 	ret  = yyparse ();
 	switch (ret) {
 	case 1:
-		pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Invalid input!\n");
+		pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_PARSER, "Invalid input!\n");
 		fclose(yyin);
 		return NULL;
 		break;
 	case 2:
-		pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Not enough memory!\n");
+		pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_PARSER, "Not enough memory!\n");
 		fclose(yyin);
 		return NULL;
 		break;		

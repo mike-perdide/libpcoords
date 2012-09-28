@@ -28,8 +28,8 @@ void pcoords_learn(PcoordsImage *image)
 	PcoordsLine *line;
 	PcoordsAxisPlot *axisplot;
 	char *string_algo;
-	PcvString lowest[PICVIZ_MAX_AXES];
-	PcvString highest[PICVIZ_MAX_AXES];
+	PcvString lowest[PCOORDS_MAX_AXES];
+	PcvString highest[PCOORDS_MAX_AXES];
 	PcvCounter j;
 
 	if (!engine.learn) return;

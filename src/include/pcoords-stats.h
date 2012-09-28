@@ -17,8 +17,8 @@
  * $Id: pcoords-stats.h 599 2009-05-24 14:12:05Z toady $
  */
 
-#ifndef _PICVIZ_STATS_H_
-#define _PICVIZ_STATS_H_
+#ifndef _PCOORDS_STATS_H_
+#define _PCOORDS_STATS_H_
 
 #include <pcoords.h>
 
@@ -35,4 +35,4 @@ typedef struct pcoords_stats_t PcoordsStats;
  }
 #endif
 
-#endif /* _PICVIZ_STATS_H_ */
+#endif /* _PCOORDS_STATS_H_ */

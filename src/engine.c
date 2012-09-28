@@ -36,7 +36,7 @@ void pcoords_engine_init(void)
 	engine.relative = 0;
 	engine.string_algo = 1;
 	engine.use_pcre = 0;
-	engine.debug = PICVIZ_DEBUG_CRITICAL; /* Shows notice and critical stuff */
+	engine.debug = PCOORDS_DEBUG_CRITICAL; /* Shows notice and critical stuff */
 	engine.draw_heatline = 0;
 	engine.heatline_algo = 0;
 	engine.learn = 1;
@@ -45,7 +45,7 @@ void pcoords_engine_init(void)
 	engine.font_factor = 50;
 	engine.draw_text = 1; /* default: draw text every line */
 	engine.output_file = NULL; /* output is stdout */
-	engine.pid_file = PICVIZ_DATADIR "/var/run/pcoords.pid";
+	engine.pid_file = PCOORDS_DATADIR "/var/run/pcoords.pid";
 	engine.display_minmax = 0;
 	engine.quiet = 0; /* default = verbose a little */
 }

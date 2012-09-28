@@ -37,7 +37,7 @@ void pcoords_debug(int level, int area, const char *format, ...)
 
 	va_start(ap, format);
 
-	if (engine.debug > PICVIZ_DEBUG_CRITICAL) {
+	if (engine.debug > PCOORDS_DEBUG_CRITICAL) {
 		tm = time(NULL);
 		timestr = ctime(&tm);
 		timestr[strlen(timestr)-1] = '\0';

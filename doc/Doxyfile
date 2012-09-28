@@ -4,7 +4,7 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = Picviz
+PROJECT_NAME           = Pcoords
 PROJECT_NUMBER         = 0.6
 OUTPUT_DIRECTORY       = .
 CREATE_SUBDIRS         = NO

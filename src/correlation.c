@@ -73,7 +73,7 @@ int pcoords_correlation_new(PcoordsCorrelation **correlation)
 	(*correlation)->hashes = malloc(CORRELATION_HASH_SIZE * sizeof(*(*correlation)->hashes));
 	if ( ! (*correlation)->hashes ) {
 		free(*correlation);
-		pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate correlation hash!");
+		pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_CORE, "Cannot allocate correlation hash!");
 		return -1;
 	}
 

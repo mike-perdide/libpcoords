@@ -90,7 +90,7 @@ PcvHeight pcoords_render_value(PcoordsImage *image, PcoordsAxis *axis, PcvString
 	float value;
 
 	if ( ! axis ) {
-		pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_RENDER, "No axis! cannot render anything.\n");
+		pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_RENDER, "No axis! cannot render anything.\n");
 		exit(1);
 	}
 
@@ -147,13 +147,13 @@ void pcoords_render_image(PcoordsImage *image)
         struct axisplot_t *axisplot;
         PcvHeight strheight, maxval;
 	/* XXX: Use axis->ymin/max instead */
-        PcvHeight string_max[PICVIZ_MAX_AXES];
+        PcvHeight string_max[PCOORDS_MAX_AXES];
         int i = 1;
         int axis_position;
         int line_removal_candidate;
 	unsigned int counter = 0;
 
-	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_RENDER, "Rendering");
+	pcoords_debug(PCOORDS_DEBUG_NOTICE, PCOORDS_AREA_RENDER, "Rendering");
 
         pcoords_learn(image);
 
@@ -191,7 +191,7 @@ void pcoords_render_image(PcoordsImage *image)
                         /* PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get(image, axisplot->axis_id); */
 			PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 			if ( ! axis ) {
-				fprintf(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_RENDER, "Could not get the axis!");
+				fprintf(PCOORDS_DEBUG_WARNING, PCOORDS_AREA_RENDER, "Could not get the axis!");
 				continue;
 			}
 			if (axis->render == PCV_RENDER_DONE) continue;
@@ -216,7 +216,7 @@ void pcoords_render_image(PcoordsImage *image)
 		axis_position = 0;
 		counter = 0;
 		line_removal_candidate = 0;
-		PcoordsAxisPlot *ap_tbl[PICVIZ_MAX_AXES];
+		PcoordsAxisPlot *ap_tbl[PCOORDS_MAX_AXES];
 
 		while (image->axesorder[counter]) {
 			PcoordsAxisPlot *axisplot = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
@@ -263,7 +263,7 @@ void pcoords_render_image(PcoordsImage *image)
 						      pcoords_values_mapping_get_from_y(image, maxval, strheight));
 			}
 
-			assert(axis_position < PICVIZ_MAX_AXES);
+			assert(axis_position < PCOORDS_MAX_AXES);
 			ap_tbl[axis_position++] = axisplot;
 
 			pcoords_render_set_minmax(axis, axisplot->y);

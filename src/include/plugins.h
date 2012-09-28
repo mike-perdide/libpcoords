@@ -26,13 +26,13 @@
  extern "C" {
 #endif
 
-#define PICVIZ_OUTPUT_API_VERSION "1"
+#define PCOORDS_OUTPUT_API_VERSION "1"
 
 typedef enum plugin_type_t {
-        PICVIZ_PLUGIN_UNKNOWN,
-        PICVIZ_PLUGIN_OUTPUT,
-        PICVIZ_PLUGIN_RENDER,
-	PICVIZ_PLUGIN_VARIABLE	
+        PCOORDS_PLUGIN_UNKNOWN,
+        PCOORDS_PLUGIN_OUTPUT,
+        PCOORDS_PLUGIN_RENDER,
+	PCOORDS_PLUGIN_VARIABLE	
 } plugin_type_t;
 typedef enum plugin_type_t PcoordsPluginType;
 

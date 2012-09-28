@@ -145,14 +145,14 @@ int pcoords_hash_new(pcoords_hash_t **hash)
 
         *hash = malloc(sizeof(**hash));
         if ( ! *hash ) {
-                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate hash!");
+                pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_CORE, "Cannot allocate hash!");
                 return -1;
         }
 
         (*hash)->lists = malloc(DEFAULT_HASH_SIZE * sizeof(*(*hash)->lists));
         if ( ! (*hash)->lists ) {
                 free(*hash);
-                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate hash!");
+                pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_CORE, "Cannot allocate hash!");
                 return -1;
         }
 

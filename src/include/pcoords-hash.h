@@ -17,8 +17,8 @@
  * $Id: pcoords-hash.h 599 2009-05-24 14:12:05Z toady $
  */
 
-#ifndef PICVIZ_HASH_H
-#define PICVIZ_HASH_H
+#ifndef PCOORDS_HASH_H
+#define PCOORDS_HASH_H
 
 #include "types.h"
 

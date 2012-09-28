@@ -48,7 +48,7 @@ PcoordsImage *pcoords_image_new(void)
 		fprintf(stderr, "Cannot create image: memory exhausted.\n");
 		return NULL;
 	}
-	for (i=0;i<=PICVIZ_MAX_AXES+1;i++) {
+	for (i=0;i<=PCOORDS_MAX_AXES+1;i++) {
 		pcimage->axesorder[i] = NULL;
 	}
 	pcimage->height        = engine.image_height;

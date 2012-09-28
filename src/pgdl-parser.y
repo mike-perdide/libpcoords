@@ -22,7 +22,7 @@ static void pcoords_key_value(char *key, char *value);
 
 int close_section_check = 0;
 struct axis_t *axis;
-float lines_values[PICVIZ_MAX_AXES]; /* store positions */
+float lines_values[PCOORDS_MAX_AXES]; /* store positions */
 int max_axes = 0; /* to know if we should clean lines_values */
 int i = 0;
 char *layer = NULL;
@@ -203,7 +203,7 @@ type_var:       /* Data without any property */
 		while (image->axesorder[counter]) {	
 			if (!strcmp(axisname, image->axesorder[counter])) {
 			//	fprintf(stderr, "We already know this axis(%s)\n", $2);
-				if (max_axes >= PICVIZ_MAX_AXES) {
+				if (max_axes >= PCOORDS_MAX_AXES) {
 					yyerror("Axes overflow: it is not possible to have so much axes.");
 				}
 				image->axesorder[max_axes] = strdup(axisname);
@@ -233,7 +233,7 @@ type_var:       /* Data without any property */
 			}
 			axis->name = strdup($2);
 			pcoords_image_axis_append(image, axis);
-			if (max_axes >= PICVIZ_MAX_AXES) {
+			if (max_axes >= PCOORDS_MAX_AXES) {
 				free(datatype);
 				free($2);
 				yyerror("Axes overflow: it is not possible to have so much axes.");
@@ -267,7 +267,7 @@ type_var:       /* Data without any property */
 		while (image->axesorder[counter]) {	
 			if (!strcmp($2, image->axesorder[counter])) {
 				//fprintf(stderr, "We already know this axis(%s)\n", $2);
-			if (max_axes >= PICVIZ_MAX_AXES) {
+			if (max_axes >= PCOORDS_MAX_AXES) {
 				yyerror("Axes overflow: it is not possible to have so much axes.");
 			}
 
@@ -311,7 +311,7 @@ type_var:       /* Data without any property */
 			pcoords_image_axis_append(image, axis);
 			axis_relative = NULL;
 			axis_print = NULL;
-			if (max_axes >= PICVIZ_MAX_AXES) {
+			if (max_axes >= PCOORDS_MAX_AXES) {
 				yyerror("Axes overflow: it is not possible to have so much axes.");
 			}
 
@@ -438,7 +438,7 @@ int yyget_lineno (void);
 
 void yyerror(char *str)
 {
-	pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "PCV file error: invalid token '%s' at line '%d': %s", yyget_text(), yyget_lineno(), str);
+	pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_PARSER, "PCV file error: invalid token '%s' at line '%d': %s", yyget_text(), yyget_lineno(), str);
 	exit(1);
 }
 
@@ -515,7 +515,7 @@ void pcoords_key_value(char *key, char *value)
                         /* We first dump data into the structure, we render latter */
                         //axisplot->y = pcoords_line_value_get_from_string(value); <- done in the rendering, since we need all values to be first set
 #if 0
-			pcoords_debug(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_PARSER, "For the value '%s' I have axis type '%d'", value, axis->type);
+			pcoords_debug(PCOORDS_DEBUG_WARNING, PCOORDS_AREA_PARSER, "For the value '%s' I have axis type '%d'", value, axis->type);
 #endif
 			pcoords_axisplot_set_y(axis, axisplot, 
 					      pcoords_render_value(image, axis, value)

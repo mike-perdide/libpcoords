@@ -30,7 +30,7 @@
  * offset to the end of the full pattern match.  If we decide to store other
  * matches, make *SURE* that this is a multiple of 3 as pcre requires it.
  */
-#define PICVIZ_PCRE_OVECTOR_SIZE 3
+#define PCOORDS_PCRE_OVECTOR_SIZE 3
 
 PcoordsBool pcoords_regex_match(char *string, char *regex)
 {
@@ -40,7 +40,7 @@ PcoordsBool pcoords_regex_match(char *string, char *regex)
 	int erroffset;
 	int retval;
 	size_t stringlen;
-	int ovector[PICVIZ_PCRE_OVECTOR_SIZE];
+	int ovector[PCOORDS_PCRE_OVECTOR_SIZE];
 
 	if (!string)
 		return BOOL_ERROR;
@@ -55,7 +55,7 @@ PcoordsBool pcoords_regex_match(char *string, char *regex)
 
 	extra = pcre_study(regexptr, 0, &errptr);
 
-	retval = pcre_exec(regexptr, extra, string, stringlen, 0, 0, ovector, PICVIZ_PCRE_OVECTOR_SIZE);
+	retval = pcre_exec(regexptr, extra, string, stringlen, 0, 0, ovector, PCOORDS_PCRE_OVECTOR_SIZE);
 	if ( retval >= 0 ) {
 		goto outsuccess;
 	}
