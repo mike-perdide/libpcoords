@@ -1,6 +1,6 @@
 /*
  * Written by Sebastien Tricaud (C) 2008-2009 
- * Part of the PicViz project
+ * Part of the Pcoords project
  */
 
 %x incl
