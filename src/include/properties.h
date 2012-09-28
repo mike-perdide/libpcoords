@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,16 +17,16 @@
  * $Id: properties.h 174 2008-09-20 07:57:08Z toady $
  */
 
-#ifndef PICVIZ_PROPERTIES_H
-#define PICVIZ_PROPERTIES_H
+#ifndef PCOORDS_PROPERTIES_H
+#define PCOORDS_PROPERTIES_H
 
 #include "types.h"
 
-typedef struct picviz_properties picviz_properties_t;
+typedef struct pcoords_properties pcoords_properties_t;
 
-int picviz_properties_set(picviz_properties_t *props, PcvString key, PcvString value);
-PcvString picviz_properties_get(picviz_properties_t *props, PcvString key);
-int picviz_properties_new(picviz_properties_t **props);
-void picviz_properties_destroy(picviz_properties_t *props);
+int pcoords_properties_set(pcoords_properties_t *props, PcvString key, PcvString value);
+PcvString pcoords_properties_get(pcoords_properties_t *props, PcvString key);
+int pcoords_properties_new(pcoords_properties_t **props);
+void pcoords_properties_destroy(pcoords_properties_t *props);
 
 #endif

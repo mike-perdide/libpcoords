@@ -1,5 +1,5 @@
 header {
-    title = "Syslog picviz analysis";
+    title = "Syslog pcoords analysis";
 }
 axes {
     timeline t;

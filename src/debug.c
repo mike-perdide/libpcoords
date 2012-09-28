@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,9 @@
 #include <time.h>
 #include <string.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
-void picviz_debug(int level, int area, const char *format, ...)
+void pcoords_debug(int level, int area, const char *format, ...)
 {
 	char *timestr;
 	va_list ap;
@@ -37,7 +37,7 @@ void picviz_debug(int level, int area, const char *format, ...)
 
 	va_start(ap, format);
 
-	if (engine.debug > PICVIZ_DEBUG_CRITICAL) {
+	if (engine.debug > PCOORDS_DEBUG_CRITICAL) {
 		tm = time(NULL);
 		timestr = ctime(&tm);
 		timestr[strlen(timestr)-1] = '\0';
@@ -52,11 +52,11 @@ void picviz_debug(int level, int area, const char *format, ...)
 	fflush(fd);
 }
 
-void picviz_debug_print_axisplot(PicvizAxisPlot *axisplot)
+void pcoords_debug_print_axisplot(PcoordsAxisPlot *axisplot)
 {
 	fprintf(stderr, "axisplot->strval=%s\n", axisplot->strval);
 	fprintf(stderr, "axisplot->y=%lld\n", axisplot->y);
 	fprintf(stderr, "axisplot->axis_id=%llu\n", axisplot->axis_id);
-	fprintf(stderr, "axisplot->props->color=%s\n", picviz_properties_get(axisplot->props, "color"));
+	fprintf(stderr, "axisplot->props->color=%s\n", pcoords_properties_get(axisplot->props, "color"));
 }
 

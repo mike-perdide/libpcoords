@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,13 +45,13 @@ static unsigned int get_key_index(const PcvString key)
 	return (hash_func(key) % CORRELATION_HASH_SIZE);
 }
 
-static PicvizCorHash *elem_search(struct llist_head *list, const PcvString key)
+static PcoordsCorHash *elem_search(struct llist_head *list, const PcvString key)
 {
 	struct llist_head *tmp;
-	PicvizCorHash *elem;
+	PcoordsCorHash *elem;
 
 	llist_for_each(tmp, list) {
-		elem = llist_entry(tmp, PicvizCorHash, list);
+		elem = llist_entry(tmp, PcoordsCorHash, list);
 
 		if ( strcmp(elem->key, key) == 0 )
 			return elem;
@@ -60,7 +60,7 @@ static PicvizCorHash *elem_search(struct llist_head *list, const PcvString key)
 	return NULL;
 }
 
-int picviz_correlation_new(PicvizCorrelation **correlation)
+int pcoords_correlation_new(PcoordsCorrelation **correlation)
 {
 	int i;
 
@@ -73,7 +73,7 @@ int picviz_correlation_new(PicvizCorrelation **correlation)
 	(*correlation)->hashes = malloc(CORRELATION_HASH_SIZE * sizeof(*(*correlation)->hashes));
 	if ( ! (*correlation)->hashes ) {
 		free(*correlation);
-		picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate correlation hash!");
+		pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_CORE, "Cannot allocate correlation hash!");
 		return -1;
 	}
 
@@ -84,10 +84,10 @@ int picviz_correlation_new(PicvizCorrelation **correlation)
 	return 0;
 }
 
-PcvCounter picviz_correlation_append(PicvizCorrelation *cor, const PcvString key)
+PcvCounter pcoords_correlation_append(PcoordsCorrelation *cor, const PcvString key)
 {
         unsigned int idx;
-        PicvizCorHash *elem;
+        PcoordsCorHash *elem;
 
         idx = get_key_index(key);
 
@@ -115,9 +115,9 @@ PcvCounter picviz_correlation_append(PicvizCorrelation *cor, const PcvString key
 }
 
 
-PcvCounter picviz_correlation_get(PicvizCorrelation *cor, PcvString key)
+PcvCounter pcoords_correlation_get(PcoordsCorrelation *cor, PcvString key)
 {
-        PicvizCorHash *elem;
+        PcoordsCorHash *elem;
 
         elem = elem_search(&cor->hashes[get_key_index(key)], key);
         if ( ! elem )
@@ -126,15 +126,15 @@ PcvCounter picviz_correlation_get(PicvizCorrelation *cor, PcvString key)
         return elem->value;
 }
 
-void picviz_correlation_destroy(PicvizCorrelation *cor)
+void pcoords_correlation_destroy(PcoordsCorrelation *cor)
 {
         int i;
-        PicvizCorHash *elem;
+        PcoordsCorHash *elem;
         struct llist_head *tmp, *bkp;
 
         for ( i = 0; i < CORRELATION_HASH_SIZE; i++ ) {
                 llist_for_each_safe(tmp, bkp, &cor->hashes[i]) {
-                        elem = llist_entry(tmp, PicvizCorHash, list);
+                        elem = llist_entry(tmp, PcoordsCorHash, list);
 
                         llist_del(&elem->list);
 
@@ -152,7 +152,7 @@ void picviz_correlation_destroy(PicvizCorrelation *cor)
  * 0 = green, 0.5 = yellow, 1 = red
  * @Returns a Pcv string such as "#ff0000"
  */
-PcvString picviz_correlation_heatline_get(double value)
+PcvString pcoords_correlation_heatline_get(double value)
 {
 	PcvString buf;
 
@@ -197,7 +197,7 @@ PcvString picviz_correlation_heatline_get(double value)
 	return buf;
 }
 
-int picviz_correlation_heatline_get_red(double value)
+int pcoords_correlation_heatline_get_red(double value)
 {
 	double red = 0;
 
@@ -215,7 +215,7 @@ int picviz_correlation_heatline_get_red(double value)
 	return (int) (red*255);
 }
 
-int picviz_correlation_heatline_get_green(double value)
+int pcoords_correlation_heatline_get_green(double value)
 {
 	double green = 0;
 
@@ -239,7 +239,7 @@ int picviz_correlation_heatline_get_green(double value)
 int main(void)
 {
 	char *buf;
-	buf = picviz_correlation_heatline_get(0.123);
+	buf = pcoords_correlation_heatline_get(0.123);
 	printf("My color=%s\n",buf);
 	free(buf);
 

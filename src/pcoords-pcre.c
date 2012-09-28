@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-pcre.c 469 2009-04-02 17:45:12Z toady $
+ * $Id: pcoords-pcre.c 469 2009-04-02 17:45:12Z toady $
  */
 
 #include <stdio.h>
@@ -22,7 +22,7 @@
 #include <pcre.h>
 
 #include "types.h"
-#include "picviz-pcre.h"
+#include "pcoords-pcre.h"
 
 /*
  * we need to specify the vector length for our pcre_exec call.  we only care
@@ -30,9 +30,9 @@
  * offset to the end of the full pattern match.  If we decide to store other
  * matches, make *SURE* that this is a multiple of 3 as pcre requires it.
  */
-#define PICVIZ_PCRE_OVECTOR_SIZE 3
+#define PCOORDS_PCRE_OVECTOR_SIZE 3
 
-PicvizBool picviz_regex_match(char *string, char *regex)
+PcoordsBool pcoords_regex_match(char *string, char *regex)
 {
 	pcre *regexptr;
 	pcre_extra *extra;
@@ -40,7 +40,7 @@ PicvizBool picviz_regex_match(char *string, char *regex)
 	int erroffset;
 	int retval;
 	size_t stringlen;
-	int ovector[PICVIZ_PCRE_OVECTOR_SIZE];
+	int ovector[PCOORDS_PCRE_OVECTOR_SIZE];
 
 	if (!string)
 		return BOOL_ERROR;
@@ -55,7 +55,7 @@ PicvizBool picviz_regex_match(char *string, char *regex)
 
 	extra = pcre_study(regexptr, 0, &errptr);
 
-	retval = pcre_exec(regexptr, extra, string, stringlen, 0, 0, ovector, PICVIZ_PCRE_OVECTOR_SIZE);
+	retval = pcre_exec(regexptr, extra, string, stringlen, 0, 0, ovector, PCOORDS_PCRE_OVECTOR_SIZE);
 	if ( retval >= 0 ) {
 		goto outsuccess;
 	}

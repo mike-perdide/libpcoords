@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ void render(pcimage_t *image, char *arg _U_)
 			printf("This line is hidden\n");
 		}
                 llist_for_each_entry(axisplot, &l->axisplot, list) {
-                        struct axis_t *axis = (struct axis_t *)picviz_axis_get(image, axisplot->axis_id);
+                        struct axis_t *axis = (struct axis_t *)pcoords_axis_get(image, axisplot->axis_id);
 
 			printf("Plot on the axis position %d the value %s at %llu\n", axis->xpos, axisplot->strval, axisplot->y);
         	}

@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  * Copyright (C) 2008 Yoann Vandoorselaere <yoann@prelude-ids.org>
  *
@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-hash.c 600 2009-05-24 16:04:57Z toady $
+ * $Id: pcoords-hash.c 600 2009-05-24 16:04:57Z toady $
  */
 
 #include <stdio.h>
@@ -23,12 +23,12 @@
 #include <stdlib.h>
 
 #include "linuxlist.h"
-#include "picviz-hash.h"
+#include "pcoords-hash.h"
 #include "debug.h"
 
 #define DEFAULT_HASH_SIZE 16
 
-struct picviz_hash {
+struct pcoords_hash {
         struct llist_head *lists;
 };
 
@@ -78,7 +78,7 @@ static hash_elem_t *elem_search(struct llist_head *list, const PcvString key)
 
 
 
-int picviz_hash_set(picviz_hash_t *hash, const PcvString key, const void *value, size_t size)
+int pcoords_hash_set(pcoords_hash_t *hash, const PcvString key, const void *value, size_t size)
 {
         unsigned int idx;
         hash_elem_t *elem;
@@ -122,7 +122,7 @@ int picviz_hash_set(picviz_hash_t *hash, const PcvString key, const void *value,
 }
 
 
-PcvString picviz_hash_get(picviz_hash_t *hash, PcvString key)
+PcvString pcoords_hash_get(pcoords_hash_t *hash, PcvString key)
 {
         hash_elem_t *elem;
 
@@ -139,20 +139,20 @@ PcvString picviz_hash_get(picviz_hash_t *hash, PcvString key)
 }
 
 
-int picviz_hash_new(picviz_hash_t **hash)
+int pcoords_hash_new(pcoords_hash_t **hash)
 {
         int i;
 
         *hash = malloc(sizeof(**hash));
         if ( ! *hash ) {
-                picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate hash!");
+                pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_CORE, "Cannot allocate hash!");
                 return -1;
         }
 
         (*hash)->lists = malloc(DEFAULT_HASH_SIZE * sizeof(*(*hash)->lists));
         if ( ! (*hash)->lists ) {
                 free(*hash);
-                picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate hash!");
+                pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_CORE, "Cannot allocate hash!");
                 return -1;
         }
 
@@ -163,7 +163,7 @@ int picviz_hash_new(picviz_hash_t **hash)
 }
 
 
-void picviz_hash_destroy(picviz_hash_t *hash)
+void pcoords_hash_destroy(pcoords_hash_t *hash)
 {
         int i;
         hash_elem_t *elem;
@@ -194,7 +194,7 @@ typedef struct foobar_t {
 
 int main(void)
 {
-	picviz_hash_t *ph;
+	pcoords_hash_t *ph;
 	struct foobar_t *fooset;
 	struct foobar_t *fooget;
 	char *getval;
@@ -202,30 +202,30 @@ int main(void)
 	int retval;
 	int *myi;
 
-	retval = picviz_hash_new(&ph);
-	printf("picviz_hash_new retval = %d\n", retval);
-	picviz_hash_set(ph, "foo", (char *)"bar", 4);
-	picviz_hash_set(ph, "bar", (char *)"foo", 4);
-	getval = picviz_hash_get(ph, "foo");
+	retval = pcoords_hash_new(&ph);
+	printf("pcoords_hash_new retval = %d\n", retval);
+	pcoords_hash_set(ph, "foo", (char *)"bar", 4);
+	pcoords_hash_set(ph, "bar", (char *)"foo", 4);
+	getval = pcoords_hash_get(ph, "foo");
 	printf("value 'foo' stores '%s'\n", getval);
-	getval = picviz_hash_get(ph, "bar");
+	getval = pcoords_hash_get(ph, "bar");
 	printf("value 'bar' stores '%s'\n", getval);
 
 	/* myi = (int *)19; */
-	/* picviz_hash_set(ph, "myint", &myi, sizeof(*myi)); */
-	/* intval = (int *)picviz_hash_get(ph, "myint"); */
+	/* pcoords_hash_set(ph, "myint", &myi, sizeof(*myi)); */
+	/* intval = (int *)pcoords_hash_get(ph, "myint"); */
 	/* printf("value 'myint' stores '%d'\n", *intval); */
 
 	fooset = malloc(sizeof(*fooset));
 	fooset->myint = 42;
 	fooset->mystr = "blahblah";
-	picviz_hash_set(ph, "mystruct", fooset, sizeof(*fooset));
+	pcoords_hash_set(ph, "mystruct", fooset, sizeof(*fooset));
 	fooget = malloc(sizeof(*fooget));
-	fooget = (struct foobar_t *)picviz_hash_get(ph, "mystruct");
+	fooget = (struct foobar_t *)pcoords_hash_get(ph, "mystruct");
 	printf("Fooget int='%d', str='%s'\n", fooget->myint, fooget->mystr);
 	free(fooset);
 	free(fooget);
-	picviz_hash_destroy(ph);
+	pcoords_hash_destroy(ph);
 	
 	return 0;
 }

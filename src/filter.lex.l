@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ static char *escape_str(char *str)
 %option 8bit prefix="pcvfilter"
 
  /* [value|plot|plotmin|plotmax|color] [>|<|=|] ["red"|"foobar"|123] [on axis N] */
- /* plot = exact value as plotted by picviz
+ /* plot = exact value as plotted by pcoords
   * plotmin = number of plots min to display */
  /* ie.:  plot > 100 on axis 3 */
  /* ie.:  plotmin 5 on axes */
@@ -144,7 +144,7 @@ VOID            [ \t]+
 
 /* remove unused functions */
 typedef void (*dummy_function) ();
-dummy_function picvizfilter_unused[] =
+dummy_function pcoordsfilter_unused[] =
 {
   (dummy_function) input, (dummy_function) yyunput
 };

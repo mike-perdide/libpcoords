@@ -59,7 +59,7 @@ To build bindings
 
 ::
 
-  $ cd src/libpicviz/bindings/python
+  $ cd src/libpcoords/bindings/python
   # python ./setup.py install
 
 Use
@@ -78,7 +78,7 @@ using it for a while.
 
 Lately, I've been thinking about visualizing network logs for one of my
 clients. I naturally thought about Picviz, but when I tried to find a
-project page, all I found was: http://www.wallinfire.net/picviz, which
+project page, all I found was: http://www.wallinfire.net/pcoords, which
 doesn't exist anymore, since Picviz became Picviz Labs, and the project
 became a product. The code is still opensource thought, but it is not a
 free software project anymore.
@@ -89,6 +89,6 @@ contribute to this awesome tool can do it, as easy as a pull request.
 Since Picviz is now a registered name, this project will be named Pcoords.
 
 This project is bootstrapped with the version 0.6 of Picviz, as available
-from http://www.picviz.com/sections/community/picviz-latest.tar.bz2 (which
+from http://www.pcoords.com/sections/community/pcoords-latest.tar.bz2 (which
 is a little more than the version 0.6 of Picviz that has been packaged in
 Fedora 17).

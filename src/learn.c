@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,22 +20,22 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
-void picviz_learn(PicvizImage *image)
+void pcoords_learn(PcoordsImage *image)
 {
 #if 0
-	PicvizLine *line;
-	PicvizAxisPlot *axisplot;
+	PcoordsLine *line;
+	PcoordsAxisPlot *axisplot;
 	char *string_algo;
-	PcvString lowest[PICVIZ_MAX_AXES];
-	PcvString highest[PICVIZ_MAX_AXES];
+	PcvString lowest[PCOORDS_MAX_AXES];
+	PcvString highest[PCOORDS_MAX_AXES];
 	PcvCounter j;
 
 	if (!engine.learn) return;
 
 	/* Lowest */
-	line = picviz_line_id_get(image, 0);
+	line = pcoords_line_id_get(image, 0);
 	if ( ! line ) {
 		return; /* We cannot learn! */
 	}
@@ -44,7 +44,7 @@ void picviz_learn(PicvizImage *image)
 	}
 
 	/* Highest */
-	line = picviz_line_id_get(image, (PcvID)image->lines_max-1);
+	line = pcoords_line_id_get(image, (PcvID)image->lines_max-1);
 	if ( ! line ) {
 		return; /* We cannot learn! */
 	}
@@ -53,21 +53,21 @@ void picviz_learn(PicvizImage *image)
 	}
 
 	for (j = 0; j <= image->lines_max; j++) {
-		PicvizAxis *axis = (PicvizAxis *)picviz_axis_get(image, j);
+		PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get(image, j);
 
 		if (axis) {
 			if (axis->type == DATATYPE_STRING) {
 				if (!strncmp(lowest[axis->id],highest[axis->id], sizeof(int))) {
 					/* We can use the basic algo */
-					string_algo = picviz_properties_get(axis->props, "algo");
+					string_algo = pcoords_properties_get(axis->props, "algo");
 					if ( ! string_algo ) { /* No algo set? we need to learn */
-						picviz_properties_set(axis->props, "algo","basic");
+						pcoords_properties_set(axis->props, "algo","basic");
 					}
 				} else {
 					/* We dont use the basic algo */
-					string_algo = picviz_properties_get(axis->props, "algo");
+					string_algo = pcoords_properties_get(axis->props, "algo");
 					if ( ! string_algo ) { /* No algo set? we need to learn */
-						picviz_properties_set(axis->props, "algo","nocol");
+						pcoords_properties_set(axis->props, "algo","nocol");
 					}
 				}
 			}

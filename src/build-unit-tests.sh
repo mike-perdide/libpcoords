@@ -2,7 +2,7 @@
 
 CC="gcc"
 CFLAGS="-D_UNIT_TEST_ -I./include -ggdb"
-LIBS="-lpicviz -lpcre"
+LIBS="-lpcoords -lpcre"
 
 function compile()
 {
@@ -19,4 +19,4 @@ function compile()
 #compile filter
 compile utils
 compile correlation
-compile picviz-hash
+compile pcoords-hash

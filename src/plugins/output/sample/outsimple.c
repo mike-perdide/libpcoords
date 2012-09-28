@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * Simple output plugin demo
@@ -15,18 +15,18 @@
 #include "axis.h"
 
 
-void draw_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
+void draw_line(PcoordsImage *image, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
 {
-	printf("OUTPUT:Axis id=%llu, color=%s\n", axis_id, picviz_properties_get(axisplot1->props, "color"));
+	printf("OUTPUT:Axis id=%llu, color=%s\n", axis_id, pcoords_properties_get(axisplot1->props, "color"));
 }
 
 
 void output(const pcimage_t *image, char *arg _U_)
 {
-	PicvizLine *line;
+	PcoordsLine *line;
 
 	llist_for_each_entry(line, &image->lines, list) {
-		picviz_line_draw(image, line, draw_line);
+		pcoords_line_draw(image, line, draw_line);
 	}
 }
 

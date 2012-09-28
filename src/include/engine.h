@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@ typedef struct engine_t {
 
 extern struct engine_t engine;
 
-void picviz_engine_init(void);
+void pcoords_engine_init(void);
 
 #ifdef __cplusplus
  }

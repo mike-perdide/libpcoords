@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ typedef struct pcimage_t pcimage_t;
 #include "types.h"
 #include "properties.h"
 #include "correlation.h"
-#include "picviz-hash.h"
+#include "pcoords-hash.h"
 
 #ifdef __cplusplus
  extern "C" {
@@ -39,10 +39,10 @@ enum is_rendered_t {
         PCV_TO_RENDER,   /* When axis values need to be rendered */
 	PCV_RENDER_DONE /* When axis values have been previously rendered */
 } is_rendered_t;
-typedef enum is_rendered_t PicvizRender;
+typedef enum is_rendered_t PcoordsRender;
 
 /**
- * Picviz variable type
+ * Pcoords variable type
  */
 enum datatype_t {
 	DATATYPE_EMPTY,
@@ -62,57 +62,57 @@ enum datatype_t {
 	DATATYPE_PORT,
 	DATATYPE_USEC,
 } datatype_t;
-typedef enum datatype_t PicvizDataType;
+typedef enum datatype_t PcoordsDataType;
 
 /**
- * Picviz plot structure
+ * Pcoords plot structure
  */
 struct axisplot_t {
         PcvID axis_id; /* id of the axis we positionate the line to */
         PcvString strval; /* This is the string value of the ysource, to put (optionally) in the graph */
         PcvHeight y;         /* where does the line goes on this axis */
-        picviz_properties_t *props;
+        pcoords_properties_t *props;
 } axisplot_t;
-typedef struct axisplot_t PicvizAxisPlot;
+typedef struct axisplot_t PcoordsAxisPlot;
 
 /**
- * Picviz line structure
+ * Pcoords line structure
  */
 struct line_t {
         struct llist_head list;
-	picviz_hash_t *axesplots;
+	pcoords_hash_t *axesplots;
         PcvID id;
         PcvString layer;
         unsigned char hidden;
-        picviz_properties_t *props;
+        pcoords_properties_t *props;
 } line_t;
-typedef struct line_t PicvizLine;
+typedef struct line_t PcoordsLine;
 
 /**
- * Picviz axis structure
+ * Pcoords axis structure
  */
 struct axis_t {
         struct llist_head list;
         PcvID id;
 	PcvString name;
-	PicvizRender render;
-        picviz_properties_t *props;
-        PicvizDataType type;
+	PcoordsRender render;
+        pcoords_properties_t *props;
+        PcoordsDataType type;
         PcvHeight ymin;  /* Where we start (top): Not max line, max of what we see */
         PcvHeight ymax;  /* Where we end (botton): Not min line */
 	/* For enumeration type */
 	int enum_count;
-	picviz_properties_t *enum_hash;
+	pcoords_properties_t *enum_hash;
 	unsigned long long int numeric;
-        picviz_hash_t *valcount; /* Used to count the number of time a given value repeats */
+        pcoords_hash_t *valcount; /* Used to count the number of time a given value repeats */
 } axis_t;
-typedef struct axis_t PicvizAxis;
+typedef struct axis_t PcoordsAxis;
 
 /**
- * Picviz image structure
+ * Pcoords image structure
  */
 struct pcimage_t {
-	PcvString axesorder[PICVIZ_MAX_AXES+1];  /* Stores which axis should come when. +1 to have the latest elem to NULL if we have 1024 axes!*/
+	PcvString axesorder[PCOORDS_MAX_AXES+1];  /* Stores which axis should come when. +1 to have the latest elem to NULL if we have 1024 axes!*/
 	PcvWidth  width;
 	PcvHeight height;
 	PcvHeight header_height;
@@ -125,16 +125,16 @@ struct pcimage_t {
         PcvString font_color;
         char font_size;
 	void  *filter;
-	PicvizCorrelation *correlation;
+	PcoordsCorrelation *correlation;
 
 	enum position_t zero_pos; /* where the zero value is on the axes */
 
-	picviz_hash_t *axes;
-        picviz_hash_t *hidden_layers; /* if NULL the layer is displayed, hidden otherwise */
+	pcoords_hash_t *axes;
+        pcoords_hash_t *hidden_layers; /* if NULL the layer is displayed, hidden otherwise */
         struct llist_head lines;
 	PcvCounter lines_max;
 };
-typedef struct pcimage_t PicvizImage;
+typedef struct pcimage_t PcoordsImage;
 
 #ifdef __cplusplus
  }

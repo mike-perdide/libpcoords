@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 extern int pcvfilterlex(void);
 extern void pcvfilterlex_init(void);
@@ -14,7 +14,7 @@ extern void pcvfiltererror(char *);
 extern void *pcvfilter_scan_string(const char *);
 extern void pcvfilter_delete_buffer(void *);
 
-static PicvizFilter *processed_filter;
+static PcoordsFilter *processed_filter;
 
 #define YY_ABORT return -1;
 #define YYERROR_VERBOSE
@@ -22,8 +22,8 @@ static PicvizFilter *processed_filter;
 #define operator_and 2
 
 
-PicvizFilterRelation picviz_filter_relation_get(char *str);
-PicvizFilterType picviz_filter_type_get(char *str);
+PcoordsFilterRelation pcoords_filter_relation_get(char *str);
+PcoordsFilterType pcoords_filter_type_get(char *str);
 
 %}
 
@@ -32,7 +32,7 @@ PicvizFilterType picviz_filter_type_get(char *str);
         char *string;
         int   number;
         double numfloat;
-        struct picviz_filter_criterion *criterion;
+        struct pcoords_filter_criterion *criterion;
 }
 
 %token <string>TOK_FILTERTYPE
@@ -73,7 +73,7 @@ PicvizFilterType picviz_filter_type_get(char *str);
 
 input:
         criteria {
-                processed_filter = picviz_filter_new();
+                processed_filter = pcoords_filter_new();
                 processed_filter->criterion = $1;
         }
 ;
@@ -86,9 +86,9 @@ criteria:
 
         | criteria operator criteria_base {
                 if ( $2 == operator_or )
-                        picviz_filter_or_criterion($1, $3);
+                        pcoords_filter_or_criterion($1, $3);
                 else
-                        picviz_filter_and_criterion($1, $3);
+                        pcoords_filter_and_criterion($1, $3);
 
                 $$ = $1;
         }
@@ -122,10 +122,10 @@ criterion:
 
 criterion_numfloat:       TOK_FREQTYPE TOK_RELATION TOK_NUMFLOAT {
 
-                        $$ = picviz_filter_criterion_new();
+                        $$ = pcoords_filter_criterion_new();
 
                         $$->type = PF_FREQ_FILTER;
-                        $$->relation = picviz_filter_relation_get($2);
+                        $$->relation = pcoords_filter_relation_get($2);
 
                         $$->options = PF_OPTIONS_NONE;
 
@@ -139,10 +139,10 @@ criterion_numfloat:       TOK_FREQTYPE TOK_RELATION TOK_NUMFLOAT {
 criterion_number:       TOK_FILTERTYPE TOK_RELATION TOK_NUMBER TOK_SELECTAXIS TOK_NUMBER {
 
 
-                        $$ = picviz_filter_criterion_new();
+                        $$ = pcoords_filter_criterion_new();
 
-                        $$->type = picviz_filter_type_get($1);
-                        $$->relation = picviz_filter_relation_get($2);
+                        $$->type = pcoords_filter_type_get($1);
+                        $$->relation = pcoords_filter_relation_get($2);
                         if ( ! strcmp($5, "0")) {
                                 fprintf(stderr, "ERROR: No NULL axis possible. If you think counting starts at 0, you are crazy. You may consider taking a programming career!\n");
                         }
@@ -165,10 +165,10 @@ criterion_percent:         TOK_FILTERTYPE TOK_RELATION TOK_PERCENT TOK_SELECTAXI
                         char *percent_ptr;
                         size_t percent_size;
 
-                        $$ = picviz_filter_criterion_new();
+                        $$ = pcoords_filter_criterion_new();
 
-                        $$->type = picviz_filter_type_get($1);
-                        $$->relation = picviz_filter_relation_get($2);
+                        $$->type = pcoords_filter_type_get($1);
+                        $$->relation = pcoords_filter_relation_get($2);
                         if ( ! strcmp($5, "0")) {
                                 fprintf(stderr, "ERROR: No NULL axis possible. If you think counting starts at 0, you are crazy. You may consider taking a programming career!\n");
                         }
@@ -197,10 +197,10 @@ criterion_string:          TOK_FILTERTYPE TOK_RELATION TOK_DQSTRING TOK_SELECTAX
                         if ( ! strcmp($5, "0")) {
                                 fprintf(stderr, "ERROR: No NULL axis possible. If you think counting starts at 0, you are crazy. You may consider taking a programming career!\n");
                         }
-                        $$ = picviz_filter_criterion_new();
+                        $$ = pcoords_filter_criterion_new();
 
-                        $$->type = picviz_filter_type_get($1);
-                        $$->relation = picviz_filter_relation_get($2);
+                        $$->type = pcoords_filter_type_get($1);
+                        $$->relation = pcoords_filter_relation_get($2);
                         $$->options = PF_OPTIONS_NONE;
                         $$->value.data = strdup($3);
                         $$->axis = atoi($5) - 1;
@@ -218,7 +218,7 @@ operator:       TOK_OPERATOR_AND        { $$ = operator_and; }
 ;
 %%
 
-PicvizFilterType picviz_filter_type_get(char *str)
+PcoordsFilterType pcoords_filter_type_get(char *str)
 {
         if (!strcmp(str,"value")) {
                 return PF_VALUE_FILTER;
@@ -235,7 +235,7 @@ PicvizFilterType picviz_filter_type_get(char *str)
         return PF_TYPE_ERROR;
 }
 
-PicvizFilterRelation picviz_filter_relation_get(char *str)
+PcoordsFilterRelation pcoords_filter_relation_get(char *str)
 {
         char c = str[0];
 
@@ -279,8 +279,8 @@ PicvizFilterRelation picviz_filter_relation_get(char *str)
         return PF_RELATION_ERROR;
 }
 
-/* Should latter return a picviz_filter_t */
-PicvizFilter *picviz_filter_build(char *filterbuf)
+/* Should latter return a pcoords_filter_t */
+PcoordsFilter *pcoords_filter_build(char *filterbuf)
 {
         void *state;
 

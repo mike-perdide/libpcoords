@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 #ifndef _VARIABLE_H_
 #define _VARIABLE_H_
 
-//#include <picviz.h>
+//#include <pcoords.h>
 #include <types.h>
 
 #ifdef __cplusplus
@@ -39,19 +39,19 @@ enum variable_type_t {
 } variable_type_t;
 typedef enum variable_type_t PcvVarType;
 
-typedef PcvHeight (*PicvizVariableMap)(PcvString value);
+typedef PcvHeight (*PcoordsVariableMap)(PcvString value);
 struct variable_t {
         struct llist_head list;
         PcvString name; /* debug, integer, string, ...*/
         PcvVarType type;
-        PcvHeight maxval; /* <- picviz_variable_max*/
-        PicvizVariableMap *mapping_func;
+        PcvHeight maxval; /* <- pcoords_variable_max*/
+        PcoordsVariableMap *mapping_func;
 } variable_t;
-typedef struct variable_t PicvizVariable;
+typedef struct variable_t PcoordsVariable;
 
 /* Create a new variable type */
-PicvizVariable *picviz_variable_new(PcvString name);
-void picviz_variable_destroy(PicvizVariable *var);
+PcoordsVariable *pcoords_variable_new(PcvString name);
+void pcoords_variable_destroy(PcoordsVariable *var);
 
 
 /* The string we use as reference to put our variables on its type.
@@ -79,8 +79,8 @@ void picviz_variable_destroy(PicvizVariable *var);
 
 #define USEC_TYPE_MAX_YVAL 999999
 
-//PcvHeight picviz_variable_max(datatype_t vartype);
-PcvHeight picviz_variable_max(PicvizImage *image, PicvizAxis *axis, int string_algo);
+//PcvHeight pcoords_variable_max(datatype_t vartype);
+PcvHeight pcoords_variable_max(PcoordsImage *image, PcoordsAxis *axis, int string_algo);
 
 #ifdef __cplusplus
  }

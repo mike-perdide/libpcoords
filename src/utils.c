@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ typedef struct alllines_t {
 
 LLIST_HEAD(lc_list); /* Lines coordinates list */
 
-void picviz_util_line_append(int x1, float y1, int x2, float y2)
+void pcoords_util_line_append(int x1, float y1, int x2, float y2)
 {
         struct alllines_t *alllines;
 
@@ -52,7 +52,7 @@ void picviz_util_line_append(int x1, float y1, int x2, float y2)
 }
 
 /* Add lines x1, x2, y1, y2 to a list, to avoid duplicates */
-int picviz_util_line_exists(int x1, float y1, int x2, float y2)
+int pcoords_util_line_exists(int x1, float y1, int x2, float y2)
 {
         struct alllines_t *alllines;
 
@@ -68,7 +68,7 @@ int picviz_util_line_exists(int x1, float y1, int x2, float y2)
         return 0;
 }
 
-char *picviz_string_up(char *str)
+char *pcoords_string_up(char *str)
 {
         int i = 0;
         char *retstr;
@@ -86,7 +86,7 @@ char *picviz_string_up(char *str)
         return retstr;
 }
 
-int picviz_is_string_algo_basic(PicvizAxis *axis)
+int pcoords_is_string_algo_basic(PcoordsAxis *axis)
 {
         char *string_algo;
 
@@ -97,7 +97,7 @@ int picviz_is_string_algo_basic(PicvizAxis *axis)
 
         if (engine.string_algo == 0) return 1;
 
-        string_algo = picviz_properties_get(axis->props, "algo");
+        string_algo = pcoords_properties_get(axis->props, "algo");
         if (!string_algo) string_algo="";
         if (!strcmp(string_algo, "basic")) {
                 //printf("The axis %llu is basic\n",axis->id);
@@ -112,7 +112,7 @@ int main(void)
 {
         char *str = "this is a string";
 
-        str = picviz_string_up(str);
+        str = pcoords_string_up(str);
 
         printf("str=[%s]\n", str);
         free(str);

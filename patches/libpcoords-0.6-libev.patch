@@ -1,6 +1,6 @@
-diff -up libpicviz-0.6/CMakeLists.txt.orig libpicviz-0.6/CMakeLists.txt
---- libpicviz-0.6/CMakeLists.txt.orig	2009-07-22 17:49:49.000000000 +0200
-+++ libpicviz-0.6/CMakeLists.txt	2009-07-22 17:52:40.000000000 +0200
+diff -up libpcoords-0.6/CMakeLists.txt.orig libpcoords-0.6/CMakeLists.txt
+--- libpcoords-0.6/CMakeLists.txt.orig	2009-07-22 17:49:49.000000000 +0200
++++ libpcoords-0.6/CMakeLists.txt	2009-07-22 17:52:40.000000000 +0200
 @@ -54,6 +54,7 @@ FIND_PACKAGE(BISON REQUIRED)
  #FIND_PACKAGE(PCRE REQUIRED)
  FIND_PACKAGE(PkgConfig)
@@ -16,10 +16,10 @@ diff -up libpicviz-0.6/CMakeLists.txt.orig libpicviz-0.6/CMakeLists.txt
 -add_subdirectory(libev)
  add_subdirectory(src)
  
- #SET_TARGET_PROPERTIES(picviz PROPERTIES LINKER_LANGUAGE C)
-diff -up libpicviz-0.6/src/CMakeLists.txt.orig libpicviz-0.6/src/CMakeLists.txt
---- libpicviz-0.6/src/CMakeLists.txt.orig	2009-07-22 17:50:18.000000000 +0200
-+++ libpicviz-0.6/src/CMakeLists.txt	2009-07-22 17:55:34.000000000 +0200
+ #SET_TARGET_PROPERTIES(pcoords PROPERTIES LINKER_LANGUAGE C)
+diff -up libpcoords-0.6/src/CMakeLists.txt.orig libpcoords-0.6/src/CMakeLists.txt
+--- libpcoords-0.6/src/CMakeLists.txt.orig	2009-07-22 17:50:18.000000000 +0200
++++ libpcoords-0.6/src/CMakeLists.txt	2009-07-22 17:55:34.000000000 +0200
 @@ -1,11 +1,11 @@
  add_subdirectory(plugins)
  #add_subdirectory(bindings)
@@ -34,12 +34,12 @@ diff -up libpicviz-0.6/src/CMakeLists.txt.orig libpicviz-0.6/src/CMakeLists.txt
  )
  #set(CMAKE_SHARED_LINKER_FLAGS "-lm -lfl -ly")
  #link_directories(${PROJECT_BINARY_DIR}/ ${PROJECT_BINARY_DIR}/gnulib/glthread ${PROJECT_BINARY_DIR}/libev)
-@@ -29,7 +29,7 @@ add_library(picviz SHARED axis.c axisplo
- set_target_properties(picviz PROPERTIES SOVERSION 2)
+@@ -29,7 +29,7 @@ add_library(pcoords SHARED axis.c axisplo
+ set_target_properties(pcoords PROPERTIES SOVERSION 2)
  
- #target_link_libraries(picviz "-lm -ldl -L${PROJECT_BINARY_DIR}/libev -lev")
--target_link_libraries(picviz "-lm -ldl -L${PROJECT_BINARY_DIR}/libev/ -lev")
-+target_link_libraries(picviz "-lm -ldl" ${LIBEV_LIBRARIES})
+ #target_link_libraries(pcoords "-lm -ldl -L${PROJECT_BINARY_DIR}/libev -lev")
+-target_link_libraries(pcoords "-lm -ldl -L${PROJECT_BINARY_DIR}/libev/ -lev")
++target_link_libraries(pcoords "-lm -ldl" ${LIBEV_LIBRARIES})
  
- install(TARGETS picviz LIBRARY DESTINATION ${LIB_INSTALL_DIR})
+ install(TARGETS pcoords LIBRARY DESTINATION ${LIB_INSTALL_DIR})
  install(FILES

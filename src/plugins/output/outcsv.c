@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 void output(pcimage_t *i, char *arg _U_)
 {

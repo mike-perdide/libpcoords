@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@
  extern "C" {
 #endif
 
-int picviz_fifo_data_read(PicvizImage *template, char *filename, void (*fifo_cb)(PicvizImage *image));
+int pcoords_fifo_data_read(PcoordsImage *template, char *filename, void (*fifo_cb)(PcoordsImage *image));
 
 #ifdef __cplusplus
  }

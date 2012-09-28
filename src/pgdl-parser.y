@@ -1,7 +1,7 @@
 %{
 #include <stdio.h>
 #include <string.h>
-#include <picviz.h>
+#include <pcoords.h>
 #include <stdlib.h>    /* atoi() */
 #include <unistd.h> /* exit() */
 
@@ -18,11 +18,11 @@ extern void yy_delete_buffer(void *);
 
 void _pgdl_init_lexer(void);
 
-static void picviz_key_value(char *key, char *value);
+static void pcoords_key_value(char *key, char *value);
 
 int close_section_check = 0;
 struct axis_t *axis;
-float lines_values[PICVIZ_MAX_AXES]; /* store positions */
+float lines_values[PCOORDS_MAX_AXES]; /* store positions */
 int max_axes = 0; /* to know if we should clean lines_values */
 int i = 0;
 char *layer = NULL;
@@ -203,7 +203,7 @@ type_var:       /* Data without any property */
 		while (image->axesorder[counter]) {	
 			if (!strcmp(axisname, image->axesorder[counter])) {
 			//	fprintf(stderr, "We already know this axis(%s)\n", $2);
-				if (max_axes >= PICVIZ_MAX_AXES) {
+				if (max_axes >= PCOORDS_MAX_AXES) {
 					yyerror("Axes overflow: it is not possible to have so much axes.");
 				}
 				image->axesorder[max_axes] = strdup(axisname);
@@ -215,7 +215,7 @@ type_var:       /* Data without any property */
 		}
 		if (!axis_exists) {
 			/* axis_current_type = $1; */
-			axis = picviz_axis_new();
+			axis = pcoords_axis_new();
 			/* Check if we have a numeric value ( axes { 4096 axis1; })*/
 			axis->numeric = strtoull(datatype, &endptr, 10);
 			if (errno) {
@@ -226,14 +226,14 @@ type_var:       /* Data without any property */
 			if (datatype != endptr) {
 				/* We have a numeric */
 /* 				fprintf(stderr, "The numeric value is %llu\n", axis->numeric); */
-				picviz_axis_set_type(axis, DATATYPE_NUMERIC);
+				pcoords_axis_set_type(axis, DATATYPE_NUMERIC);
 			} else {
 				/* We have something like axes { (enum|...) axis1; } */
-				picviz_axis_set_type_from_string(axis, datatype);
+				pcoords_axis_set_type_from_string(axis, datatype);
 			}
 			axis->name = strdup($2);
-			picviz_image_axis_append(image, axis);
-			if (max_axes >= PICVIZ_MAX_AXES) {
+			pcoords_image_axis_append(image, axis);
+			if (max_axes >= PCOORDS_MAX_AXES) {
 				free(datatype);
 				free($2);
 				yyerror("Axes overflow: it is not possible to have so much axes.");
@@ -267,7 +267,7 @@ type_var:       /* Data without any property */
 		while (image->axesorder[counter]) {	
 			if (!strcmp($2, image->axesorder[counter])) {
 				//fprintf(stderr, "We already know this axis(%s)\n", $2);
-			if (max_axes >= PICVIZ_MAX_AXES) {
+			if (max_axes >= PCOORDS_MAX_AXES) {
 				yyerror("Axes overflow: it is not possible to have so much axes.");
 			}
 
@@ -281,7 +281,7 @@ type_var:       /* Data without any property */
 		}
 		if (!axis_exists) {
 			/* axis_current_type = $1; */
-			axis = picviz_axis_new();
+			axis = pcoords_axis_new();
 			axis->numeric = strtoull(datatype, &endptr, 10);
 			if (errno) {
 				free(datatype);
@@ -291,27 +291,27 @@ type_var:       /* Data without any property */
 			if (datatype != endptr) {
 				/* We have a numeric */
 /* 				fprintf(stderr, "The numeric value is %llu\n", axis->numeric); */
-				picviz_axis_set_type(axis, DATATYPE_NUMERIC);
+				pcoords_axis_set_type(axis, DATATYPE_NUMERIC);
 			} else {
 				/* We have something like axes { (enum|...) axis1; } */
-				picviz_axis_set_type_from_string(axis, datatype);
+				pcoords_axis_set_type_from_string(axis, datatype);
 			}
 			axis->name = strdup($2);
-/* 			picviz_axis_set_type_from_string(axis, $1); */
+/* 			pcoords_axis_set_type_from_string(axis, $1); */
 			if (axis_label) {
-			  picviz_properties_set(axis->props, "label", axis_label);
+			  pcoords_properties_set(axis->props, "label", axis_label);
 			  free(axis_label);
 			}
 			if (axis_relative) {
-				picviz_properties_set(axis->props,"relative", axis_relative);
+				pcoords_properties_set(axis->props,"relative", axis_relative);
 			}
 			if (axis_print) {
-				picviz_properties_set(axis->props,"print", axis_print);
+				pcoords_properties_set(axis->props,"print", axis_print);
 			}
-			picviz_image_axis_append(image, axis);
+			pcoords_image_axis_append(image, axis);
 			axis_relative = NULL;
 			axis_print = NULL;
-			if (max_axes >= PICVIZ_MAX_AXES) {
+			if (max_axes >= PCOORDS_MAX_AXES) {
 				yyerror("Axes overflow: it is not possible to have so much axes.");
 			}
 
@@ -339,7 +339,7 @@ value:  TOK_PROPERTY TOK_EQUAL TOK_DQSTRING /* I dont care of the chosen name ma
 #ifdef DEBUGSR
         printf("==> value:  TOK_PROPERTY TOK_EQUAL TOK_DQSTRING\n");
 #endif /* DEBUGSR */
-		picviz_key_value($1,$3);
+		pcoords_key_value($1,$3);
 #ifdef DEBUGSR
         printf("<== value:  TOK_PROPERTY TOK_EQUAL TOK_DQSTRING\n");
 #endif /* DEBUGSR */
@@ -348,7 +348,7 @@ value:  TOK_PROPERTY TOK_EQUAL TOK_DQSTRING /* I dont care of the chosen name ma
         TOK_WORD TOK_EQUAL TOK_DQSTRING
         {
 		//printf("key='%s' value='%s'\n", $1, $3);
-		picviz_key_value($1,$3);
+		pcoords_key_value($1,$3);
         }
 
         ;
@@ -371,11 +371,11 @@ key_value_data: dataval TOK_OPEN_PROP properties TOK_CLOSE_PROP TOK_SEMICOLON
 #endif /* DEBUGSR */
         if ( section_state == DATA ) {
 		if (line) {
-			char *color = picviz_color_named_to_hexstr(line_color);
-			picviz_properties_set(line->props, "color", color);
+			char *color = pcoords_color_named_to_hexstr(line_color);
+			pcoords_properties_set(line->props, "color", color);
 			free(color);
 			line_color = "black";
-			picviz_properties_set(line->props, "penwidth", line_penwidth);
+			pcoords_properties_set(line->props, "penwidth", line_penwidth);
 			line_penwidth = DEFAULT_PENWIDTH;
 			if (line_layer) {
 				line->layer = line_layer;
@@ -386,12 +386,12 @@ key_value_data: dataval TOK_OPEN_PROP properties TOK_CLOSE_PROP TOK_SEMICOLON
 			if (FILE_OR_LINE == FILE_MODE) {
 				if (image->filter) {
 					if (!lock) {
-						picviz_image_line_append(image, line);
+						pcoords_image_line_append(image, line);
 					} else {
 						line->hidden = 1;
 					}
 				} else {
-					picviz_image_line_append(image, line);
+					pcoords_image_line_append(image, line);
 				}
 			}
 		}
@@ -412,7 +412,7 @@ key_value_data: dataval TOK_OPEN_PROP properties TOK_CLOSE_PROP TOK_SEMICOLON
 				line->layer = layer;
                                 if (FILE_OR_LINE == FILE_MODE) {
                                         if (!lock) {
-                                                picviz_image_line_append(image, line);
+                                                pcoords_image_line_append(image, line);
                                         } else {
                                                 line->hidden = 1;
                                         }
@@ -438,7 +438,7 @@ int yyget_lineno (void);
 
 void yyerror(char *str)
 {
-	picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "PCV file error: invalid token '%s' at line '%d': %s", yyget_text(), yyget_lineno(), str);
+	pcoords_debug(PCOORDS_DEBUG_CRITICAL, PCOORDS_AREA_PARSER, "PCV file error: invalid token '%s' at line '%d': %s", yyget_text(), yyget_lineno(), str);
 	exit(1);
 }
 
@@ -446,10 +446,10 @@ void yyerror(char *str)
 
 
 
-void picviz_key_value(char *key, char *value)
+void pcoords_key_value(char *key, char *value)
 {
 #ifdef DEBUGSR
-        printf("==> picviz_key_value: TOK_WORD(%s) TOK_EQUAL TOK_DQSTRING(%s)\n", key, value);
+        printf("==> pcoords_key_value: TOK_WORD(%s) TOK_EQUAL TOK_DQSTRING(%s)\n", key, value);
 #endif /* DEBUGSR */
         struct axisplot_t *axisplot;
 
@@ -458,7 +458,7 @@ void picviz_key_value(char *key, char *value)
 			image->height = strtoull(value, NULL, 10);
 		}
 		if ( ! strcmp(key, "bgcolor") ) {
-			image->bgcolor = picviz_color_named_to_hexstr(value);
+			image->bgcolor = pcoords_color_named_to_hexstr(value);
 		}
 		if ( ! strcmp(key, "bgalpha") ) {
   		        char *endptr;
@@ -473,10 +473,10 @@ void picviz_key_value(char *key, char *value)
 
 			token = strtok_r(value, ",", &saveptr);
 			if (token) {
-				picviz_hash_set(image->hidden_layers, token, (char *)"1", 1);
+				pcoords_hash_set(image->hidden_layers, token, (char *)"1", 1);
 			}
 			while ( token = strtok_r(NULL, ",", &saveptr) ) {
-				picviz_hash_set(image->hidden_layers, token, (char *)"1", 1);
+				pcoords_hash_set(image->hidden_layers, token, (char *)"1", 1);
 			}
 		}
 		if ( ! strcmp(key, "width") ) {
@@ -486,7 +486,7 @@ void picviz_key_value(char *key, char *value)
 			image->header_height = atoi(value);
 		}
 		if ( ! strcmp(key, "filter") ) {
-			image->filter = picviz_filter_build(value);
+			image->filter = pcoords_filter_build(value);
 		}
 		if ( ! strcmp(key, "logo") ) {
 			image->logo = strdup(value);
@@ -505,23 +505,23 @@ void picviz_key_value(char *key, char *value)
 		}
          } else if ( section_state == DATA ) {
                 if ( ! axis_position ) {
-                        line = picviz_line_new();
+                        line = pcoords_line_new();
                         lock = 0;
                 }
 
                 if ( ! lock ) {
-                        axisplot = picviz_axisplot_new();
+                        axisplot = pcoords_axisplot_new();
                         axisplot->strval = strdup(value);
                         /* We first dump data into the structure, we render latter */
-                        //axisplot->y = picviz_line_value_get_from_string(value); <- done in the rendering, since we need all values to be first set
+                        //axisplot->y = pcoords_line_value_get_from_string(value); <- done in the rendering, since we need all values to be first set
 #if 0
-			picviz_debug(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_PARSER, "For the value '%s' I have axis type '%d'", value, axis->type);
+			pcoords_debug(PCOORDS_DEBUG_WARNING, PCOORDS_AREA_PARSER, "For the value '%s' I have axis type '%d'", value, axis->type);
 #endif
-			picviz_axisplot_set_y(axis, axisplot, 
-					      picviz_render_value(image, axis, value)
+			pcoords_axisplot_set_y(axis, axisplot, 
+					      pcoords_render_value(image, axis, value)
 					      );
                         axisplot->axis_id = axis_position;
-                        picviz_line_axis_append(line, key, axisplot);
+                        pcoords_line_axis_append(line, key, axisplot);
 
 #ifdef DEBUGDATA
                         printf("[%d]variable=%s,value=%s\n", axis_position, key, value);
@@ -548,7 +548,7 @@ void picviz_key_value(char *key, char *value)
         free(value);
         free(key);
 #ifdef DEBUGSR
-        printf("<== picviz_key_value: TOK_WORD TOK_EQUAL TOK_DQSTRING\n");
+        printf("<== pcoords_key_value: TOK_WORD TOK_EQUAL TOK_DQSTRING\n");
 #endif /* DEBUGSR */
 
 }
@@ -562,7 +562,7 @@ int main(void)
 
         pcv_parse("test.pcv", NULL);
 
-        picviz_image_debug_printall(image);
+        pcoords_image_debug_printall(image);
 
         return 0;
 }

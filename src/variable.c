@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,12 +19,12 @@
 
 #include <stdio.h>
 #include <linuxlist.h>
-#include <picviz.h>
+#include <pcoords.h>
 
 
-PicvizVariable *picviz_variable_new(PcvString name)
+PcoordsVariable *pcoords_variable_new(PcvString name)
 {
-        PicvizVariable *var = NULL;
+        PcoordsVariable *var = NULL;
   
 	var = malloc(sizeof(*var));
 	if ( ! var ) {
@@ -40,12 +40,12 @@ PicvizVariable *picviz_variable_new(PcvString name)
 	return var;
 }
 
-void picviz_variable_destroy(PicvizVariable *var)
+void pcoords_variable_destroy(PcoordsVariable *var)
 {
         free(var);
 }
 
-PcvHeight picviz_variable_max(PicvizImage *image, PicvizAxis *axis, int string_algo)
+PcvHeight pcoords_variable_max(PcoordsImage *image, PcoordsAxis *axis, int string_algo)
 {
 
         switch (axis->type) {

@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,13 +21,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 
-void output(PicvizImage *image, char *arg)
+void output(PcoordsImage *image, char *arg)
 {
-	PicvizLine *line;
-	PicvizStats *stats;
+	PcoordsLine *line;
+	PcoordsStats *stats;
 	unsigned int counter;
 	char *separator = ",";
 
@@ -37,12 +37,12 @@ void output(PicvizImage *image, char *arg)
 	  counter = 0;
 	  if (!line->hidden) {
 	    while (image->axesorder[counter]) {
-	      PicvizAxisPlot *axisplot = (PicvizAxisPlot *)picviz_hash_get(line->axesplots, image->axesorder[counter]);
-	      PicvizAxis *axis = (PicvizAxis *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+	      PcoordsAxisPlot *axisplot = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+	      PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 	      fprintf(stderr,"name=%s,id=%llu\n",image->axesorder[counter], axis->id);
 
-	      /* stats = (PicvizStats *)picviz_hash_get(axis->valcount, (char *)axisplot->strval); */
+	      /* stats = (PcoordsStats *)pcoords_hash_get(axis->valcount, (char *)axisplot->strval); */
 	      /* if ( ! stats) { */
 	      /* 	      fprintf(stderr,"Cannot get the stats for %s from axis '%s'!\n", axisplot->strval, image->axesorder[counter]); */
 	      /* 	      break; */

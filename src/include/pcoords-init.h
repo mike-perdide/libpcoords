@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,22 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-init.h 600 2009-05-24 16:04:57Z toady $
+ * $Id: pcoords-init.h 600 2009-05-24 16:04:57Z toady $
  */
 
-#ifndef _PICVIZ_INIT_H_
-#define _PICVIZ_INIT_H_
+#ifndef _PCOORDS_INIT_H_
+#define _PCOORDS_INIT_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-void picviz_init(int *argc, char **argv);
+void pcoords_init(int *argc, char **argv);
 
 #ifdef __cplusplus
  }
 #endif
 
-#endif /* _PICVIZ_INIT_H_ */
+#endif /* _PCOORDS_INIT_H_ */

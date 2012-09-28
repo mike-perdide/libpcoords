@@ -1,6 +1,6 @@
 /*
- * Picviz - Parallel coordinates ploter
- * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
+ * Pcoords - Parallel coordinates ploter
+ * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,20 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-pcre.h 148 2008-09-15 19:20:53Z toady $
+ * $Id: pcoords-stats.h 599 2009-05-24 14:12:05Z toady $
  */
 
-#ifndef _PICVIZ_PCRE_H_
-#define _PICVIZ_PCRE_H_
+#ifndef _PCOORDS_STATS_H_
+#define _PCOORDS_STATS_H_
+
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-PicvizBool picviz_regex_match(char *string, char *regex);
+struct pcoords_stats_t {
+	unsigned long long counter;
+} pcoords_stats_t;
+typedef struct pcoords_stats_t PcoordsStats;
 
 #ifdef __cplusplus
  }
 #endif
 
-#endif /* _PICVIZ_PCRE_H_ */
+#endif /* _PCOORDS_STATS_H_ */

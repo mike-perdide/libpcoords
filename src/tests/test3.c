@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <picviz.h>
+#include <pcoords.h>
 
 int main(void)
 {
@@ -10,24 +10,24 @@ int main(void)
 
         printf("Test3: create lines\n");
         printf("===================\n");
-	picviz_engine_init();
-        picviz_init(NULL, NULL);
-        image = picviz_image_new();
-        axis = picviz_axis_new();
-/*         picviz_image_axis_append(image, axis); */
-/*         line = picviz_line_new(); */
-/*         axisplot = picviz_axisplot_new(); */
+	pcoords_engine_init();
+        pcoords_init(NULL, NULL);
+        image = pcoords_image_new();
+        axis = pcoords_axis_new();
+/*         pcoords_image_axis_append(image, axis); */
+/*         line = pcoords_line_new(); */
+/*         axisplot = pcoords_axisplot_new(); */
 /*         axisplot->y = 42; */
 /*         axisplot->axis_id = 0; */
-/*         picviz_line_axisplot_append(line, axisplot); */
-/*         axisplot = picviz_axisplot_new(); */
+/*         pcoords_line_axisplot_append(line, axisplot); */
+/*         axisplot = pcoords_axisplot_new(); */
 /*         axisplot->y = 12.43; */
 /*         axisplot->axis_id = 1; */
-/*         picviz_line_axisplot_append(line, axisplot); */
-/*         picviz_image_line_append(image, line); */
+/*         pcoords_line_axisplot_append(line, axisplot); */
+/*         pcoords_image_line_append(image, line); */
 
-        picviz_image_debug_printall(image);
-        picviz_image_destroy(image);
+        pcoords_image_debug_printall(image);
+        pcoords_image_destroy(image);
 
         return 0;
 }

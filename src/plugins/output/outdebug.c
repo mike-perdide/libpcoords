@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ int get_x_from_string(int axis_x, char *str)
         return axis_x - x;
 }
 
-void draw_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
+void draw_line(PcoordsImage *image, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
 {
 	printf("Plot on the axis %llu the value %s at %llu with value %s at %llu\n", axis_id, axisplot1->strval, axisplot1->y, axisplot2->strval, axisplot2->y);
 }
@@ -54,11 +54,11 @@ void output(pcimage_t *image, char *arg _U_)
 
 	counter = 0;
 	while (image->axesorder[counter]) {
-		PicvizAxis *axis = (PicvizAxis *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+		PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 		printf("id=%llu\n", axis->id);
 		printf("name=%s\n", axis->name);
-		printf("position=(counter=%d, engine.axis_x_cursor = %d) %d\n", counter, engine.axis_x_cursor, picviz_axis_position_get(counter));
+		printf("position=(counter=%d, engine.axis_x_cursor = %d) %d\n", counter, engine.axis_x_cursor, pcoords_axis_position_get(counter));
 
 		counter++;
 	}
@@ -67,18 +67,18 @@ void output(pcimage_t *image, char *arg _U_)
 
         llist_for_each_entry(l, &image->lines, list) {
 		counter = 0;
-		printf("New line (color:%s)\n", picviz_properties_get(l->props,"color"));
+		printf("New line (color:%s)\n", pcoords_properties_get(l->props,"color"));
 		if (!l->hidden) {
 #if BOURIN
 		while (image->axesorder[counter]) {
-			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)picviz_hash_get(l->axesplots, image->axesorder[counter]);
-                        struct axis_t *axis = (struct axis_t *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+			PcoordsAxisPlot *axisplot = (PcoordsAxisPlot *)pcoords_hash_get(l->axesplots, image->axesorder[counter]);
+                        struct axis_t *axis = (struct axis_t *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
-			printf("Plot on the axis position %d the value %s at %llu\n", picviz_axis_position_get(counter), axisplot->strval, axisplot->y);
+			printf("Plot on the axis position %d the value %s at %llu\n", pcoords_axis_position_get(counter), axisplot->strval, axisplot->y);
 			counter++;
 		}
 #else
-	picviz_line_draw(image, l, draw_line);
+	pcoords_line_draw(image, l, draw_line);
 #endif
 		}
 	}

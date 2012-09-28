@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,13 @@
 #ifndef _UTILS_H_
 #define _UTILS_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
-void picviz_util_line_append(int x1, float y1, int x2, float y2);
-int picviz_util_line_exists(int x1, float y1, int x2, float y2);
-char *picviz_string_up(char *str);
-int picviz_is_string_algo_basic(PicvizAxis *axis);
-int picviz_hex(unsigned char ch);
-unsigned int picviz_hex_to_int(char **ptr, int *intValue);
+void pcoords_util_line_append(int x1, float y1, int x2, float y2);
+int pcoords_util_line_exists(int x1, float y1, int x2, float y2);
+char *pcoords_string_up(char *str);
+int pcoords_is_string_algo_basic(PcoordsAxis *axis);
+int pcoords_hex(unsigned char ch);
+unsigned int pcoords_hex_to_int(char **ptr, int *intValue);
 
 #endif /* _UTILS_H_ */
