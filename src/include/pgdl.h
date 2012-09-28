@@ -34,18 +34,18 @@ typedef enum section_t {
         DATA
 } section_t;
 
-enum picviz_parser_mode_t {
+enum pcoords_parser_mode_t {
         PICVIZ_PARSER_MODE_FILE,
 	PICVIZ_PARSER_MODE_LINE
-} picviz_parser_mode_t;
-typedef enum picviz_parser_mode_t PicvizParserMode;
+} pcoords_parser_mode_t;
+typedef enum pcoords_parser_mode_t PicvizParserMode;
 
-struct picviz_parser_context_t {
+struct pcoords_parser_context_t {
         section_t section_state;
         FILE *yyin;
         PicvizParserMode mode;
-} picviz_parser_context_t;
-typedef struct picviz_parser_context_t PicvizParserContext;
+} pcoords_parser_context_t;
+typedef struct pcoords_parser_context_t PicvizParserContext;
 
 FILE *yyin;
 
@@ -63,7 +63,7 @@ char *line_penwidth;
 char FILE_OR_LINE;
 
 PicvizImage *pcv_parse(char *filename, char *filterbuf);
-PicvizLine *picviz_parse_line(char *string);
+PicvizLine *pcoords_parse_line(char *string);
 
 #ifdef __cplusplus
  }

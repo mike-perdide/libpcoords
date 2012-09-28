@@ -54,11 +54,11 @@ void output(pcimage_t *image, char *arg _U_)
 
 	counter = 0;
 	while (image->axesorder[counter]) {
-		PicvizAxis *axis = (PicvizAxis *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+		PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 		printf("id=%llu\n", axis->id);
 		printf("name=%s\n", axis->name);
-		printf("position=(counter=%d, engine.axis_x_cursor = %d) %d\n", counter, engine.axis_x_cursor, picviz_axis_position_get(counter));
+		printf("position=(counter=%d, engine.axis_x_cursor = %d) %d\n", counter, engine.axis_x_cursor, pcoords_axis_position_get(counter));
 
 		counter++;
 	}
@@ -67,18 +67,18 @@ void output(pcimage_t *image, char *arg _U_)
 
         llist_for_each_entry(l, &image->lines, list) {
 		counter = 0;
-		printf("New line (color:%s)\n", picviz_properties_get(l->props,"color"));
+		printf("New line (color:%s)\n", pcoords_properties_get(l->props,"color"));
 		if (!l->hidden) {
 #if BOURIN
 		while (image->axesorder[counter]) {
-			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)picviz_hash_get(l->axesplots, image->axesorder[counter]);
-                        struct axis_t *axis = (struct axis_t *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(l->axesplots, image->axesorder[counter]);
+                        struct axis_t *axis = (struct axis_t *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
-			printf("Plot on the axis position %d the value %s at %llu\n", picviz_axis_position_get(counter), axisplot->strval, axisplot->y);
+			printf("Plot on the axis position %d the value %s at %llu\n", pcoords_axis_position_get(counter), axisplot->strval, axisplot->y);
 			counter++;
 		}
 #else
-	picviz_line_draw(image, l, draw_line);
+	pcoords_line_draw(image, l, draw_line);
 #endif
 		}
 	}

@@ -29,11 +29,11 @@
 #define IMAGE_Y_AS_RENDERED(image, y) \
    image->height - y
 
-PicvizImage *picviz_image_new(void);
-void picviz_image_destroy(PicvizImage *image);
-void picviz_image_axis_append(PicvizImage *i, PicvizAxis *axis);
-void picviz_image_line_append(PicvizImage *image, struct line_t *line);
-void picviz_image_debug_printall(PicvizImage *i);
+PicvizImage *pcoords_image_new(void);
+void pcoords_image_destroy(PicvizImage *image);
+void pcoords_image_axis_append(PicvizImage *i, PicvizAxis *axis);
+void pcoords_image_line_append(PicvizImage *image, struct line_t *line);
+void pcoords_image_debug_printall(PicvizImage *i);
 
 #ifdef __cplusplus
  }

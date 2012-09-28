@@ -22,17 +22,17 @@
 #define _RENDER_H_
 
 //#include <pcimage.h>
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-PicvizBool picviz_axis_is_relative(PicvizAxis *axis);
-void picviz_render_line(PicvizImage *image, PicvizLine *line);
-void picviz_render_image(pcimage_t *image);
-PcvHeight picviz_render_value(PicvizImage *image, PicvizAxis *axis, PcvString value);
-void picviz_render_set_minmax(PicvizAxis *axis, PcvHeight value);
+PicvizBool pcoords_axis_is_relative(PicvizAxis *axis);
+void pcoords_render_line(PicvizImage *image, PicvizLine *line);
+void pcoords_render_image(pcimage_t *image);
+PcvHeight pcoords_render_value(PicvizImage *image, PicvizAxis *axis, PcvString value);
+void pcoords_render_set_minmax(PicvizAxis *axis, PcvHeight value);
 
 #ifdef __cplusplus
  }

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-pcre.c 469 2009-04-02 17:45:12Z toady $
+ * $Id: pcoords-pcre.c 469 2009-04-02 17:45:12Z toady $
  */
 
 #include <stdio.h>
@@ -22,7 +22,7 @@
 #include <pcre.h>
 
 #include "types.h"
-#include "picviz-pcre.h"
+#include "pcoords-pcre.h"
 
 /*
  * we need to specify the vector length for our pcre_exec call.  we only care
@@ -32,7 +32,7 @@
  */
 #define PICVIZ_PCRE_OVECTOR_SIZE 3
 
-PicvizBool picviz_regex_match(char *string, char *regex)
+PicvizBool pcoords_regex_match(char *string, char *regex)
 {
 	pcre *regexptr;
 	pcre_extra *extra;

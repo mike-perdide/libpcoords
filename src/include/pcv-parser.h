@@ -20,14 +20,14 @@
 #ifndef _PCV_PARSER_H_
 #define _PCV_PARSER_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 PicvizImage *pcv_parse(char *filename, char *filter);
-PicvizLine  *picviz_parse_line(char *string);
+PicvizLine  *pcoords_parse_line(char *string);
 
 #ifdef __cplusplus
  }

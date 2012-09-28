@@ -17,10 +17,10 @@
  * $Id$
  */
 
-#include <picviz.h>
+#include <pcoords.h>
 #include <string.h>
 
-#include "picviz.h"
+#include "pcoords.h"
 #include "pgdl.h"
 #include "pgdl-parser.h"
 
@@ -50,32 +50,32 @@ PicvizImage *pcv_parse(char *filename, char *filterbuf)
 
 	_pgdl_context_init(context);
 
-	picviz_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PARSER, "Parsing");
+	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PARSER, "Parsing");
         FILE_OR_LINE = FILE_MODE;
 
 	line_color = strdup("#000000");
 	line_penwidth = strdup(DEFAULT_PENWIDTH);
 
-        image = picviz_image_new();
+        image = pcoords_image_new();
 	if (!image) return NULL;
         if (filterbuf) {
-                image->filter = picviz_filter_build(filterbuf);
+                image->filter = pcoords_filter_build(filterbuf);
         }
         yyin = fopen(filename,"r");	
         if ( ! yyin ) {
-                picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Cannot open file '%s'", filename);
+                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Cannot open file '%s'", filename);
                 return NULL;
         }
 	yyrestart(yyin);
 	ret  = yyparse ();
 	switch (ret) {
 	case 1:
-		picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Invalid input!\n");
+		pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Invalid input!\n");
 		fclose(yyin);
 		return NULL;
 		break;
 	case 2:
-		picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Not enough memory!\n");
+		pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PARSER, "Not enough memory!\n");
 		fclose(yyin);
 		return NULL;
 		break;		
@@ -85,7 +85,7 @@ PicvizImage *pcv_parse(char *filename, char *filterbuf)
 	fclose(yyin);
 	yyin = NULL;
 
-        picviz_render_image(image);
+        pcoords_render_image(image);
 
         return image;
 }
@@ -99,7 +99,7 @@ PicvizImage *pcv_parse(char *filename, char *filterbuf)
  *
  * \return a PicvizLine object or NULL upon error.
  */
-PicvizLine *picviz_parse_line(char *string)
+PicvizLine *pcoords_parse_line(char *string)
 {
         void *state;
         int ret;

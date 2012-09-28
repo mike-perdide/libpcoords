@@ -20,7 +20,7 @@
 #ifndef _DRAW_H_
 #define _DRAW_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 #include "line.h"
 #include "pcimage.h"
 #include "types.h"

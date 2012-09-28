@@ -12,26 +12,26 @@ link_directories(
 
 IF(PCRE_FOUND)
     INCLUDE_DIRECTORIES(AFTER ${PCRE_INCLUDE_DIR})
-    TARGET_LINK_LIBRARIES(picviz ${PCRE_LIBRARIES})
+    TARGET_LINK_LIBRARIES(pcoords ${PCRE_LIBRARIES})
 ENDIF(PCRE_FOUND)
 
 
 # Parser
-BISON_TARGET(picviz ${LIBPICVIZ_SOURCE_DIR}/src/pgdl-parser.y ${LIBPICVIZ_BINARY_DIR}/src/pgdl-parser.c)
-FLEX_TARGET(picviz ${LIBPICVIZ_SOURCE_DIR}/src/pgdl-lexer.l ${LIBPICVIZ_BINARY_DIR}/src/pgdl-lexer.c)
+BISON_TARGET(pcoords ${LIBPICVIZ_SOURCE_DIR}/src/pgdl-parser.y ${LIBPICVIZ_BINARY_DIR}/src/pgdl-parser.c)
+FLEX_TARGET(pcoords ${LIBPICVIZ_SOURCE_DIR}/src/pgdl-lexer.l ${LIBPICVIZ_BINARY_DIR}/src/pgdl-lexer.c)
 
 # Filter
-BISON_TARGET(picviz ${LIBPICVIZ_SOURCE_DIR}/src/filter.yac.y ${LIBPICVIZ_BINARY_DIR}/src/filter-parser.c)
-FLEX_TARGET(picviz ${LIBPICVIZ_SOURCE_DIR}/src/filter.lex.l ${LIBPICVIZ_BINARY_DIR}/src/filter-lexer.c)
+BISON_TARGET(pcoords ${LIBPICVIZ_SOURCE_DIR}/src/filter.yac.y ${LIBPICVIZ_BINARY_DIR}/src/filter-parser.c)
+FLEX_TARGET(pcoords ${LIBPICVIZ_SOURCE_DIR}/src/filter.lex.l ${LIBPICVIZ_BINARY_DIR}/src/filter-lexer.c)
 
-add_library(picviz SHARED axis.c axisplot.c correlation.c debug.c real-time.c filter.c image.c learn.c line.c pgdl.c plugins.c engine.c picviz-hash.c picviz-init.c picviz-pcre.c properties.c render.c values-mapping.c variable.c utils.c filter-parser.c filter-lexer.c pgdl-parser.c pgdl-lexer.c prop-color.c)
+add_library(pcoords SHARED axis.c axisplot.c correlation.c debug.c real-time.c filter.c image.c learn.c line.c pgdl.c plugins.c engine.c picviz-hash.c picviz-init.c picviz-pcre.c properties.c render.c values-mapping.c variable.c utils.c filter-parser.c filter-lexer.c pgdl-parser.c pgdl-lexer.c prop-color.c)
 
-set_target_properties(picviz PROPERTIES SOVERSION 2)
+set_target_properties(pcoords PROPERTIES SOVERSION 2)
 
-#target_link_libraries(picviz "-lm -ldl -L${LIBPICVIZ_BINARY_DIR}/libev -lev")
-target_link_libraries(picviz "-lm -ldl -L${LIBPICVIZ_BINARY_DIR}/libev/ -lev")
+#target_link_libraries(pcoords "-lm -ldl -L${LIBPICVIZ_BINARY_DIR}/libev -lev")
+target_link_libraries(pcoords "-lm -ldl -L${LIBPICVIZ_BINARY_DIR}/libev/ -lev")
 
-install(TARGETS picviz LIBRARY DESTINATION ${LIB_INSTALL_DIR})
+install(TARGETS pcoords LIBRARY DESTINATION ${LIB_INSTALL_DIR})
 install(FILES
 		include/axis.h
 		include/axisplot.h
@@ -49,11 +49,11 @@ install(FILES
 		include/linuxlist.h
 		include/pcimage.h
 		include/pcv-parser.h
-		include/picviz.h
-		include/picviz-hash.h
-		include/picviz-init.h
-		include/picviz-pcre.h
-		include/picviz-stats.h
+		include/pcoords.h
+		include/pcoords-hash.h
+		include/pcoords-init.h
+		include/pcoords-pcre.h
+		include/pcoords-stats.h
 		include/plugins.h
 		include/prop-color.h
 		include/properties.h
@@ -62,6 +62,6 @@ install(FILES
 		include/values-mapping.h
 		include/variable.h
 		include/utils.h
-	DESTINATION include/picviz
+	DESTINATION include/pcoords
         PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
 

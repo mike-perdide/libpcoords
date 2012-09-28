@@ -21,7 +21,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 
 void output(PicvizImage *image, char *arg)
@@ -37,12 +37,12 @@ void output(PicvizImage *image, char *arg)
 	  counter = 0;
 	  if (!line->hidden) {
 	    while (image->axesorder[counter]) {
-	      PicvizAxisPlot *axisplot = (PicvizAxisPlot *)picviz_hash_get(line->axesplots, image->axesorder[counter]);
-	      PicvizAxis *axis = (PicvizAxis *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+	      PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+	      PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 	      fprintf(stderr,"name=%s,id=%llu\n",image->axesorder[counter], axis->id);
 
-	      /* stats = (PicvizStats *)picviz_hash_get(axis->valcount, (char *)axisplot->strval); */
+	      /* stats = (PicvizStats *)pcoords_hash_get(axis->valcount, (char *)axisplot->strval); */
 	      /* if ( ! stats) { */
 	      /* 	      fprintf(stderr,"Cannot get the stats for %s from axis '%s'!\n", axisplot->strval, image->axesorder[counter]); */
 	      /* 	      break; */

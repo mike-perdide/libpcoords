@@ -37,7 +37,7 @@ typedef enum plugin_type_t {
 typedef enum plugin_type_t PicvizPluginType;
 
 
-typedef struct picviz_plugin_t {
+typedef struct pcoords_plugin_t {
         struct llist_head list;
 
         unsigned int id;
@@ -49,11 +49,11 @@ typedef struct picviz_plugin_t {
         int (*subscribe)(void);
         void (*unsubscribe)(void);
 
-} picviz_plugin_t;
+} pcoords_plugin_t;
 
 void image_to_svg(struct pcimage_t *image);
 
-void picviz_plugin_load(PicvizPluginType plugin_type, char *plugin_name, struct pcimage_t *image, PcvString arg);
+void pcoords_plugin_load(PicvizPluginType plugin_type, char *plugin_name, struct pcimage_t *image, PcvString arg);
 
 #ifdef __cplusplus
  }

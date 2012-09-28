@@ -22,9 +22,9 @@
 #include <time.h>
 #include <string.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
-void picviz_debug(int level, int area, const char *format, ...)
+void pcoords_debug(int level, int area, const char *format, ...)
 {
 	char *timestr;
 	va_list ap;
@@ -52,11 +52,11 @@ void picviz_debug(int level, int area, const char *format, ...)
 	fflush(fd);
 }
 
-void picviz_debug_print_axisplot(PicvizAxisPlot *axisplot)
+void pcoords_debug_print_axisplot(PicvizAxisPlot *axisplot)
 {
 	fprintf(stderr, "axisplot->strval=%s\n", axisplot->strval);
 	fprintf(stderr, "axisplot->y=%lld\n", axisplot->y);
 	fprintf(stderr, "axisplot->axis_id=%llu\n", axisplot->axis_id);
-	fprintf(stderr, "axisplot->props->color=%s\n", picviz_properties_get(axisplot->props, "color"));
+	fprintf(stderr, "axisplot->props->color=%s\n", pcoords_properties_get(axisplot->props, "color"));
 }
 

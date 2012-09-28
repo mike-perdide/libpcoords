@@ -65,7 +65,7 @@ typedef struct engine_t {
 
 extern struct engine_t engine;
 
-void picviz_engine_init(void);
+void pcoords_engine_init(void);
 
 #ifdef __cplusplus
  }

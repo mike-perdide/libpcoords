@@ -20,13 +20,13 @@
 #ifndef _LEARN_H_
 #define _LEARN_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-void picviz_learn(PicvizImage *image);
+void pcoords_learn(PicvizImage *image);
 
 #ifdef __cplusplus
  }

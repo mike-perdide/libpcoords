@@ -19,9 +19,9 @@
 
 #include <stdio.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
-void picviz_engine_init(void)
+void pcoords_engine_init(void)
 {
 	engine.real_time = 0; /* Do not listen to a socket by default */
 	engine.axis_default_thickness = 1;
@@ -45,7 +45,7 @@ void picviz_engine_init(void)
 	engine.font_factor = 50;
 	engine.draw_text = 1; /* default: draw text every line */
 	engine.output_file = NULL; /* output is stdout */
-	engine.pid_file = PICVIZ_DATADIR "/var/run/picviz.pid";
+	engine.pid_file = PICVIZ_DATADIR "/var/run/pcoords.pid";
 	engine.display_minmax = 0;
 	engine.quiet = 0; /* default = verbose a little */
 }

@@ -26,12 +26,12 @@
 
 #define _U_ __attribute__((unused))
 
-typedef enum picviz_bool_t {
+typedef enum pcoords_bool_t {
 	BOOL_ERROR = -1,
 	BOOL_FALSE = 0,
 	BOOL_TRUE  = 1
-} picviz_bool_t;
-typedef enum picviz_bool_t PicvizBool;
+} pcoords_bool_t;
+typedef enum pcoords_bool_t PicvizBool;
 
 typedef unsigned long long PcvHeight;
 typedef unsigned int  PcvWidth;

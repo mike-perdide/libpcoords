@@ -18,9 +18,9 @@
  * $Id$
  */
 
-#include <picviz.h>
+#include <pcoords.h>
 
-PcvHeight picviz_var_get_dummy_value(PcvString str _U_)
+PcvHeight pcoords_var_get_dummy_value(PcvString str _U_)
 {
 	return 1;
 }

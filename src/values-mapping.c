@@ -43,10 +43,10 @@
 # endif
 #endif
 
-#include <picviz.h>
+#include <pcoords.h>
 
 /* Holds the position for the enum type*/
-//static picviz_properties_t *enumhashes[PICVIZ_MAX_AXES];
+//static pcoords_properties_t *enumhashes[PICVIZ_MAX_AXES];
 //static int enumcount[PICVIZ_MAX_AXES];
 
 static int years_to_factor(char *buf, PcvHeight *out)
@@ -213,7 +213,7 @@ static double enum_to_factor(int enumber)
 /*
  * We first calculate values without caring of that axis min and max
  */
-PcvHeight picviz_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxis *axis, int string_algo, char *string)
+PcvHeight pcoords_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxis *axis, int string_algo, char *string)
 {
 	PcvHeight factor = 0;
 	PcvString buf[10];
@@ -254,14 +254,14 @@ PcvHeight picviz_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxis
 			factor = (PcvHeight)atoi(string);
 			break;
 		case DATATYPE_ENUM:
-			pos = picviz_properties_get(axis->enum_hash, string);
+			pos = pcoords_properties_get(axis->enum_hash, string);
 			if (pos) {
 				//fprintf(stderr,"got it (id=%llu,pos=%s)!\n",axis->id, pos);
 				factor = (PcvHeight) (enum_to_factor(atoi(pos)) * image->height);
 			} else {
 				sprintf((char *)buf, "%d", axis->enum_count);
 				//fprintf(stderr,"set it (id=%llu,eenumcount=%d)!\n",axis->id, axis->enum_count);
-				picviz_properties_set(axis->enum_hash, string, buf);
+				pcoords_properties_set(axis->enum_hash, string, buf);
 				enumfactor = enum_to_factor(axis->enum_count);
 				factor = (PcvHeight) (enumfactor * image->height);
 				axis->enum_count++;
@@ -269,21 +269,21 @@ PcvHeight picviz_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxis
 #if 0			
 			if ( ! enumcount[axis->id] ) {
 				/* Initialize */
-				picviz_properties_new(&enumhashes[axis->id]);
+				pcoords_properties_new(&enumhashes[axis->id]);
 				enumcount[axis->id] = 1;
 				/* FIXME: properties must also be able to receive an integer */
 				sprintf((char *)buf, "%d", enumcount[axis->id]);
-				picviz_properties_set(enumhashes[axis->id], string, buf);
+				pcoords_properties_set(enumhashes[axis->id], string, buf);
 				enumfactor = enum_to_factor(enumcount[axis->id]);
 				factor = (PcvHeight) (enumfactor * image->height);
 				enumcount[axis->id]++;
 			} else {
-				pos = picviz_properties_get(enumhashes[axis->id], string);
+				pos = pcoords_properties_get(enumhashes[axis->id], string);
 				if (pos) {
 					factor = (PcvHeight) (enum_to_factor(atoi(pos)) * image->height);
 				} else {
 					sprintf((char *)buf, "%d", enumcount[axis->id]);
-					picviz_properties_set(enumhashes[axis->id], string, (char *)buf);
+					pcoords_properties_set(enumhashes[axis->id], string, (char *)buf);
 					enumfactor = enum_to_factor(enumcount[axis->id]);
 					factor = (PcvHeight) (enumfactor * image->height);
 					enumcount[axis->id]++;
@@ -301,7 +301,7 @@ PcvHeight picviz_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxis
 	return factor;
 }
 
-PcvHeight picviz_line_value_get_with_minmax(PicvizImage *image, PicvizAxis *axis, char *string, PcvHeight min _U_, PcvHeight max)
+PcvHeight pcoords_line_value_get_with_minmax(PicvizImage *image, PicvizAxis *axis, char *string, PcvHeight min _U_, PcvHeight max)
 {
 	PcvHeight scale;
 
@@ -318,7 +318,7 @@ PcvHeight picviz_line_value_get_with_minmax(PicvizImage *image, PicvizAxis *axis
 
 }
 
-PcvHeight picviz_values_mapping_get_from_y(PicvizImage *image, PcvHeight max_val, PcvHeight y)
+PcvHeight pcoords_values_mapping_get_from_y(PicvizImage *image, PcvHeight max_val, PcvHeight y)
 {
         float value;
 
@@ -352,7 +352,7 @@ int main(void)
         int i;
 	char *buf;
 
-        f = picviz_line_value_get_from_string_dummy(DATATYPE_STRING, STRING_TYPE_MAX);
+        f = pcoords_line_value_get_from_string_dummy(DATATYPE_STRING, STRING_TYPE_MAX);
 
         run_test("192.168.0.42");
         run_test("127.0.0.1");

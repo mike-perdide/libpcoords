@@ -22,11 +22,11 @@
 
 #include "types.h"
 
-typedef struct picviz_properties picviz_properties_t;
+typedef struct pcoords_properties pcoords_properties_t;
 
-int picviz_properties_set(picviz_properties_t *props, PcvString key, PcvString value);
-PcvString picviz_properties_get(picviz_properties_t *props, PcvString key);
-int picviz_properties_new(picviz_properties_t **props);
-void picviz_properties_destroy(picviz_properties_t *props);
+int pcoords_properties_set(pcoords_properties_t *props, PcvString key, PcvString value);
+PcvString pcoords_properties_get(pcoords_properties_t *props, PcvString key);
+int pcoords_properties_new(pcoords_properties_t **props);
+void pcoords_properties_destroy(pcoords_properties_t *props);
 
 #endif

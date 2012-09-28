@@ -28,7 +28,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 #include <ev.h>
 
 
@@ -42,7 +42,7 @@ static ev_io fifo_watcher;
 PicvizImage *image;
 void (*fifo_read_callback)(PicvizImage *image);
 
-static int __picviz_socket_create(char *fifo)
+static int __pcoords_socket_create(char *fifo)
 {
 	struct stat st;
 	int socket;
@@ -71,7 +71,7 @@ static int __picviz_socket_create(char *fifo)
 }
 
 
-static void picviz_fifo_cb(EV_P_ struct ev_io *w, int revents)
+static void pcoords_fifo_cb(EV_P_ struct ev_io *w, int revents)
 {
 	ssize_t msglen;
 	unsigned char buf[MAX_PICVIZ_MESSAGE_LEN];
@@ -118,19 +118,19 @@ more_messages:
 	linebuf[i] = ';';
 	linebuf[i+1] = '\0';
 
-	line = picviz_parse_line(linebuf);
-	picviz_image_line_append(image,line);
+	line = pcoords_parse_line(linebuf);
+	pcoords_image_line_append(image,line);
 	fifo_read_callback(image);
 
 /* 	goto read_more; */
 }
 
-int picviz_fifo_data_read(PicvizImage *template, char *filename, void (*fifo_cb)(PicvizImage *image))
+int pcoords_fifo_data_read(PicvizImage *template, char *filename, void (*fifo_cb)(PicvizImage *image))
 {
 	int sockfd;
-	struct ev_loop *picviz_loop = ev_default_loop (0);
+	struct ev_loop *pcoords_loop = ev_default_loop (0);
 
-	sockfd = __picviz_socket_create(filename);
+	sockfd = __pcoords_socket_create(filename);
 	if ( socket < 0 ) {
 		fprintf(stderr, "Cannot create socket!\n");
 		return -1;
@@ -139,10 +139,10 @@ int picviz_fifo_data_read(PicvizImage *template, char *filename, void (*fifo_cb)
 	image = template;
 	fifo_read_callback = fifo_cb;
 
-	ev_io_init(&fifo_watcher, picviz_fifo_cb, sockfd, EV_READ);
-	ev_io_start(picviz_loop, &fifo_watcher);
+	ev_io_init(&fifo_watcher, pcoords_fifo_cb, sockfd, EV_READ);
+	ev_io_start(pcoords_loop, &fifo_watcher);
 
-	ev_loop(picviz_loop, 0);
+	ev_loop(pcoords_loop, 0);
 
 	return 0;
 }

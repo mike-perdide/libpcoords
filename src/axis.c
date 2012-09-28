@@ -23,7 +23,7 @@
 
 #include <linuxlist.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 /**
  * \ingroup PicvizMain
@@ -41,7 +41,7 @@ static unsigned int id = 0;
  *
  * @return the new axis or NULL on error
  */
-PicvizAxis *picviz_axis_new(void)
+PicvizAxis *pcoords_axis_new(void)
 {
 	PicvizAxis *axis = NULL;
 
@@ -60,13 +60,13 @@ PicvizAxis *picviz_axis_new(void)
 	axis->render = PCV_TO_RENDER;
 
 	axis->enum_count = 1;
-	picviz_properties_new(&axis->enum_hash);
+	pcoords_properties_new(&axis->enum_hash);
 
-	picviz_properties_new(&axis->props);
-	picviz_properties_set(axis->props, "label", "");
-	picviz_properties_set(axis->props, "color", "#000000");
+	pcoords_properties_new(&axis->props);
+	pcoords_properties_set(axis->props, "label", "");
+	pcoords_properties_set(axis->props, "color", "#000000");
 
-	picviz_hash_new(&axis->valcount);
+	pcoords_hash_new(&axis->valcount);
 
 	return axis;
 }
@@ -76,9 +76,9 @@ PicvizAxis *picviz_axis_new(void)
  *
  * @param axis the axis to destroy
  */
-void picviz_axis_destroy(PicvizAxis *axis)
+void pcoords_axis_destroy(PicvizAxis *axis)
 {
-	picviz_properties_destroy(axis->props);
+	pcoords_properties_destroy(axis->props);
 	free(axis);
 }
 
@@ -90,9 +90,9 @@ void picviz_axis_destroy(PicvizAxis *axis)
  *
  * @return the axis structure
  */
-PicvizAxis *picviz_axis_get_from_name(PicvizImage *image, PcvString name)
+PicvizAxis *pcoords_axis_get_from_name(PicvizImage *image, PcvString name)
 {
-	return (PicvizAxis *)picviz_hash_get(image->axes, name);
+	return (PicvizAxis *)pcoords_hash_get(image->axes, name);
 }
 
 
@@ -102,7 +102,7 @@ PicvizAxis *picviz_axis_get_from_name(PicvizImage *image, PcvString name)
  * @param axis the axis 
  * @param type the datatype
  */
-void picviz_axis_set_type(PicvizAxis *axis, PicvizDataType type)
+void pcoords_axis_set_type(PicvizAxis *axis, PicvizDataType type)
 {
 	axis->type = type;
 }
@@ -113,7 +113,7 @@ void picviz_axis_set_type(PicvizAxis *axis, PicvizDataType type)
  * @param axis the axis 
  * @param string the datatype name
  */
-void picviz_axis_set_type_from_string(PicvizAxis *axis, char *string)
+void pcoords_axis_set_type_from_string(PicvizAxis *axis, char *string)
 {
 	if (!strcmp(string, "timeline")) {
 		axis->type = DATATYPE_TIMELINE;
@@ -182,7 +182,7 @@ void picviz_axis_set_type_from_string(PicvizAxis *axis, char *string)
  *
  * @return string the datatype name
  */
-char *picviz_axis_get_string_from_type(PicvizAxis *axis)
+char *pcoords_axis_get_string_from_type(PicvizAxis *axis)
 {
 	switch(axis->type) {
 		case DATATYPE_TIMELINE:
@@ -226,7 +226,7 @@ char *picviz_axis_get_string_from_type(PicvizAxis *axis)
  *
  * @return X position of the axis
  */
-PcvWidth picviz_axis_position_get(unsigned int counter)
+PcvWidth pcoords_axis_position_get(unsigned int counter)
 {
 	PcvWidth xpos;
 

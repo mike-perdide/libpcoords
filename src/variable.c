@@ -19,10 +19,10 @@
 
 #include <stdio.h>
 #include <linuxlist.h>
-#include <picviz.h>
+#include <pcoords.h>
 
 
-PicvizVariable *picviz_variable_new(PcvString name)
+PicvizVariable *pcoords_variable_new(PcvString name)
 {
         PicvizVariable *var = NULL;
   
@@ -40,12 +40,12 @@ PicvizVariable *picviz_variable_new(PcvString name)
 	return var;
 }
 
-void picviz_variable_destroy(PicvizVariable *var)
+void pcoords_variable_destroy(PicvizVariable *var)
 {
         free(var);
 }
 
-PcvHeight picviz_variable_max(PicvizImage *image, PicvizAxis *axis, int string_algo)
+PcvHeight pcoords_variable_max(PicvizImage *image, PicvizAxis *axis, int string_algo)
 {
 
         switch (axis->type) {

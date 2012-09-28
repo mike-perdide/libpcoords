@@ -14,19 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-init.h 600 2009-05-24 16:04:57Z toady $
+ * $Id: pcoords-init.h 600 2009-05-24 16:04:57Z toady $
  */
 
 #ifndef _PICVIZ_INIT_H_
 #define _PICVIZ_INIT_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-void picviz_init(int *argc, char **argv);
+void pcoords_init(int *argc, char **argv);
 
 #ifdef __cplusplus
  }

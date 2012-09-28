@@ -20,15 +20,15 @@
 #ifndef _AXISPLOT_H_
 #define _AXISPLOT_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-struct axisplot_t *picviz_axisplot_new(void);
-void picviz_axisplot_set_y(PicvizAxis *axis, PicvizAxisPlot *axisplot, PcvHeight y);
-void picviz_axisplot_destroy(PicvizAxisPlot *axisplot);
+struct axisplot_t *pcoords_axisplot_new(void);
+void pcoords_axisplot_set_y(PicvizAxis *axis, PicvizAxisPlot *axisplot, PcvHeight y);
+void pcoords_axisplot_destroy(PicvizAxisPlot *axisplot);
 
 #ifdef __cplusplus
  }

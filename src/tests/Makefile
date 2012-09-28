@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-g -I../ -I../include -I../parser/
-LIBS=-lpicviz -lfl -ly -lpcre
+LIBS=-lpcoords -lfl -ly -lpcre
 
 all: tests
 

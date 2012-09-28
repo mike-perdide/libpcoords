@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #include "SDL.h"
 #include "sge.h"

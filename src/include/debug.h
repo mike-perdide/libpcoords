@@ -20,7 +20,7 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
@@ -39,8 +39,8 @@
 #define PICVIZ_AREA_PARSER 0x0008
 #define PICVIZ_AREA_FILTER 0x0016
 
-void picviz_debug(int level, int area, const char *format, ...);
-void picviz_debug_print_axisplot(PicvizAxisPlot *ap);
+void pcoords_debug(int level, int area, const char *format, ...);
+void pcoords_debug_print_axisplot(PicvizAxisPlot *ap);
 
 #ifdef __cplusplus
  }

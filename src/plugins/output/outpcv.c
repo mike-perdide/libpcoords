@@ -21,7 +21,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 #include <cairo.h>
 
 
@@ -37,11 +37,11 @@ void output(PicvizImage *image, char *arg _U_)
 	printf("axis {\n");
 	/* Draw each axis and header titles */
 	llist_for_each_entry(axis, &image->axes, list) {
-		char *buf = picviz_properties_get(axis->props, "label");
+		char *buf = pcoords_properties_get(axis->props, "label");
 		if (!strcmp(buf,"")) {
-			printf("    %s axis%llu;\n", picviz_axis_get_string_from_type(axis), axis->id);
+			printf("    %s axis%llu;\n", pcoords_axis_get_string_from_type(axis), axis->id);
 		} else {
-			printf("    %s axis%llu [label=\"%s\"];\n", picviz_axis_get_string_from_type(axis), axis->id, buf);
+			printf("    %s axis%llu [label=\"%s\"];\n", pcoords_axis_get_string_from_type(axis), axis->id, buf);
 		}
 		axisnb++;
 	}
@@ -55,8 +55,8 @@ void output(PicvizImage *image, char *arg _U_)
 			PcvCounter counter = 0;
 			int first = 1;
 
-			color = picviz_properties_get(line->props, "color");
-			penwidth = picviz_properties_get(line->props, "penwidth");
+			color = pcoords_properties_get(line->props, "color");
+			penwidth = pcoords_properties_get(line->props, "penwidth");
 
 			llist_for_each_entry(axisplot, &line->axisplot, list) {
 				counter++;

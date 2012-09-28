@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz.h 600 2009-05-24 16:04:57Z toady $
+ * $Id: pcoords.h 600 2009-05-24 16:04:57Z toady $
  */
 
 #ifndef _PICVIZ_H_
@@ -36,9 +36,9 @@
 #include "line.h"
 #include "pcimage.h"
 #include "pcv-parser.h"
-#include "picviz-init.h"
-#include "picviz-pcre.h"
-#include "picviz-stats.h"
+#include "pcoords-init.h"
+#include "pcoords-pcre.h"
+#include "pcoords-stats.h"
 #include "plugins.h"
 #include "prop-color.h"
 #include "properties.h"

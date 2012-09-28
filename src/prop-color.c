@@ -5,9 +5,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
-char *picviz_color_named_to_hexstr(char *color)
+char *pcoords_color_named_to_hexstr(char *color)
 {
 	int MAX_COLORS = 13;
 	char *pcolors[] = {"white","black", "red", "green", "blue", "yellow", "grey", "turquoise", "pink", "orange", "darkblue", "darkgreen", "darkred", "brown"};
@@ -16,7 +16,7 @@ char *picviz_color_named_to_hexstr(char *color)
 
 	/* color = #xxxxxx, we return #XXXXXX */
         if (color[0] == '#')
-            return picviz_string_up(color);
+            return pcoords_string_up(color);
 
 	/* color = (0.1, 1, 0.5) */
 	if (color[0] == '(') {
@@ -56,14 +56,14 @@ char *picviz_color_named_to_hexstr(char *color)
 
         /* color = ??
 	 * -> we can't find the color, we shout and return */
-	picviz_debug(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_CORE,
+	pcoords_debug(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_CORE,
 			"Unknown color: '%s'", color);
 
 	return strdup("#000000"); /* We return black as default */
 }
 
 
-float picviz_color_extract_r(char *s)
+float pcoords_color_extract_r(char *s)
 {
         int i;
         char p[3];
@@ -77,7 +77,7 @@ float picviz_color_extract_r(char *s)
         return (float) i / 255;
 }
 
-float picviz_color_extract_g(char *s)
+float pcoords_color_extract_g(char *s)
 {
         int i;
         char p[3];
@@ -91,7 +91,7 @@ float picviz_color_extract_g(char *s)
         return (float) i / 255;
 }
 
-float picviz_color_extract_b(char *s)
+float pcoords_color_extract_b(char *s)
 {
         char p[3];
         int i;
@@ -111,12 +111,12 @@ int main(void)
         char *ptr = "FF";
         int val;
 
-        printf("White=%s\n", picviz_color_named_to_hexstr("white"));
-        printf("Red=%s\n", picviz_color_named_to_hexstr("red"));
-        printf("Red value of #FF0000 = %f\n", picviz_color_extract_r("#FF0000"));
-        printf("Red value of #eA0000 = %f\n", picviz_color_extract_r("#eA0000"));
-        printf("Green value of #eABF00 = %f\n", picviz_color_extract_g("#eABF00"));
-        printf("#0a6106 r=%f,g=%f,b=%f\n", picviz_color_extract_r("#0a6106"), picviz_color_extract_g("#0a6106"), picviz_color_extract_b("#0a6106"));
+        printf("White=%s\n", pcoords_color_named_to_hexstr("white"));
+        printf("Red=%s\n", pcoords_color_named_to_hexstr("red"));
+        printf("Red value of #FF0000 = %f\n", pcoords_color_extract_r("#FF0000"));
+        printf("Red value of #eA0000 = %f\n", pcoords_color_extract_r("#eA0000"));
+        printf("Green value of #eABF00 = %f\n", pcoords_color_extract_g("#eABF00"));
+        printf("#0a6106 r=%f,g=%f,b=%f\n", pcoords_color_extract_r("#0a6106"), pcoords_color_extract_g("#0a6106"), pcoords_color_extract_b("#0a6106"));
 
 }
 #endif

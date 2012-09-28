@@ -28,13 +28,13 @@
 #include "types.h"
 #include "pcimage.h"
 
-typedef enum picviz_filter_options_t {
+typedef enum pcoords_filter_options_t {
         PF_OPTIONS_NONE,
         PF_OPTIONS_PLOTPERCENT /* We have plot > 90% */
-} picviz_filter_options_t;
-typedef enum picviz_filter_options_t PicvizFilterOptions;
+} pcoords_filter_options_t;
+typedef enum pcoords_filter_options_t PicvizFilterOptions;
 
-typedef enum picviz_filter_type_t {
+typedef enum pcoords_filter_type_t {
         PF_TYPE_ERROR       = 0x00,
         /* filter data as they are */
         PF_VALUE_FILTER     = 0x01,
@@ -51,10 +51,10 @@ typedef enum picviz_filter_type_t {
         PF_POST_LINE_FILTER = 0x0F,
         /* Filter a line frequency */
         PF_FREQ_FILTER      = 0xF0,
-} picviz_filter_type_t;
-typedef enum picviz_filter_type_t PicvizFilterType;
+} pcoords_filter_type_t;
+typedef enum pcoords_filter_type_t PicvizFilterType;
 
-typedef enum picviz_filter_relation_t {
+typedef enum pcoords_filter_relation_t {
         PF_RELATION_ERROR,
         PF_RELATION_EQUAL,
         PF_RELATION_NOTEQUAL,
@@ -62,10 +62,10 @@ typedef enum picviz_filter_relation_t {
         PF_RELATION_LESS,
         PF_RELATION_LESS_OR_EQUAL,
         PF_RELATION_GREATER_OR_EQUAL
-} picviz_filter_relation_t;
-typedef enum picviz_filter_relation_t PicvizFilterRelation;
+} pcoords_filter_relation_t;
+typedef enum pcoords_filter_relation_t PicvizFilterRelation;
 
-typedef struct picviz_filter_criterion {
+typedef struct pcoords_filter_criterion {
         PicvizFilterType type;
         PicvizFilterRelation relation;
         PicvizFilterOptions options;
@@ -77,31 +77,31 @@ typedef struct picviz_filter_criterion {
                 double    numfloat;
         } value;
 
-        struct picviz_filter_criterion *and, *or;
-} picviz_filter_criterion_t;
+        struct pcoords_filter_criterion *and, *or;
+} pcoords_filter_criterion_t;
 
 
-typedef struct picviz_filter {
-        picviz_filter_criterion_t *criterion;
-} picviz_filter_t;
+typedef struct pcoords_filter {
+        pcoords_filter_criterion_t *criterion;
+} pcoords_filter_t;
 
-typedef struct picviz_filter PicvizFilter;
+typedef struct pcoords_filter PicvizFilter;
 
-PicvizFilter *picviz_filter_new(void);
-picviz_filter_criterion_t *picviz_filter_criterion_new(void);
-PicvizFilterType picviz_filter_validate(PcvString string);
+PicvizFilter *pcoords_filter_new(void);
+pcoords_filter_criterion_t *pcoords_filter_criterion_new(void);
+PicvizFilterType pcoords_filter_validate(PcvString string);
 
-picviz_filter_criterion_t *picviz_filter_and_criterion(picviz_filter_criterion_t *c1, picviz_filter_criterion_t *c2);
-picviz_filter_criterion_t *picviz_filter_or_criterion(picviz_filter_criterion_t *c1, picviz_filter_criterion_t *c2);
+pcoords_filter_criterion_t *pcoords_filter_and_criterion(pcoords_filter_criterion_t *c1, pcoords_filter_criterion_t *c2);
+pcoords_filter_criterion_t *pcoords_filter_or_criterion(pcoords_filter_criterion_t *c1, pcoords_filter_criterion_t *c2);
 
 
-void picviz_filter_set_string(PicvizFilter *filter, char *string);
+void pcoords_filter_set_string(PicvizFilter *filter, char *string);
 
 /* defined in filter/filter.yac.y */
-PicvizFilter *picviz_filter_build(char *filter);
+PicvizFilter *pcoords_filter_build(char *filter);
 
-int picviz_filter_display(picviz_filter_t *filter, pcimage_t *image, struct axisplot_t **axisplot, int axis_max);
-int picviz_filter_renplugin(picviz_filter_t *filter, PicvizImage *image, char *freqstr, void *userdata);
+int pcoords_filter_display(pcoords_filter_t *filter, pcimage_t *image, struct axisplot_t **axisplot, int axis_max);
+int pcoords_filter_renplugin(pcoords_filter_t *filter, PicvizImage *image, char *freqstr, void *userdata);
 
 #ifdef __cplusplus
  }

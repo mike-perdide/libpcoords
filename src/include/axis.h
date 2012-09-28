@@ -20,7 +20,7 @@
 #ifndef _AXIS_H_
 #define _AXIS_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #include "pcimage.h"
 
@@ -28,14 +28,14 @@
  extern "C" {
 #endif
 
-struct axis_t *picviz_axis_init(void);
-void picviz_axis_destroy(struct axis_t *axis);
-struct axis_t *picviz_axis_new(void);
-void picviz_axis_set_type_from_string(struct axis_t *axis, char *string);
-char *picviz_axis_get_string_from_type(PicvizAxis *axis);
-PicvizAxis *picviz_axis_get_from_name(PicvizImage *image, PcvString name);
-/* struct axis_t *picviz_axis_get(PicvizImage *i, unsigned int id); */
-PcvWidth picviz_axis_position_get(unsigned int counter);
+struct axis_t *pcoords_axis_init(void);
+void pcoords_axis_destroy(struct axis_t *axis);
+struct axis_t *pcoords_axis_new(void);
+void pcoords_axis_set_type_from_string(struct axis_t *axis, char *string);
+char *pcoords_axis_get_string_from_type(PicvizAxis *axis);
+PicvizAxis *pcoords_axis_get_from_name(PicvizImage *image, PcvString name);
+/* struct axis_t *pcoords_axis_get(PicvizImage *i, unsigned int id); */
+PcvWidth pcoords_axis_position_get(unsigned int counter);
 
 #ifdef __cplusplus
  }

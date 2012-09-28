@@ -31,7 +31,7 @@
 
 static char *lastplugin_name;
 
-static void *picviz_plugin_open(char *plugin_name)
+static void *pcoords_plugin_open(char *plugin_name)
 {
 	char *plugin_path;
 	char plugin_full[PATH_MAX];
@@ -62,7 +62,7 @@ static void *picviz_plugin_open(char *plugin_name)
 	return dlh;
 }
 
-void picviz_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizImage *image, PcvString arg)
+void pcoords_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizImage *image, PcvString arg)
 {
 
 	void *dlh;
@@ -81,7 +81,7 @@ void picviz_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizI
  * @{
  */
 
-			dlh = picviz_plugin_open(plugin_name);
+			dlh = pcoords_plugin_open(plugin_name);
 			*(void **)(&func) = dlsym(dlh, "output");
 			if ( ! func ) {
 				fprintf(stderr, "Symbol output not found in '%s'\n", lastplugin_name);
@@ -100,7 +100,7 @@ void picviz_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizI
  * access to the data to drive the rendering engine
  * @{
  */
-			dlh = picviz_plugin_open(plugin_name);
+			dlh = pcoords_plugin_open(plugin_name);
 			*(void **)(&func) = dlsym(dlh, "render");
 			if ( ! func ) {
 				fprintf(stderr, "Symbol render not found in '%s'\n", lastplugin_name);
@@ -127,21 +127,21 @@ void picviz_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizI
 
 #if 0
 /* Every plugin call this function to register themselves */
-void picviz_plugin_register(struct picviz_plugin_t *pp)
+void pcoords_plugin_register(struct pcoords_plugin_t *pp)
 {
 
         if (strcmp(pp->api_version, PICVIZ_OUTPUT_API_VERSION)) {
-                picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PLUGIN,
+                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_PLUGIN,
                              "Incompatible version '%s' for plugin. Needed '%s'",
                              pp->api_version, PICVIZ_OUTPUT_API_VERSION);
         }
-        if (picviz_plugin_find(pp->name)) {
-                picviz_debug(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_PLUGIN,
+        if (pcoords_plugin_find(pp->name)) {
+                pcoords_debug(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_PLUGIN,
                              "Plugin '%s' already registered", pp->name);
         } else {
-                picviz_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PLUGIN,
+                pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_PLUGIN,
                              "Registering plugin '%s'", pp->name);
-                //llist_add(&pp->list, &picviz_plugins);
+                //llist_add(&pp->list, &pcoords_plugins);
         }
 
 }

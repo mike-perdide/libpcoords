@@ -22,7 +22,7 @@
 
 #include "linuxlist.h"
 #include "types.h"
-//#include <picviz.h>
+//#include <pcoords.h>
 
 #define CORRELATION_HASH_SIZE 16
 
@@ -58,13 +58,13 @@ typedef enum heatline_mode_t {
 } heatline_mode_t;
 typedef enum heatline_mode_t PicvizHLMode;
 
-int picviz_correlation_new(PicvizCorrelation **correlation);
-PcvCounter picviz_correlation_append(PicvizCorrelation *cor, const PcvString key);
-PcvCounter picviz_correlation_get(PicvizCorrelation *cor, PcvString key);
-PcvString picviz_correlation_heatline_get(double value);
-int picviz_correlation_heatline_get_red(double value);
-int picviz_correlation_heatline_get_green(double value);
-void picviz_correlation_destroy(PicvizCorrelation *cor);
+int pcoords_correlation_new(PicvizCorrelation **correlation);
+PcvCounter pcoords_correlation_append(PicvizCorrelation *cor, const PcvString key);
+PcvCounter pcoords_correlation_get(PicvizCorrelation *cor, PcvString key);
+PcvString pcoords_correlation_heatline_get(double value);
+int pcoords_correlation_heatline_get_red(double value);
+int pcoords_correlation_heatline_get_green(double value);
+void pcoords_correlation_destroy(PicvizCorrelation *cor);
 
 
 #ifdef __cplusplus

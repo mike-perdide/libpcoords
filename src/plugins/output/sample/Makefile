@@ -4,7 +4,7 @@ LD = ld
 INSTALL = /usr/bin/install
 CFLAGS = -fPIC -O2 -c -g -Wall -Wformat-security -fno-strict-aliasing -I../../../include
 LDFLAGS = -x --shared
-PICVIZLIB = -lpicviz
+PICVIZLIB = -lpcoords
 CPPFLAGS =
 
 all: outsimple.so

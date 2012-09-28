@@ -14,22 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-stats.h 599 2009-05-24 14:12:05Z toady $
+ * $Id: pcoords-stats.h 599 2009-05-24 14:12:05Z toady $
  */
 
 #ifndef _PICVIZ_STATS_H_
 #define _PICVIZ_STATS_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-struct picviz_stats_t {
+struct pcoords_stats_t {
 	unsigned long long counter;
-} picviz_stats_t;
-typedef struct picviz_stats_t PicvizStats;
+} pcoords_stats_t;
+typedef struct pcoords_stats_t PicvizStats;
 
 #ifdef __cplusplus
  }

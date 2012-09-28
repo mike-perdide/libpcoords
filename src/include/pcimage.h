@@ -29,7 +29,7 @@ typedef struct pcimage_t pcimage_t;
 #include "types.h"
 #include "properties.h"
 #include "correlation.h"
-#include "picviz-hash.h"
+#include "pcoords-hash.h"
 
 #ifdef __cplusplus
  extern "C" {
@@ -71,7 +71,7 @@ struct axisplot_t {
         PcvID axis_id; /* id of the axis we positionate the line to */
         PcvString strval; /* This is the string value of the ysource, to put (optionally) in the graph */
         PcvHeight y;         /* where does the line goes on this axis */
-        picviz_properties_t *props;
+        pcoords_properties_t *props;
 } axisplot_t;
 typedef struct axisplot_t PicvizAxisPlot;
 
@@ -80,11 +80,11 @@ typedef struct axisplot_t PicvizAxisPlot;
  */
 struct line_t {
         struct llist_head list;
-	picviz_hash_t *axesplots;
+	pcoords_hash_t *axesplots;
         PcvID id;
         PcvString layer;
         unsigned char hidden;
-        picviz_properties_t *props;
+        pcoords_properties_t *props;
 } line_t;
 typedef struct line_t PicvizLine;
 
@@ -96,15 +96,15 @@ struct axis_t {
         PcvID id;
 	PcvString name;
 	PicvizRender render;
-        picviz_properties_t *props;
+        pcoords_properties_t *props;
         PicvizDataType type;
         PcvHeight ymin;  /* Where we start (top): Not max line, max of what we see */
         PcvHeight ymax;  /* Where we end (botton): Not min line */
 	/* For enumeration type */
 	int enum_count;
-	picviz_properties_t *enum_hash;
+	pcoords_properties_t *enum_hash;
 	unsigned long long int numeric;
-        picviz_hash_t *valcount; /* Used to count the number of time a given value repeats */
+        pcoords_hash_t *valcount; /* Used to count the number of time a given value repeats */
 } axis_t;
 typedef struct axis_t PicvizAxis;
 
@@ -129,8 +129,8 @@ struct pcimage_t {
 
 	enum position_t zero_pos; /* where the zero value is on the axes */
 
-	picviz_hash_t *axes;
-        picviz_hash_t *hidden_layers; /* if NULL the layer is displayed, hidden otherwise */
+	pcoords_hash_t *axes;
+        pcoords_hash_t *hidden_layers; /* if NULL the layer is displayed, hidden otherwise */
         struct llist_head lines;
 	PcvCounter lines_max;
 };

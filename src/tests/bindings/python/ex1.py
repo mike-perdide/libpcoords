@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
-import picviz
+import pcoords
 
 filename = "test1.pcv"
 lnb = 0
 dnb = 0
 
-print "Picviz Python API version: %s" % picviz.Version()
+print "Picviz Python API version: %s" % pcoords.Version()
 print "Loading file '%s'" % filename
-data = picviz.ParseImage(filename, None)
+data = pcoords.ParseImage(filename, None)
 
 
 print "The image height is %d " % data['height']

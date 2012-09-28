@@ -23,7 +23,7 @@
 #include <math.h>
 #include <assert.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 #include <linuxlist.h>
 
 /**
@@ -41,11 +41,11 @@
  * @param axis the axis
  * @return TRUE if relative, FALSE otherwise
  */
-PicvizBool picviz_axis_is_relative(PicvizAxis *axis)
+PicvizBool pcoords_axis_is_relative(PicvizAxis *axis)
 {
         char *relative;
 	if (!axis) return BOOL_FALSE;
-        relative = picviz_properties_get(axis->props, "relative");
+        relative = pcoords_properties_get(axis->props, "relative");
         if (relative) {
                 if ( ! strcmp(relative, "true")) {
                         return BOOL_TRUE;
@@ -55,7 +55,7 @@ PicvizBool picviz_axis_is_relative(PicvizAxis *axis)
         return BOOL_FALSE;
 }
 
-static void picviz_render_set_image_width(PicvizImage *image)
+static void pcoords_render_set_image_width(PicvizImage *image)
 {
 	unsigned int counter = 0;
 
@@ -66,7 +66,7 @@ static void picviz_render_set_image_width(PicvizImage *image)
 
 }
 
-void picviz_render_set_minmax(PicvizAxis *axis, PcvHeight value)
+void pcoords_render_set_minmax(PicvizAxis *axis, PcvHeight value)
 {
 
         if ( value < axis->ymin ) axis->ymin = value;
@@ -83,22 +83,22 @@ void picviz_render_set_minmax(PicvizAxis *axis, PcvHeight value)
  * @param strvalue the string to extract the value from
  * @return the rendered value
  */
-PcvHeight picviz_render_value(PicvizImage *image, PicvizAxis *axis, PcvString strvalue)
+PcvHeight pcoords_render_value(PicvizImage *image, PicvizAxis *axis, PcvString strvalue)
 {
 	PcvHeight strheight, maxval;
 	PcvHeight retval = 0;
 	float value;
 
 	if ( ! axis ) {
-		picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_RENDER, "No axis! cannot render anything.\n");
+		pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_RENDER, "No axis! cannot render anything.\n");
 		exit(1);
 	}
 
 	/* XXX: This *must* be clean */
 	if(axis->type == DATATYPE_ENUM) return;
 
-	maxval = picviz_variable_max(image, axis, 0);
-	strheight = picviz_line_value_get_from_string_dummy(image, axis, 1, strvalue);
+	maxval = pcoords_variable_max(image, axis, 0);
+	strheight = pcoords_line_value_get_from_string_dummy(image, axis, 1, strvalue);
 	strheight -= axis->ymin;
 	maxval = axis->ymax - axis->ymin;
 
@@ -118,11 +118,11 @@ PcvHeight picviz_render_value(PicvizImage *image, PicvizAxis *axis, PcvString st
 	case DATATYPE_INTEGER:
 	case DATATYPE_TIMELINE:
 	case DATATYPE_SHORT:
-		retval = picviz_values_mapping_get_from_y(image, maxval, strheight);
+		retval = pcoords_values_mapping_get_from_y(image, maxval, strheight);
 		axis->render = PCV_RENDER_DONE;
 		break;
 	case DATATYPE_NUMERIC:
-		retval = (PcvHeight) picviz_values_mapping_get_from_y(image, axis->numeric, strheight);
+		retval = (PcvHeight) pcoords_values_mapping_get_from_y(image, axis->numeric, strheight);
 		//fprintf(stderr, "maxval=%llu, retval=%llu\n", axis->numeric, retval);
 		axis->render = PCV_RENDER_DONE;
 		break;
@@ -139,7 +139,7 @@ PcvHeight picviz_render_value(PicvizImage *image, PicvizAxis *axis, PcvString st
  * @param image the image
  * @return the rendered value
  */
-void picviz_render_image(PicvizImage *image)
+void pcoords_render_image(PicvizImage *image)
 {
         int ret;
         PicvizAxis *axis;
@@ -153,12 +153,12 @@ void picviz_render_image(PicvizImage *image)
         int line_removal_candidate;
 	unsigned int counter = 0;
 
-	picviz_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_RENDER, "Rendering");
+	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_RENDER, "Rendering");
 
-        picviz_learn(image);
+        pcoords_learn(image);
 
 
-	picviz_render_set_image_width(image);
+	pcoords_render_set_image_width(image);
 
         if (! engine.__axis_label_exists) {
                 image->header_height = 0;
@@ -166,12 +166,12 @@ void picviz_render_image(PicvizImage *image)
 
 	counter = 0;
 	while (image->axesorder[counter]) {
-		PicvizAxis *axis = (PicvizAxis *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+		PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 		/* XXX: This is not just for strings but also for log type */
 		/* if (!axis) continue; */
-		if ((picviz_is_string_algo_basic(axis)) || axis->type == DATATYPE_LN) {
-			string_max[i] = picviz_line_max_get(image, &image->lines, i);
+		if ((pcoords_is_string_algo_basic(axis)) || axis->type == DATATYPE_LN) {
+			string_max[i] = pcoords_line_max_get(image, &image->lines, i);
 			i++;
 		}
 		counter++;
@@ -183,21 +183,21 @@ void picviz_render_image(PicvizImage *image)
         llist_for_each_entry(line, &image->lines, list) {
 		counter = 0;
 		while (image->axesorder[counter]) {
-			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)picviz_hash_get(line->axesplots, image->axesorder[counter]);
+			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
 			if ( ! axisplot ) {
 				fprintf(stderr, "**FIXME** (Write a better error message): Cannot get the axis!\n");
 				exit(1);
 			}
-                        /* PicvizAxis *axis = (PicvizAxis *)picviz_axis_get(image, axisplot->axis_id); */
-			PicvizAxis *axis = (PicvizAxis *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+                        /* PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get(image, axisplot->axis_id); */
+			PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 			if ( ! axis ) {
 				fprintf(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_RENDER, "Could not get the axis!");
 				continue;
 			}
 			if (axis->render == PCV_RENDER_DONE) continue;
-			if ( ! picviz_is_string_algo_basic(axis)) {
-				if (picviz_axis_is_relative(axis)) {
-					strheight = picviz_line_value_get_from_string_dummy(image, axis, 1, axisplot->strval);
+			if ( ! pcoords_is_string_algo_basic(axis)) {
+				if (pcoords_axis_is_relative(axis)) {
+					strheight = pcoords_line_value_get_from_string_dummy(image, axis, 1, axisplot->strval);
 
 					if ( strheight < axis->ymin )
 						axis->ymin = strheight;
@@ -219,54 +219,54 @@ void picviz_render_image(PicvizImage *image)
 		PicvizAxisPlot *ap_tbl[PICVIZ_MAX_AXES];
 
 		while (image->axesorder[counter]) {
-			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)picviz_hash_get(line->axesplots, image->axesorder[counter]);
-			PicvizAxis *axis = (PicvizAxis *)picviz_axis_get_from_name(image, image->axesorder[counter]);
+			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+			PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 			if (!axis) continue;
 			if (axis->render == PCV_RENDER_DONE) continue;
 
-			if ( ( !(picviz_axis_is_relative(axis)) ) || (picviz_is_string_algo_basic(axis)) ) {
-				strheight = picviz_line_value_get_from_string_dummy(image, axis, 0, axisplot->strval);
-				maxval = picviz_variable_max(image, axis, 0);
-				if (picviz_is_string_algo_basic(axis)) {
+			if ( ( !(pcoords_axis_is_relative(axis)) ) || (pcoords_is_string_algo_basic(axis)) ) {
+				strheight = pcoords_line_value_get_from_string_dummy(image, axis, 0, axisplot->strval);
+				maxval = pcoords_variable_max(image, axis, 0);
+				if (pcoords_is_string_algo_basic(axis)) {
 					if (axis->type == DATATYPE_STRING) {
-						if (string_max[axisplot->axis_id] > picviz_variable_max(image, axis, 0)) {
+						if (string_max[axisplot->axis_id] > pcoords_variable_max(image, axis, 0)) {
 							maxval = string_max[axisplot->axis_id];
 						}
 					}
 				}
 			} else {
-				maxval = picviz_variable_max(image, axis, 1);
-				strheight = picviz_line_value_get_from_string_dummy(image, axis, 1,axisplot->strval);
+				maxval = pcoords_variable_max(image, axis, 1);
+				strheight = pcoords_line_value_get_from_string_dummy(image, axis, 1,axisplot->strval);
 				strheight -= axis->ymin;
 				maxval = axis->ymax - axis->ymin;
 			}
 
 			if (axis->type == DATATYPE_LN) {
-				picviz_axisplot_set_y(axis, axisplot, 
-						      picviz_line_value_get_with_minmax(image, axis, axisplot->strval, 0, string_max[axisplot->axis_id]));
+				pcoords_axisplot_set_y(axis, axisplot, 
+						      pcoords_line_value_get_with_minmax(image, axis, axisplot->strval, 0, string_max[axisplot->axis_id]));
 			} else if (axis->type == DATATYPE_PORT) {
 				float value;
 				if (strheight < 1024) {
 					value = ((float)image->height / 2) / 1024;
 					value *= strheight;
-					picviz_axisplot_set_y(axis, axisplot, 
+					pcoords_axisplot_set_y(axis, axisplot, 
 							      (PcvHeight) value);
 				} else {
 					value = ((float)(image->height - image->header_height) / 2) / (maxval - 1024);
 					value *= strheight;
-					picviz_axisplot_set_y(axis, axisplot, 
+					pcoords_axisplot_set_y(axis, axisplot, 
 							      (PcvHeight) value + ((float)(image->height - image->header_height) / 2));
 				}
 			} else {
-				picviz_axisplot_set_y(axis, axisplot, 
-						      picviz_values_mapping_get_from_y(image, maxval, strheight));
+				pcoords_axisplot_set_y(axis, axisplot, 
+						      pcoords_values_mapping_get_from_y(image, maxval, strheight));
 			}
 
 			assert(axis_position < PICVIZ_MAX_AXES);
 			ap_tbl[axis_position++] = axisplot;
 
-			picviz_render_set_minmax(axis, axisplot->y);
+			pcoords_render_set_minmax(axis, axisplot->y);
 
 			counter++;
 		} /* while (image->axesorder[counter]) { */
@@ -274,7 +274,7 @@ void picviz_render_image(PicvizImage *image)
 
 		/* Filter */
                 if ( image->filter ) {
-                        ret = picviz_filter_display(image->filter, image, ap_tbl, axis_position);
+                        ret = pcoords_filter_display(image->filter, image, ap_tbl, axis_position);
                         if ( ret < 0 )
                                 return;
                         line->hidden = ret;
@@ -283,7 +283,7 @@ void picviz_render_image(PicvizImage *image)
 		/* Layers */
 		if ((!line->hidden) && (line->layer)) {
 		  char *layer;
-		  layer = picviz_hash_get(image->hidden_layers, line->layer);
+		  layer = pcoords_hash_get(image->hidden_layers, line->layer);
 		  if (layer) line->hidden = 1;
 		}
         }

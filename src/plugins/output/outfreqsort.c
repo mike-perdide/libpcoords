@@ -21,7 +21,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 
 static char *separator = ",";
@@ -30,7 +30,7 @@ static char *separator = ",";
 void draw_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
 {
 
-  char *frequency = picviz_properties_get(axisplot1->props, "frequency");
+  char *frequency = pcoords_properties_get(axisplot1->props, "frequency");
   char *occurence = "1";
   char *source = axisplot1->strval;
   char *target = axisplot2->strval;
@@ -50,7 +50,7 @@ void output(PicvizImage *image, char *arg)
 
 	llist_for_each_entry(line, &image->lines, list) {
 		if ( ! line->hidden ) {
-			picviz_line_draw(image, line, draw_line);
+			pcoords_line_draw(image, line, draw_line);
 		}
 	}
 

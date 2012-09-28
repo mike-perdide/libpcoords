@@ -20,7 +20,7 @@
 #ifndef _VARIABLE_H_
 #define _VARIABLE_H_
 
-//#include <picviz.h>
+//#include <pcoords.h>
 #include <types.h>
 
 #ifdef __cplusplus
@@ -44,14 +44,14 @@ struct variable_t {
         struct llist_head list;
         PcvString name; /* debug, integer, string, ...*/
         PcvVarType type;
-        PcvHeight maxval; /* <- picviz_variable_max*/
+        PcvHeight maxval; /* <- pcoords_variable_max*/
         PicvizVariableMap *mapping_func;
 } variable_t;
 typedef struct variable_t PicvizVariable;
 
 /* Create a new variable type */
-PicvizVariable *picviz_variable_new(PcvString name);
-void picviz_variable_destroy(PicvizVariable *var);
+PicvizVariable *pcoords_variable_new(PcvString name);
+void pcoords_variable_destroy(PicvizVariable *var);
 
 
 /* The string we use as reference to put our variables on its type.
@@ -79,8 +79,8 @@ void picviz_variable_destroy(PicvizVariable *var);
 
 #define USEC_TYPE_MAX_YVAL 999999
 
-//PcvHeight picviz_variable_max(datatype_t vartype);
-PcvHeight picviz_variable_max(PicvizImage *image, PicvizAxis *axis, int string_algo);
+//PcvHeight pcoords_variable_max(datatype_t vartype);
+PcvHeight pcoords_variable_max(PicvizImage *image, PicvizAxis *axis, int string_algo);
 
 #ifdef __cplusplus
  }

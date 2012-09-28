@@ -20,9 +20,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
-void picviz_learn(PicvizImage *image)
+void pcoords_learn(PicvizImage *image)
 {
 #if 0
 	PicvizLine *line;
@@ -35,7 +35,7 @@ void picviz_learn(PicvizImage *image)
 	if (!engine.learn) return;
 
 	/* Lowest */
-	line = picviz_line_id_get(image, 0);
+	line = pcoords_line_id_get(image, 0);
 	if ( ! line ) {
 		return; /* We cannot learn! */
 	}
@@ -44,7 +44,7 @@ void picviz_learn(PicvizImage *image)
 	}
 
 	/* Highest */
-	line = picviz_line_id_get(image, (PcvID)image->lines_max-1);
+	line = pcoords_line_id_get(image, (PcvID)image->lines_max-1);
 	if ( ! line ) {
 		return; /* We cannot learn! */
 	}
@@ -53,21 +53,21 @@ void picviz_learn(PicvizImage *image)
 	}
 
 	for (j = 0; j <= image->lines_max; j++) {
-		PicvizAxis *axis = (PicvizAxis *)picviz_axis_get(image, j);
+		PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get(image, j);
 
 		if (axis) {
 			if (axis->type == DATATYPE_STRING) {
 				if (!strncmp(lowest[axis->id],highest[axis->id], sizeof(int))) {
 					/* We can use the basic algo */
-					string_algo = picviz_properties_get(axis->props, "algo");
+					string_algo = pcoords_properties_get(axis->props, "algo");
 					if ( ! string_algo ) { /* No algo set? we need to learn */
-						picviz_properties_set(axis->props, "algo","basic");
+						pcoords_properties_set(axis->props, "algo","basic");
 					}
 				} else {
 					/* We dont use the basic algo */
-					string_algo = picviz_properties_get(axis->props, "algo");
+					string_algo = pcoords_properties_get(axis->props, "algo");
 					if ( ! string_algo ) { /* No algo set? we need to learn */
-						picviz_properties_set(axis->props, "algo","nocol");
+						pcoords_properties_set(axis->props, "algo","nocol");
 					}
 				}
 			}

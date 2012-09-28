@@ -19,7 +19,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 void output(pcimage_t *i, char *arg _U_)
 {

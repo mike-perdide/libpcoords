@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-init.c 659 2009-06-26 21:42:59Z toady $
+ * $Id: pcoords-init.c 659 2009-06-26 21:42:59Z toady $
  */
 
 #include <stdio.h>
@@ -22,7 +22,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 
 
 /*! \mainpage Picviz library
@@ -30,8 +30,8 @@
  * \section intro Introduction
  *
  * Picviz library provides API for programmers to use
- * picviz features. The pcv program is the biggest user
- * of the picviz library, you may have a look at it.
+ * pcoords features. The pcv program is the biggest user
+ * of the pcoords library, you may have a look at it.
  *
  * From the very beginning, Picviz was designed to be embeded
  * by third party software. This is why this library.
@@ -41,7 +41,7 @@
  *
  * Picviz has the following architecture:
  \dot
-  digraph picvizarch {
+  digraph pcoordsarch {
 rankdir = LR;
   node [shape=record];
       pgdl [ label="PGDL"];
@@ -71,9 +71,9 @@ rankdir = LR;
  * @param argc: Address of the argc parameter of your main() function.
  * @param argv: Address of the argv parameter of your main() function.
  */
-void picviz_init(int *argc, char **argv)
+void pcoords_init(int *argc, char **argv)
 {
-	picviz_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_CORE, "Picviz - (c) 2008-2009 Sebastien Tricaud");
+	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_CORE, "Picviz - (c) 2008-2009 Sebastien Tricaud");
 }
 
 

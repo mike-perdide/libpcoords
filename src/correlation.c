@@ -60,7 +60,7 @@ static PicvizCorHash *elem_search(struct llist_head *list, const PcvString key)
 	return NULL;
 }
 
-int picviz_correlation_new(PicvizCorrelation **correlation)
+int pcoords_correlation_new(PicvizCorrelation **correlation)
 {
 	int i;
 
@@ -73,7 +73,7 @@ int picviz_correlation_new(PicvizCorrelation **correlation)
 	(*correlation)->hashes = malloc(CORRELATION_HASH_SIZE * sizeof(*(*correlation)->hashes));
 	if ( ! (*correlation)->hashes ) {
 		free(*correlation);
-		picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate correlation hash!");
+		pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate correlation hash!");
 		return -1;
 	}
 
@@ -84,7 +84,7 @@ int picviz_correlation_new(PicvizCorrelation **correlation)
 	return 0;
 }
 
-PcvCounter picviz_correlation_append(PicvizCorrelation *cor, const PcvString key)
+PcvCounter pcoords_correlation_append(PicvizCorrelation *cor, const PcvString key)
 {
         unsigned int idx;
         PicvizCorHash *elem;
@@ -115,7 +115,7 @@ PcvCounter picviz_correlation_append(PicvizCorrelation *cor, const PcvString key
 }
 
 
-PcvCounter picviz_correlation_get(PicvizCorrelation *cor, PcvString key)
+PcvCounter pcoords_correlation_get(PicvizCorrelation *cor, PcvString key)
 {
         PicvizCorHash *elem;
 
@@ -126,7 +126,7 @@ PcvCounter picviz_correlation_get(PicvizCorrelation *cor, PcvString key)
         return elem->value;
 }
 
-void picviz_correlation_destroy(PicvizCorrelation *cor)
+void pcoords_correlation_destroy(PicvizCorrelation *cor)
 {
         int i;
         PicvizCorHash *elem;
@@ -152,7 +152,7 @@ void picviz_correlation_destroy(PicvizCorrelation *cor)
  * 0 = green, 0.5 = yellow, 1 = red
  * @Returns a Pcv string such as "#ff0000"
  */
-PcvString picviz_correlation_heatline_get(double value)
+PcvString pcoords_correlation_heatline_get(double value)
 {
 	PcvString buf;
 
@@ -197,7 +197,7 @@ PcvString picviz_correlation_heatline_get(double value)
 	return buf;
 }
 
-int picviz_correlation_heatline_get_red(double value)
+int pcoords_correlation_heatline_get_red(double value)
 {
 	double red = 0;
 
@@ -215,7 +215,7 @@ int picviz_correlation_heatline_get_red(double value)
 	return (int) (red*255);
 }
 
-int picviz_correlation_heatline_get_green(double value)
+int pcoords_correlation_heatline_get_green(double value)
 {
 	double green = 0;
 
@@ -239,7 +239,7 @@ int picviz_correlation_heatline_get_green(double value)
 int main(void)
 {
 	char *buf;
-	buf = picviz_correlation_heatline_get(0.123);
+	buf = pcoords_correlation_heatline_get(0.123);
 	printf("My color=%s\n",buf);
 	free(buf);
 

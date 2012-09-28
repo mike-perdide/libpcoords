@@ -21,15 +21,15 @@
 #ifndef _VALUES_MAPPING_H_
 #define _VALUES_MAPPING_H_
 
-#include <picviz.h>
+#include <pcoords.h>
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-PcvHeight picviz_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxis *axis, int string_algo, PcvString string);
-PcvHeight picviz_line_value_get_with_minmax(PicvizImage *image, PicvizAxis *axis, char *string, PcvHeight min, PcvHeight max);
-PcvHeight picviz_values_mapping_get_from_y(PicvizImage *image, PcvHeight max_val, PcvHeight y);
+PcvHeight pcoords_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxis *axis, int string_algo, PcvString string);
+PcvHeight pcoords_line_value_get_with_minmax(PicvizImage *image, PicvizAxis *axis, char *string, PcvHeight min, PcvHeight max);
+PcvHeight pcoords_values_mapping_get_from_y(PicvizImage *image, PcvHeight max_val, PcvHeight y);
 
 #ifdef __cplusplus
  }

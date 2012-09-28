@@ -25,7 +25,7 @@
  extern "C" {
 #endif
 
-int picviz_fifo_data_read(PicvizImage *template, char *filename, void (*fifo_cb)(PicvizImage *image));
+int pcoords_fifo_data_read(PicvizImage *template, char *filename, void (*fifo_cb)(PicvizImage *image));
 
 #ifdef __cplusplus
  }

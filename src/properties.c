@@ -29,7 +29,7 @@
 #define DEFAULT_HASH_SIZE 16
 
 
-struct picviz_properties {
+struct pcoords_properties {
         struct llist_head *lists;
 };
 
@@ -79,7 +79,7 @@ static property_elem_t *elem_search(struct llist_head *list, const PcvString key
 
 
 
-int picviz_properties_set(picviz_properties_t *props, const PcvString key, const PcvString value)
+int pcoords_properties_set(pcoords_properties_t *props, const PcvString key, const PcvString value)
 {
         unsigned int idx;
         property_elem_t *elem;
@@ -120,7 +120,7 @@ int picviz_properties_set(picviz_properties_t *props, const PcvString key, const
 }
 
 
-PcvString picviz_properties_get(picviz_properties_t *props, PcvString key)
+PcvString pcoords_properties_get(pcoords_properties_t *props, PcvString key)
 {
         property_elem_t *elem;
 
@@ -132,20 +132,20 @@ PcvString picviz_properties_get(picviz_properties_t *props, PcvString key)
 }
 
 
-int picviz_properties_new(picviz_properties_t **props)
+int pcoords_properties_new(pcoords_properties_t **props)
 {
         int i;
 
         *props = malloc(sizeof(**props));
         if ( ! *props ) {
-                picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate properties!");
+                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate properties!");
                 return -1;
         }
 
         (*props)->lists = malloc(DEFAULT_HASH_SIZE * sizeof(*(*props)->lists));
         if ( ! (*props)->lists ) {
                 free(*props);
-                picviz_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate properties hash!");
+                pcoords_debug(PICVIZ_DEBUG_CRITICAL, PICVIZ_AREA_CORE, "Cannot allocate properties hash!");
                 return -1;
         }
 
@@ -156,7 +156,7 @@ int picviz_properties_new(picviz_properties_t **props)
 }
 
 
-void picviz_properties_destroy(picviz_properties_t *props)
+void pcoords_properties_destroy(pcoords_properties_t *props)
 {
         int i;
         property_elem_t *elem;

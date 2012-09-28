@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * $Id: picviz-pcre.h 148 2008-09-15 19:20:53Z toady $
+ * $Id: pcoords-pcre.h 148 2008-09-15 19:20:53Z toady $
  */
 
 #ifndef _PICVIZ_PCRE_H_
@@ -24,7 +24,7 @@
  extern "C" {
 #endif
 
-PicvizBool picviz_regex_match(char *string, char *regex);
+PicvizBool pcoords_regex_match(char *string, char *regex);
 
 #ifdef __cplusplus
  }
