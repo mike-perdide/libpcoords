@@ -41,10 +41,10 @@ ${CMAKE_CURRENT_SOURCE_DIR}/config.h
 )
 
 configure_file(
-${CMAKE_CURRENT_SOURCE_DIR}/libpicviz.pc.cmake
-${CMAKE_CURRENT_BINARY_DIR}/libpicviz.pc
+${CMAKE_CURRENT_SOURCE_DIR}/libpcoords.pc.cmake
+${CMAKE_CURRENT_BINARY_DIR}/libpcoords.pc
 )
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/libpicviz.pc
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/libpcoords.pc
 	DESTINATION ${LIB_INSTALL_DIR}/pkgconfig/ )
 
 
@@ -65,8 +65,8 @@ add_subdirectory(gnulib)
 add_subdirectory(libev)
 add_subdirectory(src)
 
-#SET_TARGET_PROPERTIES(picviz PROPERTIES LINKER_LANGUAGE C)
-#SET_TARGET_PROPERTIES(picviz PROPERTIES COMPILE_FLAGS "-g")
+#SET_TARGET_PROPERTIES(pcoords PROPERTIES LINKER_LANGUAGE C)
+#SET_TARGET_PROPERTIES(pcoords PROPERTIES COMPILE_FLAGS "-g")
 
 #summary()
 

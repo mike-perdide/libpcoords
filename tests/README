@@ -1,4 +1,4 @@
-libpicviz tests: anything that can run the lib crazy goes here.
+libpcoords tests: anything that can run the lib crazy goes here.
 
 *any* file that at some point were source of a bug, crash, weird warnings *must* go here.
 

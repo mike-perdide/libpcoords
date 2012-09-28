@@ -11,7 +11,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <picviz.h>
+#include <pcoords.h>
 #include "pgdl-parser.h"
 
 static char *filename;
@@ -203,7 +203,7 @@ INCLUDE		@include
 
 /* remove unused functions */
 typedef void (*dummy_function) ();
-dummy_function picvizparser_unused[] =
+dummy_function pcoordsparser_unused[] =
 {
   (dummy_function) input, (dummy_function) yyunput
 };

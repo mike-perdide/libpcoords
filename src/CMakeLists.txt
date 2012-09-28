@@ -24,7 +24,7 @@ FLEX_TARGET(pcoords ${LIBPICVIZ_SOURCE_DIR}/src/pgdl-lexer.l ${LIBPICVIZ_BINARY_
 BISON_TARGET(pcoords ${LIBPICVIZ_SOURCE_DIR}/src/filter.yac.y ${LIBPICVIZ_BINARY_DIR}/src/filter-parser.c)
 FLEX_TARGET(pcoords ${LIBPICVIZ_SOURCE_DIR}/src/filter.lex.l ${LIBPICVIZ_BINARY_DIR}/src/filter-lexer.c)
 
-add_library(pcoords SHARED axis.c axisplot.c correlation.c debug.c real-time.c filter.c image.c learn.c line.c pgdl.c plugins.c engine.c picviz-hash.c picviz-init.c picviz-pcre.c properties.c render.c values-mapping.c variable.c utils.c filter-parser.c filter-lexer.c pgdl-parser.c pgdl-lexer.c prop-color.c)
+add_library(pcoords SHARED axis.c axisplot.c correlation.c debug.c real-time.c filter.c image.c learn.c line.c pgdl.c plugins.c engine.c pcoords-hash.c pcoords-init.c pcoords-pcre.c properties.c render.c values-mapping.c variable.c utils.c filter-parser.c filter-lexer.c pgdl-parser.c pgdl-lexer.c prop-color.c)
 
 set_target_properties(pcoords PROPERTIES SOVERSION 2)
 
