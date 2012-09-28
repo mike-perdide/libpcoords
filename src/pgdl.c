@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,28 +25,28 @@
 #include "pgdl-parser.h"
 
 /**
- * @defgroup PicvizParser Picviz Parser
+ * @defgroup PcoordsParser Pcoords Parser
  * Parse a PGDL file
  * @{
  */
 
-static _pgdl_context_init(PicvizParserContext context)
+static _pgdl_context_init(PcoordsParserContext context)
 {
         context.section_state = EMPTY;
 }
 
 /**
- * Parse a PGDL file into Picviz data structure
+ * Parse a PGDL file into Pcoords data structure
  *
  * \param filename the file to parse
  * \param filterbuf the filter to apply
  *
- * \return a PicvizImage object or NULL upon error.
+ * \return a PcoordsImage object or NULL upon error.
  */
-PicvizImage *pcv_parse(char *filename, char *filterbuf)
+PcoordsImage *pcv_parse(char *filename, char *filterbuf)
 {
 	int ret;
-	PicvizParserContext context;
+	PcoordsParserContext context;
 
 	_pgdl_context_init(context);
 
@@ -91,15 +91,15 @@ PicvizImage *pcv_parse(char *filename, char *filterbuf)
 }
 
 /**
- * Parse a PGDL data line to be added into Picviz data structure
+ * Parse a PGDL data line to be added into Pcoords data structure
  *
  * \param string the string containing the line to parse. It must
  * end with a ';' and may look like:
  * "t='12:00', str='mydata';"
  *
- * \return a PicvizLine object or NULL upon error.
+ * \return a PcoordsLine object or NULL upon error.
  */
-PicvizLine *pcoords_parse_line(char *string)
+PcoordsLine *pcoords_parse_line(char *string)
 {
         void *state;
         int ret;

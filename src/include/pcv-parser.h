@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,8 +26,8 @@
  extern "C" {
 #endif
 
-PicvizImage *pcv_parse(char *filename, char *filter);
-PicvizLine  *pcoords_parse_line(char *string);
+PcoordsImage *pcv_parse(char *filename, char *filter);
+PcoordsLine  *pcoords_parse_line(char *string);
 
 #ifdef __cplusplus
  }

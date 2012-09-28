@@ -6,7 +6,7 @@ int main(void)
 
 	pcoords_engine_init();
         pcoords_init(NULL, NULL);
-        image = (PicvizImage *)pcv_parse("test-colors.pcv", NULL);
+        image = (PcoordsImage *)pcv_parse("test-colors.pcv", NULL);
 /*         image_to_svg(image); */
         return 0;
 }

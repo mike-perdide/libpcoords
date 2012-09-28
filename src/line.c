@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,9 +26,9 @@
 static PcvID id = 0;
 
 
-PicvizLine *pcoords_line_new(void)
+PcoordsLine *pcoords_line_new(void)
 {
-        PicvizLine *line;
+        PcoordsLine *line;
 
         line = malloc(sizeof(*line));
         if ( ! line ) {
@@ -48,19 +48,19 @@ PicvizLine *pcoords_line_new(void)
         return line;
 }
 
-void pcoords_line_axis_append(PicvizLine *line, PcvString axisname, PicvizAxisPlot *axisplot)
+void pcoords_line_axis_append(PcoordsLine *line, PcvString axisname, PcoordsAxisPlot *axisplot)
 {
 	pcoords_hash_set(line->axesplots, axisname, axisplot, sizeof(*axisplot));
 }
 
-void pcoords_line_axis_foreach(PicvizImage *image, PicvizLine *line,
-			      void (*each_axis_function)(PcvString key, PicvizAxisPlot *axisplot))
+void pcoords_line_axis_foreach(PcoordsImage *image, PcoordsLine *line,
+			      void (*each_axis_function)(PcvString key, PcoordsAxisPlot *axisplot))
 {
 	unsigned int counter = 0;
 
 	while (image->axesorder[counter]) {
-		PicvizAxisPlot *ap;
-		ap = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+		PcoordsAxisPlot *ap;
+		ap = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
 		each_axis_function(image->axesorder[counter], ap);
 		counter++;
 	}
@@ -71,8 +71,8 @@ void pcoords_line_axis_foreach(PicvizImage *image, PicvizLine *line,
 
 
 
-void pcoords_line_axis_foreach_unique(PicvizImage *image, PicvizLine *line,
-			      void (*each_axis_function)(PcvString key, PicvizAxisPlot *axisplot))
+void pcoords_line_axis_foreach_unique(PcoordsImage *image, PcoordsLine *line,
+			      void (*each_axis_function)(PcvString key, PcoordsAxisPlot *axisplot))
 {
 	unsigned int counter = 0;
 	unsigned int s_counter = 0; /* Counter for storage */
@@ -98,9 +98,9 @@ void pcoords_line_axis_foreach_unique(PicvizImage *image, PicvizLine *line,
 
 	counter = 0;
 	while (axesstorage[counter]) {
-		PicvizAxisPlot *ap;
+		PcoordsAxisPlot *ap;
 		if (strcmp(axesstorage[counter], "*")) {
-			ap = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+			ap = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
 			each_axis_function(image->axesorder[counter], ap);
 		}
 		counter++;
@@ -108,14 +108,14 @@ void pcoords_line_axis_foreach_unique(PicvizImage *image, PicvizLine *line,
 }
 
 
-static void _pcoords_line_axisplot_free(PcvString key, PicvizAxisPlot *axisplot)
+static void _pcoords_line_axisplot_free(PcvString key, PcoordsAxisPlot *axisplot)
 {
 	if (axisplot) {
 		free(axisplot);
 	}
 }
 
-void pcoords_line_free(PicvizImage *image, PicvizLine *line)
+void pcoords_line_free(PcoordsImage *image, PcoordsLine *line)
 {
         pcoords_properties_destroy(line->props);
 	pcoords_line_axis_foreach_unique(image, line,
@@ -124,10 +124,10 @@ void pcoords_line_free(PicvizImage *image, PicvizLine *line)
 
 }
 
-PcvHeight pcoords_line_max_get(PicvizImage *image, struct llist_head *line, PcvID axis_id)
+PcvHeight pcoords_line_max_get(PcoordsImage *image, struct llist_head *line, PcvID axis_id)
 {
-	PicvizLine *l;
-	PicvizAxisPlot *axisplot;
+	PcoordsLine *l;
+	PcoordsAxisPlot *axisplot;
 	char init = 0;
 	PcvHeight max = 0;
 	PcvHeight height = 0;
@@ -138,8 +138,8 @@ PcvHeight pcoords_line_max_get(PicvizImage *image, struct llist_head *line, PcvI
 	llist_for_each_entry(l, line, list) {
 		counter = 0;
 		while (image->axesorder[counter]) {
-			PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
-			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(l->axesplots, image->axesorder[counter]);
+			PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+			PcoordsAxisPlot *axisplot = (PcoordsAxisPlot *)pcoords_hash_get(l->axesplots, image->axesorder[counter]);
 			//printf("Y VAL=%lld\n", axisplot->y);
 			if (pcoords_is_string_algo_basic(axis)) {
 				height = pcoords_line_value_get_from_string_dummy(image, axis, 0, axisplot->strval);
@@ -165,11 +165,11 @@ PcvHeight pcoords_line_max_get(PicvizImage *image, struct llist_head *line, PcvI
 	return max;
 }
 
-PcvHeight pcoords_line_max_pertype_get(PicvizImage *image, PicvizDataType type)
+PcvHeight pcoords_line_max_pertype_get(PcoordsImage *image, PcoordsDataType type)
 {
-        PicvizLine *line;
+        PcoordsLine *line;
         int i;
-        int nb_types = sizeof(PicvizDataType);
+        int nb_types = sizeof(PcoordsDataType);
         char init[nb_types];
         PcvHeight max[nb_types];
 	unsigned int counter = 0;
@@ -181,8 +181,8 @@ PcvHeight pcoords_line_max_pertype_get(PicvizImage *image, PicvizDataType type)
         llist_for_each_entry(line, &image->lines, list) {
 		counter = 0;
 		while (image->axesorder[counter]) {
-			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
-                        PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+			PcoordsAxisPlot *axisplot = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+                        PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
                         if (axis->type == type) {
                                 if ( ! init[type] ) {
@@ -203,21 +203,21 @@ PcvHeight pcoords_line_max_pertype_get(PicvizImage *image, PicvizDataType type)
 }
 
 /* Sets the callback to draw */
-int pcoords_line_draw(PicvizImage *image, PicvizLine *line, void (*draw_line_func)(PicvizImage *image, PcvID count, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2))
+int pcoords_line_draw(PcoordsImage *image, PcoordsLine *line, void (*draw_line_func)(PcoordsImage *image, PcvID count, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2))
 {
-	PicvizAxisPlot *last_axisplot;
+	PcoordsAxisPlot *last_axisplot;
 	PcvWidth  last_x;
 	PcvHeight last_y;
 	unsigned int counter = 0;
 
 	while (image->axesorder[counter]) {
-	  PicvizAxisPlot *axisplot;
-	  PicvizAxis *axis;
+	  PcoordsAxisPlot *axisplot;
+	  PcoordsAxis *axis;
 
 /* 	  fprintf(stderr, "PLD: %s:%d\n", image->axesorder[counter], counter); */
 
-	  axisplot = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
-	  axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+	  axisplot = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+	  axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 		if (!axis) {
 			fprintf(stderr, "[libpcoords] Error: no axis named '%s'\n", image->axesorder[counter]);
@@ -243,9 +243,9 @@ int pcoords_line_draw(PicvizImage *image, PicvizLine *line, void (*draw_line_fun
 	return 0;
 }
 
-PicvizLine *pcoords_line_id_get(PicvizImage *image, PcvID line_id)
+PcoordsLine *pcoords_line_id_get(PcoordsImage *image, PcvID line_id)
 {
-	PicvizLine *line;
+	PcoordsLine *line;
 
 	llist_for_each_entry(line, &image->lines, list) {
 		if (line->id == line_id) return line;
@@ -254,20 +254,20 @@ PicvizLine *pcoords_line_id_get(PicvizImage *image, PcvID line_id)
 	return NULL;
 }
 
-void pcoords_line_debug(PicvizLine *line)
+void pcoords_line_debug(PcoordsLine *line)
 {
 	fprintf(stdout, "line->id=%llu\n", line->id);
 	fprintf(stdout, "line->hidden=%d\n", line->hidden);
 }
 
-unsigned int pcoords_line_all_axisplot_get(PicvizImage *image, PicvizLine *line, PicvizAxisPlot **ap)
+unsigned int pcoords_line_all_axisplot_get(PcoordsImage *image, PcoordsLine *line, PcoordsAxisPlot **ap)
 {
         unsigned int counter;
 	char *freq;
 
 	counter = 0;
 	while (image->axesorder[counter]) {
-	        PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+	        PcoordsAxisPlot *axisplot = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
 		ap[counter] = axisplot;
 		counter++;
 	}
@@ -275,11 +275,11 @@ unsigned int pcoords_line_all_axisplot_get(PicvizImage *image, PicvizLine *line,
 	return counter;
 }
 
-void pcoords_line_draw_text(PicvizImage *image, LinePrintTextFlags flags, PcvID axis_id, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, void (*draw_text)(double x, double y, char *color, double size, char *text))
+void pcoords_line_draw_text(PcoordsImage *image, LinePrintTextFlags flags, PcvID axis_id, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, void (*draw_text)(double x, double y, char *color, double size, char *text))
 {
 	/* Print values on axes, dealing with the print property one can give to an axis */
 	if (engine.display_raw_data) {
-		PicvizAxis *axis = pcoords_axis_get_from_name(image, image->axesorder[axis_id]);
+		PcoordsAxis *axis = pcoords_axis_get_from_name(image, image->axesorder[axis_id]);
 		char *print = pcoords_properties_get(axis->props, "print");
 		char font_size;
 
@@ -289,7 +289,7 @@ void pcoords_line_draw_text(PicvizImage *image, LinePrintTextFlags flags, PcvID 
 		if (!print) print = "true";
 		if (axis_id == 1) {
 			/* This is the first line, so we draw texts at origin AND destination */
-			PicvizAxis *axis0 = pcoords_axis_get_from_name(image, image->axesorder[0]);
+			PcoordsAxis *axis0 = pcoords_axis_get_from_name(image, image->axesorder[0]);
 			char *print0 = pcoords_properties_get(axis0->props, "print");
 			if (!print0) print0 = "true";
 

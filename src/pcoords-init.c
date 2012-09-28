@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org> 
  *
  * This program is free software: you can redistribute it and/or modify
@@ -25,21 +25,21 @@
 #include <pcoords.h>
 
 
-/*! \mainpage Picviz library
+/*! \mainpage Pcoords library
  *
  * \section intro Introduction
  *
- * Picviz library provides API for programmers to use
+ * Pcoords library provides API for programmers to use
  * pcoords features. The pcv program is the biggest user
  * of the pcoords library, you may have a look at it.
  *
- * From the very beginning, Picviz was designed to be embeded
+ * From the very beginning, Pcoords was designed to be embeded
  * by third party software. This is why this library.
  * 
- * The Picviz library allows to access to the parser, the
+ * The Pcoords library allows to access to the parser, the
  * rendering and their plugins, but also to output plugins.
  *
- * Picviz has the following architecture:
+ * Pcoords has the following architecture:
  \dot
   digraph pcoordsarch {
 rankdir = LR;
@@ -56,24 +56,24 @@ rankdir = LR;
   }
  \enddot
  *
- * \ref PicvizParser
+ * \ref PcoordsParser
  * 
- * \ref PicvizOutputPlugins
+ * \ref PcoordsOutputPlugins
  *
- * \ref PicvizRenderingPlugins
+ * \ref PcoordsRenderingPlugins
  *
  */
 
 
 /**
- * Initialize the Picviz library
+ * Initialize the Pcoords library
  *
  * @param argc: Address of the argc parameter of your main() function.
  * @param argv: Address of the argv parameter of your main() function.
  */
 void pcoords_init(int *argc, char **argv)
 {
-	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_CORE, "Picviz - (c) 2008-2009 Sebastien Tricaud");
+	pcoords_debug(PICVIZ_DEBUG_NOTICE, PICVIZ_AREA_CORE, "Pcoords - (c) 2008-2009 Sebastien Tricaud");
 }
 
 

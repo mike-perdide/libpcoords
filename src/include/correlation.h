@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,20 +35,20 @@ typedef enum correlation_type_t {
 	PICVIZ_COR_LINE, /* Same line */
 	PICVIZ_COR_PLOT  /* Plot shared on a given axis */
 } correlation_type_t;
-typedef enum correlation_type_t PicvizCorType;
+typedef enum correlation_type_t PcoordsCorType;
 
 typedef struct correlation_hash_t {
 	struct llist_head list;
-	PicvizCorType type;
+	PcoordsCorType type;
 	PcvString key; /* "AXISNB:LINE_Y1,LINE_Y2" or "AXISNB:PLOTX" */
 	PcvCounter value;
 } correlation_hash_t;
-typedef struct correlation_hash_t PicvizCorHash;
+typedef struct correlation_hash_t PcoordsCorHash;
 
 typedef struct correlation_t {
 	struct llist_head *hashes;
 } correlation_t;
-typedef struct correlation_t PicvizCorrelation;
+typedef struct correlation_t PcoordsCorrelation;
 
 typedef enum heatline_mode_t {
 	PER_TWO_AXES, /* Default */
@@ -56,15 +56,15 @@ typedef enum heatline_mode_t {
 	FROM_POINT, /* If it has the same origin, we look for the frequence */
 	PER_FULL_LINE /* Compare line per line instead of between two axes */
 } heatline_mode_t;
-typedef enum heatline_mode_t PicvizHLMode;
+typedef enum heatline_mode_t PcoordsHLMode;
 
-int pcoords_correlation_new(PicvizCorrelation **correlation);
-PcvCounter pcoords_correlation_append(PicvizCorrelation *cor, const PcvString key);
-PcvCounter pcoords_correlation_get(PicvizCorrelation *cor, PcvString key);
+int pcoords_correlation_new(PcoordsCorrelation **correlation);
+PcvCounter pcoords_correlation_append(PcoordsCorrelation *cor, const PcvString key);
+PcvCounter pcoords_correlation_get(PcoordsCorrelation *cor, PcvString key);
 PcvString pcoords_correlation_heatline_get(double value);
 int pcoords_correlation_heatline_get_red(double value);
 int pcoords_correlation_heatline_get_green(double value);
-void pcoords_correlation_destroy(PicvizCorrelation *cor);
+void pcoords_correlation_destroy(PcoordsCorrelation *cor);
 
 
 #ifdef __cplusplus

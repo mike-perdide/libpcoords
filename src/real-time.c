@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,8 +39,8 @@
 
 
 static ev_io fifo_watcher;
-PicvizImage *image;
-void (*fifo_read_callback)(PicvizImage *image);
+PcoordsImage *image;
+void (*fifo_read_callback)(PcoordsImage *image);
 
 static int __pcoords_socket_create(char *fifo)
 {
@@ -79,7 +79,7 @@ static void pcoords_fifo_cb(EV_P_ struct ev_io *w, int revents)
 	int i = 0;
 	unsigned int read_counter = 0;
 	char *linebuf;
-	PicvizLine *line;
+	PcoordsLine *line;
 
 read_more:
 	fprintf(stdout, ".");
@@ -125,7 +125,7 @@ more_messages:
 /* 	goto read_more; */
 }
 
-int pcoords_fifo_data_read(PicvizImage *template, char *filename, void (*fifo_cb)(PicvizImage *image))
+int pcoords_fifo_data_read(PcoordsImage *template, char *filename, void (*fifo_cb)(PcoordsImage *image))
 {
 	int sockfd;
 	struct ev_loop *pcoords_loop = ev_default_loop (0);

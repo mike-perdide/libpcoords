@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@
 #define PICVIZ_AREA_FILTER 0x0016
 
 void pcoords_debug(int level, int area, const char *format, ...);
-void pcoords_debug_print_axisplot(PicvizAxisPlot *ap);
+void pcoords_debug_print_axisplot(PcoordsAxisPlot *ap);
 
 #ifdef __cplusplus
  }

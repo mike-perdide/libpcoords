@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,21 +34,21 @@ enum line_print_text_flags_t {
 };
 typedef enum line_print_text_flags_t LinePrintTextFlags;
 
-void pcoords_line_free(PicvizImage *image, PicvizLine *line);
+void pcoords_line_free(PcoordsImage *image, PcoordsLine *line);
 struct line_t *pcoords_line_init(void);
 struct line_t *pcoords_line_new(void);
-struct line_t *pcoords_line_get(PicvizAxis *axis, PcvID id);
-//void pcoords_lines_axisplot_append(PicvizLine *line, PicvizAxisPlot *axisplot);
-void pcoords_line_axis_append(PicvizLine *line, PcvString axisname, PicvizAxisPlot *axisplot);
+struct line_t *pcoords_line_get(PcoordsAxis *axis, PcvID id);
+//void pcoords_lines_axisplot_append(PcoordsLine *line, PcoordsAxisPlot *axisplot);
+void pcoords_line_axis_append(PcoordsLine *line, PcvString axisname, PcoordsAxisPlot *axisplot);
 PcvHeight pcoords_line_max_get(pcimage_t *image, struct llist_head *line, PcvID axis_id);
-PcvHeight pcoords_line_max_pertype_get(PicvizImage *image, PicvizDataType type);
-int pcoords_line_draw(PicvizImage *image, PicvizLine *line, void (*draw_line_func)(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2));
-PicvizLine *pcoords_line_id_get(PicvizImage *image, PcvID line_id);
-void pcoords_line_debug(PicvizLine *line);
-void pcoords_line_axis_foreach(PicvizImage *image, PicvizLine *line, void (*each_axis_function)(PcvString key, PicvizAxisPlot *axisplot));
-void pcoords_line_axis_foreach_unique(PicvizImage *image, PicvizLine *line, void (*each_axis_function)(PcvString key, PicvizAxisPlot *axisplot));
-unsigned int pcoords_line_all_axisplot_get(PicvizImage *image, PicvizLine *line, PicvizAxisPlot **ap);
-void pcoords_line_draw_text(PicvizImage *image, LinePrintTextFlags flags, PcvID axis_id, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, void (*draw_text)(double x, double y, char *color, double size, char *text));
+PcvHeight pcoords_line_max_pertype_get(PcoordsImage *image, PcoordsDataType type);
+int pcoords_line_draw(PcoordsImage *image, PcoordsLine *line, void (*draw_line_func)(PcoordsImage *image, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2));
+PcoordsLine *pcoords_line_id_get(PcoordsImage *image, PcvID line_id);
+void pcoords_line_debug(PcoordsLine *line);
+void pcoords_line_axis_foreach(PcoordsImage *image, PcoordsLine *line, void (*each_axis_function)(PcvString key, PcoordsAxisPlot *axisplot));
+void pcoords_line_axis_foreach_unique(PcoordsImage *image, PcoordsLine *line, void (*each_axis_function)(PcvString key, PcoordsAxisPlot *axisplot));
+unsigned int pcoords_line_all_axisplot_get(PcoordsImage *image, PcoordsLine *line, PcoordsAxisPlot **ap);
+void pcoords_line_draw_text(PcoordsImage *image, LinePrintTextFlags flags, PcvID axis_id, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, void (*draw_text)(double x, double y, char *color, double size, char *text));
 
 #ifdef __cplusplus
  }

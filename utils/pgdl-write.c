@@ -1,6 +1,6 @@
 /* 
  * Simple example of how you can write data to the
- * socket when running Picviz with the file 'test1.pcv'.
+ * socket when running Pcoords with the file 'test1.pcv'.
  *
  * The server should be started like this:
  * pcv -t test1.pcv -s local -Tpngcairo -o out.png

@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 static char *separator = ",";
 
 
-void draw_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
+void draw_line(PcoordsImage *image, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
 {
 
   char *frequency = pcoords_properties_get(axisplot1->props, "frequency");
@@ -39,10 +39,10 @@ void draw_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPl
 
 }
 
-void output(PicvizImage *image, char *arg)
+void output(PcoordsImage *image, char *arg)
 {
 
-	PicvizLine *line;
+	PcoordsLine *line;
 
 	if (arg) separator = arg;
 

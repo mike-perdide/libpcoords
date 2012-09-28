@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,9 +28,9 @@
  *
  * @return the axisplot structure or NULL on error
  */
-PicvizAxisPlot *pcoords_axisplot_new(void)
+PcoordsAxisPlot *pcoords_axisplot_new(void)
 {
-	PicvizAxisPlot *axisplot;
+	PcoordsAxisPlot *axisplot;
 
 	axisplot = malloc(sizeof(*axisplot));
 	if ( ! axisplot ) {
@@ -46,12 +46,12 @@ PicvizAxisPlot *pcoords_axisplot_new(void)
 	return axisplot;
 }
 
-void pcoords_axisplot_set_y(PicvizAxis *axis _U_, PicvizAxisPlot *axisplot, PcvHeight y)
+void pcoords_axisplot_set_y(PcoordsAxis *axis _U_, PcoordsAxisPlot *axisplot, PcvHeight y)
 {
 #if 0
- 	PicvizStats *stats;
+ 	PcoordsStats *stats;
 
-	stats = (PicvizStats *)pcoords_hash_get(axis->valcount, (char *)axisplot->strval);
+	stats = (PcoordsStats *)pcoords_hash_get(axis->valcount, (char *)axisplot->strval);
         if ( ! stats ) {
 		stats = malloc(sizeof(*stats));
 		if ( ! stats) {
@@ -77,7 +77,7 @@ void pcoords_axisplot_set_y(PicvizAxis *axis _U_, PicvizAxisPlot *axisplot, PcvH
  *
  * @param axisplot the axis plot to destroy
  */
-void pcoords_axisplot_destroy(PicvizAxisPlot *axisplot)
+void pcoords_axisplot_destroy(PcoordsAxisPlot *axisplot)
 {
 	pcoords_properties_destroy(axisplot->props);
 	free(axisplot);

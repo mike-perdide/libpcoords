@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  * Copyright (C) 2008 Philippe Saade <psaade@gmail.com>
  *
@@ -213,7 +213,7 @@ static double enum_to_factor(int enumber)
 /*
  * We first calculate values without caring of that axis min and max
  */
-PcvHeight pcoords_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxis *axis, int string_algo, char *string)
+PcvHeight pcoords_line_value_get_from_string_dummy(PcoordsImage *image, PcoordsAxis *axis, int string_algo, char *string)
 {
 	PcvHeight factor = 0;
 	PcvString buf[10];
@@ -301,7 +301,7 @@ PcvHeight pcoords_line_value_get_from_string_dummy(PicvizImage *image, PicvizAxi
 	return factor;
 }
 
-PcvHeight pcoords_line_value_get_with_minmax(PicvizImage *image, PicvizAxis *axis, char *string, PcvHeight min _U_, PcvHeight max)
+PcvHeight pcoords_line_value_get_with_minmax(PcoordsImage *image, PcoordsAxis *axis, char *string, PcvHeight min _U_, PcvHeight max)
 {
 	PcvHeight scale;
 
@@ -318,7 +318,7 @@ PcvHeight pcoords_line_value_get_with_minmax(PicvizImage *image, PicvizAxis *axi
 
 }
 
-PcvHeight pcoords_values_mapping_get_from_y(PicvizImage *image, PcvHeight max_val, PcvHeight y)
+PcvHeight pcoords_values_mapping_get_from_y(PcoordsImage *image, PcvHeight max_val, PcvHeight y)
 {
         float value;
 

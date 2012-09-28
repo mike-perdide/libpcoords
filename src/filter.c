@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 #include <pcoords.h>
 
 
-static int test_filter_criterion(PicvizImage *image, pcoords_filter_criterion_t *filter, PicvizAxisPlot *axisplot)
+static int test_filter_criterion(PcoordsImage *image, pcoords_filter_criterion_t *filter, PcoordsAxisPlot *axisplot)
 {
         int ret = 0;
         PcvHeight compare_val;
@@ -103,7 +103,7 @@ static int test_filter_criterion(PicvizImage *image, pcoords_filter_criterion_t 
 
 
 
-static int filter_display_match(PicvizImage *image, pcoords_filter_criterion_t *criterion, PicvizAxisPlot **axisplot, int axis_max)
+static int filter_display_match(PcoordsImage *image, pcoords_filter_criterion_t *criterion, PcoordsAxisPlot **axisplot, int axis_max)
 {
         int ret;
 
@@ -130,7 +130,7 @@ static int filter_display_match(PicvizImage *image, pcoords_filter_criterion_t *
 
 
 
-int pcoords_filter_display(pcoords_filter_t *filter, PicvizImage *image, PicvizAxisPlot **axisplot, int axis_max)
+int pcoords_filter_display(pcoords_filter_t *filter, PcoordsImage *image, PcoordsAxisPlot **axisplot, int axis_max)
 {
         int ret;
 
@@ -141,7 +141,7 @@ int pcoords_filter_display(pcoords_filter_t *filter, PicvizImage *image, PicvizA
 	return ret;
 }
 
-static int test_filter_renplugin_criterion(PicvizImage *image _U_, pcoords_filter_criterion_t *filter, char *freqstr)
+static int test_filter_renplugin_criterion(PcoordsImage *image _U_, pcoords_filter_criterion_t *filter, char *freqstr)
 {
         int ret = 0;
 	double freq;
@@ -191,15 +191,15 @@ static int test_filter_renplugin_criterion(PicvizImage *image _U_, pcoords_filte
 }
 
 
-static int filter_renplugin_match(PicvizImage *image, pcoords_filter_criterion_t *criterion, char *freqstr)
+static int filter_renplugin_match(PcoordsImage *image, pcoords_filter_criterion_t *criterion, char *freqstr)
 {
         return test_filter_renplugin_criterion(image, criterion, freqstr);
 }
 
-int pcoords_filter_renplugin(pcoords_filter_t *filter, PicvizImage *image, char *freqstr, void *userdata)
+int pcoords_filter_renplugin(pcoords_filter_t *filter, PcoordsImage *image, char *freqstr, void *userdata)
 {
         int ret;
-	PicvizLine *line = (PicvizLine *)userdata;
+	PcoordsLine *line = (PcoordsLine *)userdata;
 
         if (filter->criterion->type == PF_FREQ_FILTER) {
 	  if (line->hidden) return 1;
@@ -216,11 +216,11 @@ int pcoords_filter_renplugin(pcoords_filter_t *filter, PicvizImage *image, char 
 }
 
 
-PicvizFilter *pcoords_filter_new(void)
+PcoordsFilter *pcoords_filter_new(void)
 {
-        PicvizFilter *filter;
+        PcoordsFilter *filter;
 
-        filter = malloc(sizeof(PicvizFilter));
+        filter = malloc(sizeof(PcoordsFilter));
         if (!filter) {
                 fprintf(stderr,"Cannot allocate a new filter\n");
                 return NULL;
@@ -306,7 +306,7 @@ pcoords_filter_criterion_t *pcoords_filter_or_criterion(pcoords_filter_criterion
 #ifdef _UNIT_TEST_
 int main(void)
 {
-        PicvizFilter *filter;
+        PcoordsFilter *filter;
 
         filter = pcoords_filter_new();
         pcoords_filter_set_string(filter, "show only plotmin 5 on axes");

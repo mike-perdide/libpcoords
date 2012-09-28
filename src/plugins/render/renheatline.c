@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,11 +26,11 @@
 
 PcvCounter most_frequent[PICVIZ_MAX_AXES]; /* Number holding the maximum line frequency */
 PcvCounter most_frequent_virus; /* Number holding the maximum line frequency for virus mode */
-PicvizCorrelation *pcvcor;
+PcoordsCorrelation *pcvcor;
 
-PicvizHLMode hlmode;
+PcoordsHLMode hlmode;
 
-void find_most_frequent(PicvizImage *image _U_, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1 _U_, PicvizAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1, PcvWidth x2 _U_, PcvHeight y2)
+void find_most_frequent(PcoordsImage *image _U_, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1 _U_, PcoordsAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1, PcvWidth x2 _U_, PcvHeight y2)
 {
 	PcvCounter counter;
 	PcvString buffer[1024];
@@ -58,7 +58,7 @@ void find_most_frequent(PicvizImage *image _U_, PcvID axis_id, PicvizLine *line,
 
 }
 
-void redefine_colors_per_two_axes(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1, PcvWidth x2 _U_, PcvHeight y2)
+void redefine_colors_per_two_axes(PcoordsImage *image, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1, PcvWidth x2 _U_, PcvHeight y2)
 {
 	PcvCounter counter;
 	PcvString buffer[512];
@@ -115,7 +115,7 @@ void redefine_colors_per_two_axes(PicvizImage *image, PcvID axis_id, PicvizLine 
 	}
 }
 
-void redefine_colors_virus(PicvizImage *image _U_, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1 _U_, PicvizAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1, PcvWidth x2 _U_, PcvHeight y2)
+void redefine_colors_virus(PcoordsImage *image _U_, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1 _U_, PcoordsAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1, PcvWidth x2 _U_, PcvHeight y2)
 {
 	PcvCounter counter;
 	PcvString buffer[1024];
@@ -153,7 +153,7 @@ void redefine_colors_virus(PicvizImage *image _U_, PcvID axis_id, PicvizLine *li
 	pcoords_properties_set(line->props, "color", color);
 }
 
-void debug_colors(PicvizImage *image _U_, PcvID axis_id, PicvizLine *line _U_, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1 _U_, PcvWidth x2 _U_, PcvHeight y2 _U_)
+void debug_colors(PcoordsImage *image _U_, PcvID axis_id, PcoordsLine *line _U_, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1 _U_, PcvWidth x2 _U_, PcvHeight y2 _U_)
 {
 	printf("RENDER:Axis id=%llu, color=%s\n", axis_id, pcoords_properties_get(axisplot1->props, "color"));
 }

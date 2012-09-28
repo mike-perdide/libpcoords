@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ typedef enum plugin_type_t {
         PICVIZ_PLUGIN_RENDER,
 	PICVIZ_PLUGIN_VARIABLE	
 } plugin_type_t;
-typedef enum plugin_type_t PicvizPluginType;
+typedef enum plugin_type_t PcoordsPluginType;
 
 
 typedef struct pcoords_plugin_t {
@@ -44,7 +44,7 @@ typedef struct pcoords_plugin_t {
         char *name;
         char *api_version;
 
-        PicvizPluginType type;
+        PcoordsPluginType type;
 
         int (*subscribe)(void);
         void (*unsubscribe)(void);
@@ -53,7 +53,7 @@ typedef struct pcoords_plugin_t {
 
 void image_to_svg(struct pcimage_t *image);
 
-void pcoords_plugin_load(PicvizPluginType plugin_type, char *plugin_name, struct pcimage_t *image, PcvString arg);
+void pcoords_plugin_load(PcoordsPluginType plugin_type, char *plugin_name, struct pcimage_t *image, PcvString arg);
 
 #ifdef __cplusplus
  }

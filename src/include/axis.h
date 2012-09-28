@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,9 +32,9 @@ struct axis_t *pcoords_axis_init(void);
 void pcoords_axis_destroy(struct axis_t *axis);
 struct axis_t *pcoords_axis_new(void);
 void pcoords_axis_set_type_from_string(struct axis_t *axis, char *string);
-char *pcoords_axis_get_string_from_type(PicvizAxis *axis);
-PicvizAxis *pcoords_axis_get_from_name(PicvizImage *image, PcvString name);
-/* struct axis_t *pcoords_axis_get(PicvizImage *i, unsigned int id); */
+char *pcoords_axis_get_string_from_type(PcoordsAxis *axis);
+PcoordsAxis *pcoords_axis_get_from_name(PcoordsImage *image, PcvString name);
+/* struct axis_t *pcoords_axis_get(PcoordsImage *i, unsigned int id); */
 PcvWidth pcoords_axis_position_get(unsigned int counter);
 
 #ifdef __cplusplus

@@ -6,8 +6,8 @@
 
 int main(void)
 {
-  PicvizImage *image;
-  PicvizImage *image2;
+  PcoordsImage *image;
+  PcoordsImage *image2;
   
 
   pcoords_engine_init();
@@ -15,13 +15,13 @@ int main(void)
   pcoords_init(NULL, NULL);
 
   printf("***** Round 1\n");
-  image = (PicvizImage *)pcv_parse(PGDL_FILE, NULL);
+  image = (PcoordsImage *)pcv_parse(PGDL_FILE, NULL);
   pcoords_render_image(image);
   pcoords_image_debug_printall(image);
   pcoords_image_destroy(image);
 
   printf("***** Round 2\n");
-  image2 = (PicvizImage *)pcv_parse(PGDL_FILE, NULL);
+  image2 = (PcoordsImage *)pcv_parse(PGDL_FILE, NULL);
   pcoords_render_image(image2);
   pcoords_image_debug_printall(image2);
   pcoords_image_destroy(image2);

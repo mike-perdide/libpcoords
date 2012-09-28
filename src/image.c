@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@
 #include <pcoords.h>
 
 /**
- * \ingroup PicvizMain
+ * \ingroup PcoordsMain
  * @{
  */
 
@@ -38,9 +38,9 @@ struct engine_t engine;
  *
  * @return the new pcoords image or NULL on error
  */
-PicvizImage *pcoords_image_new(void)
+PcoordsImage *pcoords_image_new(void)
 {
-	PicvizImage *pcimage = NULL;
+	PcoordsImage *pcimage = NULL;
 	int i;
 
 	pcimage = malloc(sizeof(*pcimage));
@@ -82,14 +82,14 @@ PicvizImage *pcoords_image_new(void)
  *
  * @param image the image to destroy
  */
-void pcoords_image_destroy(PicvizImage *image)
+void pcoords_image_destroy(PcoordsImage *image)
 {
-	/* PicvizAxis *axe, *axebkp; */
+	/* PcoordsAxis *axe, *axebkp; */
 	struct line_t *line, *linebkp;
 	/* unsigned int counter = 0; */
 
 /* 	while (image->axesorder[counter]) { */
-/* 	        PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]); */
+/* 	        PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]); */
 /* 		fprintf(stderr,  "ymin=%llu;ymax=%llu\n",axis->ymin, axis->ymax); */
 /* /\* 	        if (axis) free(axis); *\/ */
 /* 		counter++; */
@@ -115,7 +115,7 @@ void pcoords_image_destroy(PicvizImage *image)
  * @param image the image to update
  * @param expand width value to increase
  */
-void pcoords_image_width_increase(PicvizImage *image, unsigned int expand)
+void pcoords_image_width_increase(PcoordsImage *image, unsigned int expand)
 {
         image->width += expand;
 }
@@ -125,9 +125,9 @@ void pcoords_image_width_increase(PicvizImage *image, unsigned int expand)
  * Append an axis to the image
  *
  * @param image the image to update
- * @param axis The PicvizAxis to append
+ * @param axis The PcoordsAxis to append
  */
-void pcoords_image_axis_append(PicvizImage *image, PicvizAxis *axis)
+void pcoords_image_axis_append(PcoordsImage *image, PcoordsAxis *axis)
 {
 	pcoords_hash_set(image->axes, axis->name, axis, sizeof(*axis));
 }
@@ -136,9 +136,9 @@ void pcoords_image_axis_append(PicvizImage *image, PicvizAxis *axis)
  * Append a line to the image
  *
  * @param image the image to update
- * @param line The PicvizLine to append
+ * @param line The PcoordsLine to append
  */
-void pcoords_image_line_append(PicvizImage *image, PicvizLine *line)
+void pcoords_image_line_append(PcoordsImage *image, PcoordsLine *line)
 {
 	if (line) {
 		llist_add_tail(&line->list, &image->lines);
@@ -146,14 +146,14 @@ void pcoords_image_line_append(PicvizImage *image, PicvizLine *line)
 	}
 }
 
-static void pcoords_image_debug_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
+static void pcoords_image_debug_line(PcoordsImage *image, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
 {
   printf("line: %s:%llu, %s:%llu\n", axisplot1->strval, y1, axisplot2->strval, y2);
 }
 
-void pcoords_image_debug_printall(PicvizImage *i)
+void pcoords_image_debug_printall(PcoordsImage *i)
 {
-        PicvizAxis *a;
+        PcoordsAxis *a;
         struct line_t *l;
         struct axisplot_t *axisplot;
 	int counter = 0;
@@ -164,7 +164,7 @@ void pcoords_image_debug_printall(PicvizImage *i)
         printf("i->zero_pos=%d\n", i->zero_pos);
         printf("i->bgcolor=%s\n", i->bgcolor);
 	while (i->axesorder[counter]) {
-		PicvizAxis *a = pcoords_hash_get(i->axes, i->axesorder[counter]);
+		PcoordsAxis *a = pcoords_hash_get(i->axes, i->axesorder[counter]);
                 printf("    a->id=%llu\n", a->id);
                 printf("    a->label=%s\n", pcoords_properties_get(a->props, "label")); 
                 printf("    a->type=%d\n", a->type); 
@@ -199,8 +199,8 @@ void pcoords_image_debug_printall(PicvizImage *i)
 #ifdef _UNIT_TEST_
 int main(void)
 {
-        PicvizImage *image;
-        PicvizAxis *axis;
+        PcoordsImage *image;
+        PcoordsAxis *axis;
         struct line_t *line;
         int i = 0;
         float value;

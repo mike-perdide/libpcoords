@@ -6,7 +6,7 @@ filename = "test1.pcv"
 lnb = 0
 dnb = 0
 
-print "Picviz Python API version: %s" % pcoords.Version()
+print "Pcoords Python API version: %s" % pcoords.Version()
 print "Loading file '%s'" % filename
 data = pcoords.ParseImage(filename, None)
 

@@ -14,7 +14,7 @@ extern void pcvfiltererror(char *);
 extern void *pcvfilter_scan_string(const char *);
 extern void pcvfilter_delete_buffer(void *);
 
-static PicvizFilter *processed_filter;
+static PcoordsFilter *processed_filter;
 
 #define YY_ABORT return -1;
 #define YYERROR_VERBOSE
@@ -22,8 +22,8 @@ static PicvizFilter *processed_filter;
 #define operator_and 2
 
 
-PicvizFilterRelation pcoords_filter_relation_get(char *str);
-PicvizFilterType pcoords_filter_type_get(char *str);
+PcoordsFilterRelation pcoords_filter_relation_get(char *str);
+PcoordsFilterType pcoords_filter_type_get(char *str);
 
 %}
 
@@ -218,7 +218,7 @@ operator:       TOK_OPERATOR_AND        { $$ = operator_and; }
 ;
 %%
 
-PicvizFilterType pcoords_filter_type_get(char *str)
+PcoordsFilterType pcoords_filter_type_get(char *str)
 {
         if (!strcmp(str,"value")) {
                 return PF_VALUE_FILTER;
@@ -235,7 +235,7 @@ PicvizFilterType pcoords_filter_type_get(char *str)
         return PF_TYPE_ERROR;
 }
 
-PicvizFilterRelation pcoords_filter_relation_get(char *str)
+PcoordsFilterRelation pcoords_filter_relation_get(char *str)
 {
         char c = str[0];
 
@@ -280,7 +280,7 @@ PicvizFilterRelation pcoords_filter_relation_get(char *str)
 }
 
 /* Should latter return a pcoords_filter_t */
-PicvizFilter *pcoords_filter_build(char *filterbuf)
+PcoordsFilter *pcoords_filter_build(char *filterbuf)
 {
         void *state;
 

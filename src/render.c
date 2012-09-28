@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  * Copyright (C) 2008 Philippe Saade <psaade@gmail.com>
  *
@@ -27,7 +27,7 @@
 #include <linuxlist.h>
 
 /**
- * \ingroup PicvizMain
+ * \ingroup PcoordsMain
  * @{
  */
 /** \file render.c
@@ -41,7 +41,7 @@
  * @param axis the axis
  * @return TRUE if relative, FALSE otherwise
  */
-PicvizBool pcoords_axis_is_relative(PicvizAxis *axis)
+PcoordsBool pcoords_axis_is_relative(PcoordsAxis *axis)
 {
         char *relative;
 	if (!axis) return BOOL_FALSE;
@@ -55,7 +55,7 @@ PicvizBool pcoords_axis_is_relative(PicvizAxis *axis)
         return BOOL_FALSE;
 }
 
-static void pcoords_render_set_image_width(PicvizImage *image)
+static void pcoords_render_set_image_width(PcoordsImage *image)
 {
 	unsigned int counter = 0;
 
@@ -66,7 +66,7 @@ static void pcoords_render_set_image_width(PicvizImage *image)
 
 }
 
-void pcoords_render_set_minmax(PicvizAxis *axis, PcvHeight value)
+void pcoords_render_set_minmax(PcoordsAxis *axis, PcvHeight value)
 {
 
         if ( value < axis->ymin ) axis->ymin = value;
@@ -83,7 +83,7 @@ void pcoords_render_set_minmax(PicvizAxis *axis, PcvHeight value)
  * @param strvalue the string to extract the value from
  * @return the rendered value
  */
-PcvHeight pcoords_render_value(PicvizImage *image, PicvizAxis *axis, PcvString strvalue)
+PcvHeight pcoords_render_value(PcoordsImage *image, PcoordsAxis *axis, PcvString strvalue)
 {
 	PcvHeight strheight, maxval;
 	PcvHeight retval = 0;
@@ -139,10 +139,10 @@ PcvHeight pcoords_render_value(PicvizImage *image, PicvizAxis *axis, PcvString s
  * @param image the image
  * @return the rendered value
  */
-void pcoords_render_image(PicvizImage *image)
+void pcoords_render_image(PcoordsImage *image)
 {
         int ret;
-        PicvizAxis *axis;
+        PcoordsAxis *axis;
         struct line_t *line;
         struct axisplot_t *axisplot;
         PcvHeight strheight, maxval;
@@ -166,7 +166,7 @@ void pcoords_render_image(PicvizImage *image)
 
 	counter = 0;
 	while (image->axesorder[counter]) {
-		PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+		PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 		/* XXX: This is not just for strings but also for log type */
 		/* if (!axis) continue; */
@@ -183,13 +183,13 @@ void pcoords_render_image(PicvizImage *image)
         llist_for_each_entry(line, &image->lines, list) {
 		counter = 0;
 		while (image->axesorder[counter]) {
-			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+			PcoordsAxisPlot *axisplot = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
 			if ( ! axisplot ) {
 				fprintf(stderr, "**FIXME** (Write a better error message): Cannot get the axis!\n");
 				exit(1);
 			}
-                        /* PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get(image, axisplot->axis_id); */
-			PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+                        /* PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get(image, axisplot->axis_id); */
+			PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 			if ( ! axis ) {
 				fprintf(PICVIZ_DEBUG_WARNING, PICVIZ_AREA_RENDER, "Could not get the axis!");
 				continue;
@@ -216,11 +216,11 @@ void pcoords_render_image(PicvizImage *image)
 		axis_position = 0;
 		counter = 0;
 		line_removal_candidate = 0;
-		PicvizAxisPlot *ap_tbl[PICVIZ_MAX_AXES];
+		PcoordsAxisPlot *ap_tbl[PICVIZ_MAX_AXES];
 
 		while (image->axesorder[counter]) {
-			PicvizAxisPlot *axisplot = (PicvizAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
-			PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+			PcoordsAxisPlot *axisplot = (PcoordsAxisPlot *)pcoords_hash_get(line->axesplots, image->axesorder[counter]);
+			PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 			if (!axis) continue;
 			if (axis->render == PCV_RENDER_DONE) continue;

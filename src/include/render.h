@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  * Copyright (C) 2008 Philippe Saade <psaade@gmail.com>
  *
@@ -28,11 +28,11 @@
  extern "C" {
 #endif
 
-PicvizBool pcoords_axis_is_relative(PicvizAxis *axis);
-void pcoords_render_line(PicvizImage *image, PicvizLine *line);
+PcoordsBool pcoords_axis_is_relative(PcoordsAxis *axis);
+void pcoords_render_line(PcoordsImage *image, PcoordsLine *line);
 void pcoords_render_image(pcimage_t *image);
-PcvHeight pcoords_render_value(PicvizImage *image, PicvizAxis *axis, PcvString value);
-void pcoords_render_set_minmax(PicvizAxis *axis, PcvHeight value);
+PcvHeight pcoords_render_value(PcoordsImage *image, PcoordsAxis *axis, PcvString value);
+void pcoords_render_set_minmax(PcoordsAxis *axis, PcvHeight value);
 
 #ifdef __cplusplus
  }

@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,13 +45,13 @@ static unsigned int get_key_index(const PcvString key)
 	return (hash_func(key) % CORRELATION_HASH_SIZE);
 }
 
-static PicvizCorHash *elem_search(struct llist_head *list, const PcvString key)
+static PcoordsCorHash *elem_search(struct llist_head *list, const PcvString key)
 {
 	struct llist_head *tmp;
-	PicvizCorHash *elem;
+	PcoordsCorHash *elem;
 
 	llist_for_each(tmp, list) {
-		elem = llist_entry(tmp, PicvizCorHash, list);
+		elem = llist_entry(tmp, PcoordsCorHash, list);
 
 		if ( strcmp(elem->key, key) == 0 )
 			return elem;
@@ -60,7 +60,7 @@ static PicvizCorHash *elem_search(struct llist_head *list, const PcvString key)
 	return NULL;
 }
 
-int pcoords_correlation_new(PicvizCorrelation **correlation)
+int pcoords_correlation_new(PcoordsCorrelation **correlation)
 {
 	int i;
 
@@ -84,10 +84,10 @@ int pcoords_correlation_new(PicvizCorrelation **correlation)
 	return 0;
 }
 
-PcvCounter pcoords_correlation_append(PicvizCorrelation *cor, const PcvString key)
+PcvCounter pcoords_correlation_append(PcoordsCorrelation *cor, const PcvString key)
 {
         unsigned int idx;
-        PicvizCorHash *elem;
+        PcoordsCorHash *elem;
 
         idx = get_key_index(key);
 
@@ -115,9 +115,9 @@ PcvCounter pcoords_correlation_append(PicvizCorrelation *cor, const PcvString ke
 }
 
 
-PcvCounter pcoords_correlation_get(PicvizCorrelation *cor, PcvString key)
+PcvCounter pcoords_correlation_get(PcoordsCorrelation *cor, PcvString key)
 {
-        PicvizCorHash *elem;
+        PcoordsCorHash *elem;
 
         elem = elem_search(&cor->hashes[get_key_index(key)], key);
         if ( ! elem )
@@ -126,15 +126,15 @@ PcvCounter pcoords_correlation_get(PicvizCorrelation *cor, PcvString key)
         return elem->value;
 }
 
-void pcoords_correlation_destroy(PicvizCorrelation *cor)
+void pcoords_correlation_destroy(PcoordsCorrelation *cor)
 {
         int i;
-        PicvizCorHash *elem;
+        PcoordsCorHash *elem;
         struct llist_head *tmp, *bkp;
 
         for ( i = 0; i < CORRELATION_HASH_SIZE; i++ ) {
                 llist_for_each_safe(tmp, bkp, &cor->hashes[i]) {
-                        elem = llist_entry(tmp, PicvizCorHash, list);
+                        elem = llist_entry(tmp, PcoordsCorHash, list);
 
                         llist_del(&elem->list);
 

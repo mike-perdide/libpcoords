@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -62,11 +62,11 @@ static void *pcoords_plugin_open(char *plugin_name)
 	return dlh;
 }
 
-void pcoords_plugin_load(PicvizPluginType plugin_type, char *plugin_name, PicvizImage *image, PcvString arg)
+void pcoords_plugin_load(PcoordsPluginType plugin_type, char *plugin_name, PcoordsImage *image, PcvString arg)
 {
 
 	void *dlh;
-	void (*func)(PicvizImage *, PcvString);
+	void (*func)(PcoordsImage *, PcvString);
 
 
 	switch(plugin_type) {
@@ -75,7 +75,7 @@ void pcoords_plugin_load(PicvizPluginType plugin_type, char *plugin_name, Picviz
 			return;
 		case PICVIZ_PLUGIN_OUTPUT:
 /**
- * @defgroup PicvizOutputPlugins Picviz Output Plugins
+ * @defgroup PcoordsOutputPlugins Pcoords Output Plugins
  * Output Plugins provide an API to get read-only data from the
  * rendering engine.
  * @{
@@ -95,7 +95,7 @@ void pcoords_plugin_load(PicvizPluginType plugin_type, char *plugin_name, Picviz
 			break;
 		case PICVIZ_PLUGIN_RENDER:
 /**
- * @defgroup PicvizRenderingPlugins Picviz Rendering Plugins
+ * @defgroup PcoordsRenderingPlugins Pcoords Rendering Plugins
  * Rendering Plugins provide an API to get read and write
  * access to the data to drive the rendering engine
  * @{

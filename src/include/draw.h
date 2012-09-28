@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@
  extern "C" {
 #endif
 
-typedef void (*PicvizDrawLine)(PicvizImage *image, PicvizLine *line, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2);
+typedef void (*PcoordsDrawLine)(PcoordsImage *image, PcoordsLine *line, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2);
 
 #ifdef __cplusplus
  }

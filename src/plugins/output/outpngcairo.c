@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ static void draw_text(double x, double y, char *color, double size, char *text)
 	cairo_stroke(cr);
 }
 
-void draw_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
+void draw_line(PcoordsImage *image, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
 {
 	char *color = NULL;
 	double line_width;
@@ -111,10 +111,10 @@ void init(void)
 	}
 }
 
-void output(PicvizImage *image, char *arg)
+void output(PcoordsImage *image, char *arg)
 {
-	PicvizAxis *axis;
-	PicvizLine *line;
+	PcoordsAxis *axis;
+	PcoordsLine *line;
 	cairo_surface_t *surface;
 	/* cairo_surface_t *worldmap; */
 	cairo_surface_t *logo;
@@ -151,7 +151,7 @@ void output(PicvizImage *image, char *arg)
 	/* Draw each axis and header titles */
 	counter = 0;
 	while (image->axesorder[counter]) {
-		PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+		PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 		/* Draw vertical lines */
 		cairo_move_to(cr, (double) pcoords_axis_position_get(counter), 
@@ -169,7 +169,7 @@ void output(PicvizImage *image, char *arg)
 
 		counter = 0;
 		while (image->axesorder[counter]) {
-			PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+			PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 			char font_size;
 
 			font_size = image->font_size ? image->font_size : 

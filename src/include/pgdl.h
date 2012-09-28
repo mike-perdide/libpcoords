@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -38,14 +38,14 @@ enum pcoords_parser_mode_t {
         PICVIZ_PARSER_MODE_FILE,
 	PICVIZ_PARSER_MODE_LINE
 } pcoords_parser_mode_t;
-typedef enum pcoords_parser_mode_t PicvizParserMode;
+typedef enum pcoords_parser_mode_t PcoordsParserMode;
 
 struct pcoords_parser_context_t {
         section_t section_state;
         FILE *yyin;
-        PicvizParserMode mode;
+        PcoordsParserMode mode;
 } pcoords_parser_context_t;
-typedef struct pcoords_parser_context_t PicvizParserContext;
+typedef struct pcoords_parser_context_t PcoordsParserContext;
 
 FILE *yyin;
 
@@ -62,8 +62,8 @@ char *line_penwidth;
 /* char FILE_OR_LINE = FILE_MODE; */
 char FILE_OR_LINE;
 
-PicvizImage *pcv_parse(char *filename, char *filterbuf);
-PicvizLine *pcoords_parse_line(char *string);
+PcoordsImage *pcv_parse(char *filename, char *filterbuf);
+PcoordsLine *pcoords_parse_line(char *string);
 
 #ifdef __cplusplus
  }

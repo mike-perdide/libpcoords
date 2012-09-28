@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,11 +29,11 @@
 #define IMAGE_Y_AS_RENDERED(image, y) \
    image->height - y
 
-PicvizImage *pcoords_image_new(void);
-void pcoords_image_destroy(PicvizImage *image);
-void pcoords_image_axis_append(PicvizImage *i, PicvizAxis *axis);
-void pcoords_image_line_append(PicvizImage *image, struct line_t *line);
-void pcoords_image_debug_printall(PicvizImage *i);
+PcoordsImage *pcoords_image_new(void);
+void pcoords_image_destroy(PcoordsImage *image);
+void pcoords_image_axis_append(PcoordsImage *i, PcoordsAxis *axis);
+void pcoords_image_line_append(PcoordsImage *image, struct line_t *line);
+void pcoords_image_debug_printall(PcoordsImage *i);
 
 #ifdef __cplusplus
  }

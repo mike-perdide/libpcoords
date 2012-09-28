@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,11 +22,11 @@
 
 #include <pcoords.h>
 
-void pcoords_learn(PicvizImage *image)
+void pcoords_learn(PcoordsImage *image)
 {
 #if 0
-	PicvizLine *line;
-	PicvizAxisPlot *axisplot;
+	PcoordsLine *line;
+	PcoordsAxisPlot *axisplot;
 	char *string_algo;
 	PcvString lowest[PICVIZ_MAX_AXES];
 	PcvString highest[PICVIZ_MAX_AXES];
@@ -53,7 +53,7 @@ void pcoords_learn(PicvizImage *image)
 	}
 
 	for (j = 0; j <= image->lines_max; j++) {
-		PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get(image, j);
+		PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get(image, j);
 
 		if (axis) {
 			if (axis->type == DATATYPE_STRING) {

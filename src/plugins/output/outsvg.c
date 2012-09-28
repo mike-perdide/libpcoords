@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ void pcoords_svg_printf(const char *format, ...)
 
 }
 
-void debug_colors(PicvizImage *image _U_, PcvID axis_id, PicvizLine *line _U_, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1 _U_, PcvWidth x2 _U_, PcvHeight y2 _U_)
+void debug_colors(PcoordsImage *image _U_, PcvID axis_id, PcoordsLine *line _U_, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2 _U_, PcvWidth x1 _U_, PcvHeight y1 _U_, PcvWidth x2 _U_, PcvHeight y2 _U_)
 {
 	printf("OUTPUT:Axis id=%llu, color=%s\n", axis_id, pcoords_properties_get(axisplot1->props, "color"));
 }
@@ -59,7 +59,7 @@ static void draw_text(double x, double y, char *color, double size, char *text)
 			  size, x, y, text);
 }
 
-void draw_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPlot *axisplot1, PicvizAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
+void draw_line(PcoordsImage *image, PcvID axis_id, PcoordsLine *line, PcoordsAxisPlot *axisplot1, PcoordsAxisPlot *axisplot2, PcvWidth x1, PcvHeight y1, PcvWidth x2, PcvHeight y2)
 {
         LinePrintTextFlags lpflags;
 
@@ -91,7 +91,7 @@ void draw_line(PicvizImage *image, PcvID axis_id, PicvizLine *line, PicvizAxisPl
 
 void output(pcimage_t *image, char *arg _U_)
 {
-	PicvizLine *line;
+	PcoordsLine *line;
 	const char *label;
 	unsigned int counter;
 
@@ -107,7 +107,7 @@ void output(pcimage_t *image, char *arg _U_)
 	pcoords_svg_printf("<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n");
 	pcoords_svg_printf("<svg width=\"%d\" height=\"%llu\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n",
 			image->width, image->height);
-	pcoords_svg_printf("  <desc>Picviz image</desc>\n\n");
+	pcoords_svg_printf("  <desc>Pcoords image</desc>\n\n");
 
 	pcoords_svg_printf("/* Background */\n");
 	pcoords_svg_printf("<rect id=\"square\" style=\"fill:white;stroke:white;\" width=\"%d\" height=\"%llu\"></rect>\n\n", image->width, image->height);
@@ -123,7 +123,7 @@ void output(pcimage_t *image, char *arg _U_)
 
 	counter = 0;
 	while (image->axesorder[counter]) {
-	        PicvizAxis *axis = (PicvizAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
+	        PcoordsAxis *axis = (PcoordsAxis *)pcoords_axis_get_from_name(image, image->axesorder[counter]);
 
 		label = pcoords_properties_get(axis->props, "label");
 		pcoords_svg_printf("<line x1=\"%d\" y1=\"%llu\" x2=\"%d\" y2=\"%llu\" stroke=\"black\" stroke-width=\"0.1\"/>\n",

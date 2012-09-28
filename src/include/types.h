@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ typedef enum pcoords_bool_t {
 	BOOL_FALSE = 0,
 	BOOL_TRUE  = 1
 } pcoords_bool_t;
-typedef enum pcoords_bool_t PicvizBool;
+typedef enum pcoords_bool_t PcoordsBool;
 
 typedef unsigned long long PcvHeight;
 typedef unsigned int  PcvWidth;

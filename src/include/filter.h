@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008 Sebastien Tricaud <toady@gscore.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ typedef enum pcoords_filter_options_t {
         PF_OPTIONS_NONE,
         PF_OPTIONS_PLOTPERCENT /* We have plot > 90% */
 } pcoords_filter_options_t;
-typedef enum pcoords_filter_options_t PicvizFilterOptions;
+typedef enum pcoords_filter_options_t PcoordsFilterOptions;
 
 typedef enum pcoords_filter_type_t {
         PF_TYPE_ERROR       = 0x00,
@@ -52,7 +52,7 @@ typedef enum pcoords_filter_type_t {
         /* Filter a line frequency */
         PF_FREQ_FILTER      = 0xF0,
 } pcoords_filter_type_t;
-typedef enum pcoords_filter_type_t PicvizFilterType;
+typedef enum pcoords_filter_type_t PcoordsFilterType;
 
 typedef enum pcoords_filter_relation_t {
         PF_RELATION_ERROR,
@@ -63,12 +63,12 @@ typedef enum pcoords_filter_relation_t {
         PF_RELATION_LESS_OR_EQUAL,
         PF_RELATION_GREATER_OR_EQUAL
 } pcoords_filter_relation_t;
-typedef enum pcoords_filter_relation_t PicvizFilterRelation;
+typedef enum pcoords_filter_relation_t PcoordsFilterRelation;
 
 typedef struct pcoords_filter_criterion {
-        PicvizFilterType type;
-        PicvizFilterRelation relation;
-        PicvizFilterOptions options;
+        PcoordsFilterType type;
+        PcoordsFilterRelation relation;
+        PcoordsFilterOptions options;
         int axis;
 
         union {
@@ -85,23 +85,23 @@ typedef struct pcoords_filter {
         pcoords_filter_criterion_t *criterion;
 } pcoords_filter_t;
 
-typedef struct pcoords_filter PicvizFilter;
+typedef struct pcoords_filter PcoordsFilter;
 
-PicvizFilter *pcoords_filter_new(void);
+PcoordsFilter *pcoords_filter_new(void);
 pcoords_filter_criterion_t *pcoords_filter_criterion_new(void);
-PicvizFilterType pcoords_filter_validate(PcvString string);
+PcoordsFilterType pcoords_filter_validate(PcvString string);
 
 pcoords_filter_criterion_t *pcoords_filter_and_criterion(pcoords_filter_criterion_t *c1, pcoords_filter_criterion_t *c2);
 pcoords_filter_criterion_t *pcoords_filter_or_criterion(pcoords_filter_criterion_t *c1, pcoords_filter_criterion_t *c2);
 
 
-void pcoords_filter_set_string(PicvizFilter *filter, char *string);
+void pcoords_filter_set_string(PcoordsFilter *filter, char *string);
 
 /* defined in filter/filter.yac.y */
-PicvizFilter *pcoords_filter_build(char *filter);
+PcoordsFilter *pcoords_filter_build(char *filter);
 
 int pcoords_filter_display(pcoords_filter_t *filter, pcimage_t *image, struct axisplot_t **axisplot, int axis_max);
-int pcoords_filter_renplugin(pcoords_filter_t *filter, PicvizImage *image, char *freqstr, void *userdata);
+int pcoords_filter_renplugin(pcoords_filter_t *filter, PcoordsImage *image, char *freqstr, void *userdata);
 
 #ifdef __cplusplus
  }

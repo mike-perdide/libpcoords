@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,8 +27,8 @@
 #endif
 
 struct axisplot_t *pcoords_axisplot_new(void);
-void pcoords_axisplot_set_y(PicvizAxis *axis, PicvizAxisPlot *axisplot, PcvHeight y);
-void pcoords_axisplot_destroy(PicvizAxisPlot *axisplot);
+void pcoords_axisplot_set_y(PcoordsAxis *axis, PcoordsAxisPlot *axisplot, PcvHeight y);
+void pcoords_axisplot_destroy(PcoordsAxisPlot *axisplot);
 
 #ifdef __cplusplus
  }

@@ -1,5 +1,5 @@
 /*
- * Picviz - Parallel coordinates ploter
+ * Pcoords - Parallel coordinates ploter
  * Copyright (C) 2008-2009 Sebastien Tricaud <sebastien@honeynet.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ void pcoords_debug(int level, int area, const char *format, ...)
 	fflush(fd);
 }
 
-void pcoords_debug_print_axisplot(PicvizAxisPlot *axisplot)
+void pcoords_debug_print_axisplot(PcoordsAxisPlot *axisplot)
 {
 	fprintf(stderr, "axisplot->strval=%s\n", axisplot->strval);
 	fprintf(stderr, "axisplot->y=%lld\n", axisplot->y);
