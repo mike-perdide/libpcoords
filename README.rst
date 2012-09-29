@@ -80,7 +80,7 @@ Lately, I've been thinking about visualizing network logs for one of my
 clients. I naturally thought about Picviz, but when I tried to find a
 project page, all I found was: http://www.wallinfire.net/pcoords, which
 doesn't exist anymore, since Picviz became Picviz Labs, and the project
-became a product. The code is still opensource thought, but it is not a
+became a product. The code is still opensource though, but it is not a
 free software project anymore.
 
 This is why I'm creating this repository, so that anyone wanting to
